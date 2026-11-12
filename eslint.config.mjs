@@ -11,7 +11,7 @@ import tseslint from 'typescript-eslint';
 
 export default defineConfig([
     // Files and folders that should never be linted
-    globalIgnores(['**/node_modules', '**/dist', '**/storybook-static', '**/coverage', '**/.next']), // Base JavaScript rules for every JS/TS file
+    globalIgnores(['**/node_modules', '**/dist', '**/storybook-static', '**/coverage', '**/.next', '**/next-env.d.ts']), // Base JavaScript rules for every JS/TS file
     js.configs.recommended,
 
     // TypeScript files: type-aware linting
