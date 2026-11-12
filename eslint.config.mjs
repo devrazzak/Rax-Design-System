@@ -28,6 +28,8 @@ export default defineConfig([
             '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'separate-type-imports' }],
             '@typescript-eslint/no-explicit-any': 'error',
             '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+            // Allows idiomatic React callbacks like onClick={() => setOpen(true)}
+            '@typescript-eslint/no-confusing-void-expression': ['error', { ignoreArrowShorthand: true }],
         },
     },
 
