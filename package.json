@@ -7,7 +7,8 @@
     "format:check": "prettier --check .",
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "build": "pnpm -r --filter \"./packages/*\" run build"
   },
   "packageManager": "pnpm@12.18.0",
   "devEngines": {

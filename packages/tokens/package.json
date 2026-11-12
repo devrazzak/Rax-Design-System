@@ -1,0 +1,25 @@
+{
+  "name": "@rax/tokens",
+  "version": "0.0.0",
+  "description": "Design tokens for the Rax design system",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    "./css/*": "./dist/css/*"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.8.0"
+  }
+}
