@@ -1,7 +1,9 @@
 'use client';
 
 import type { ComponentProps, MouseEvent } from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+
+import type { VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { Slot } from 'radix-ui';
 
 import { cn } from '@/lib/cn';
