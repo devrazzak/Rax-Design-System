@@ -1,5 +1,5 @@
 /**
- * Jest config for @rax/ui.
+ * Jest config for @rax-ds/ui.
  * Plain JS (not TS) so Jest can load it without ts-node.
  * @type {import('jest').Config}
  */

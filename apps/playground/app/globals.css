@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import '@rax/ui/styles.css';
+@import '@rax-ds/ui/styles.css';
 
 :root {
     --background: #ffffff;

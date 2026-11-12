@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes';
 
-import { Button } from '@rax/ui';
+import { Button } from '@rax-ds/ui';
 
 export function ThemeToggle() {
     const { resolvedTheme, setTheme } = useTheme();

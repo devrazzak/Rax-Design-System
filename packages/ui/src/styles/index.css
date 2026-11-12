@@ -3,12 +3,12 @@
  *
  * Consumers must import Tailwind themselves, then this file:
  *   @import 'tailwindcss';
- *   @import '@rax/ui/styles.css';
+ *   @import '@rax-ds/ui/styles.css';
  *
  * Tailwind is intentionally NOT imported here, to avoid shipping it twice.
  */
 
-@import '@rax/tokens/tokens.css';
+@import '@rax-ds/tokens/tokens.css';
 
 /* Lets the consumer's Tailwind find the class names used inside the components */
 @source '../../dist';

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Button } from '@rax/ui';
+import { Button } from '@rax-ds/ui';
 
 /** Simulates a slow request, e.g. submitting a donation. */
 function fakeRequest(ms: number) {

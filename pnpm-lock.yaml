@@ -223,7 +223,7 @@ importers:
 
   apps/playground:
     dependencies:
-      '@rax/ui':
+      '@rax-ds/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       next:
@@ -266,7 +266,7 @@ importers:
 
   packages/ui:
     dependencies:
-      '@rax/tokens':
+      '@rax-ds/tokens':
         specifier: workspace:*
         version: link:../tokens
       class-variance-authority:

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Button } from '@rax/ui';
+import { Button } from '@rax-ds/ui';
 
 import { LoadingDemo } from './loading-demo';
 import { ThemeToggle } from './theme-toggle';

@@ -1,5 +1,5 @@
 {
-    "name": "@rax/tokens",
+    "name": "@rax-ds/tokens",
     "version": "0.0.0",
     "description": "Design tokens for the Rax design system",
     "type": "module",
