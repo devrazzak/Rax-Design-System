@@ -10,7 +10,8 @@
         "test:watch": "jest --watch",
         "test:coverage": "jest --coverage",
         "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build"
+        "build-storybook": "storybook build",
+        "build": "vite build --config vite.lib.config.ts"
     },
     "sideEffects": [
         "**/*.css"
@@ -19,7 +20,12 @@
         "dist",
         "src/styles"
     ],
+    "types": "./dist/index.d.ts",
     "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
         "./styles.css": "./src/styles/index.css"
     },
     "peerDependencies": {
@@ -60,7 +66,8 @@
         "react-dom": "^19.3.1",
         "storybook": "^10.6.7",
         "tailwindcss": "^4.3.5",
-        "vite": "^8.3.8"
+        "vite": "^8.3.8",
+        "vite-plugin-dts": "^5.1.2"
     },
     "publishConfig": {
         "access": "public"
