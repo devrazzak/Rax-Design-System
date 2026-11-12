@@ -12,7 +12,9 @@
         "typecheck": "pnpm -r run typecheck",
         "test": "pnpm -r run test",
         "playground": "pnpm --filter @rax/tokens build && pnpm --filter @rax/ui build && pnpm --filter playground dev",
-        "dev": "pnpm --filter @rax/tokens build && pnpm --filter @rax/ui storybook"
+        "dev": "pnpm --filter @rax/tokens build && pnpm --filter @rax/ui storybook",
+        "changeset": "changeset",
+        "version-packages": "changeset version"
     },
     "packageManager": "pnpm@12.18.0",
     "devEngines": {
@@ -26,6 +28,7 @@
         "node": ">=22"
     },
     "devDependencies": {
+        "@changesets/cli": "^3.0.3",
         "@commitlint/cli": "^21.2.4",
         "@commitlint/config-conventional": "^21.2.4",
         "@eslint/js": "^9.39.5",
