@@ -11,7 +11,8 @@
         "test:coverage": "jest --coverage",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
-        "build": "vite build --config vite.lib.config.ts"
+        "build": "vite build --config vite.lib.config.ts",
+        "dev": "vite build --config vite.lib.config.ts --watch"
     },
     "sideEffects": [
         "**/*.css"
