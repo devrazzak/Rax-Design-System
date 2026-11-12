@@ -11,6 +11,7 @@
     "**/*.css"
   ],
   "exports": {
+    "./tokens.css": "./dist/tokens.css",
     "./css/*": "./dist/css/*"
   },
   "scripts": {
