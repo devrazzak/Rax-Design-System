@@ -1,0 +1,75 @@
+/*
+ * Rax UI styles
+ *
+ * Consumers must import Tailwind themselves, then this file:
+ *   @import 'tailwindcss';
+ *   @import '@rax/ui/styles.css';
+ *
+ * Tailwind is intentionally NOT imported here, to avoid shipping it twice.
+ */
+
+@import '@rax/tokens/tokens.css';
+
+/* dark: variant follows the .dark class or data-theme attribute, not the OS setting */
+@custom-variant dark (&:where(.dark, .dark *, [data-theme='dark'], [data-theme='dark'] *));
+
+/* Map design tokens to Tailwind utilities (bg-primary, text-foreground, rounded-md, ...) */
+@theme inline {
+    --color-background: var(--rax-color-background);
+    --color-foreground: var(--rax-color-foreground);
+
+    --color-card: var(--rax-color-card);
+    --color-card-foreground: var(--rax-color-card-foreground);
+
+    --color-popover: var(--rax-color-popover);
+    --color-popover-foreground: var(--rax-color-popover-foreground);
+
+    --color-primary: var(--rax-color-primary);
+    --color-primary-foreground: var(--rax-color-primary-foreground);
+
+    --color-secondary: var(--rax-color-secondary);
+    --color-secondary-foreground: var(--rax-color-secondary-foreground);
+
+    --color-muted: var(--rax-color-muted);
+    --color-muted-foreground: var(--rax-color-muted-foreground);
+
+    --color-accent: var(--rax-color-accent);
+    --color-accent-foreground: var(--rax-color-accent-foreground);
+
+    --color-destructive: var(--rax-color-destructive);
+    --color-destructive-foreground: var(--rax-color-destructive-foreground);
+
+    --color-border: var(--rax-color-border);
+    --color-input: var(--rax-color-input);
+    --color-ring: var(--rax-color-ring);
+
+    --font-sans: var(--rax-font-family-sans);
+    --font-mono: var(--rax-font-family-mono);
+
+    --radius-sm: var(--rax-radius-sm);
+    --radius-md: var(--rax-radius-md);
+    --radius-lg: var(--rax-radius-lg);
+    --radius-xl: var(--rax-radius-xl);
+    --radius-2xl: var(--rax-radius-2xl);
+}
+
+/* Native browser UI (scrollbars, form controls, autofill) follows the active theme */
+:root,
+[data-theme='light'] {
+    color-scheme: light;
+}
+
+.dark,
+[data-theme='dark'] {
+    color-scheme: dark;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+
+    body {
+        @apply bg-background text-foreground font-sans;
+    }
+}
