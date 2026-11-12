@@ -1,17 +1,17 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier/flat';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import storybook from 'eslint-plugin-storybook';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
     // Files and folders that should never be linted
-    globalIgnores(['**/node_modules', '**/dist', '**/storybook-static', '**/coverage', '**/.next']),
-
-    // Base JavaScript rules for every JS/TS file
+    globalIgnores(['**/node_modules', '**/dist', '**/storybook-static', '**/coverage', '**/.next']), // Base JavaScript rules for every JS/TS file
     js.configs.recommended,
 
     // TypeScript files: type-aware linting
@@ -51,6 +51,9 @@ export default defineConfig([
         files: ['**/*.{js,mjs,cjs}'],
         languageOptions: { globals: globals.node },
     },
+
+    // Story file conventions (default export, named stories, etc.)
+    ...storybook.configs['flat/recommended'],
 
     // Must stay last: disables rules that conflict with Prettier
     prettier,

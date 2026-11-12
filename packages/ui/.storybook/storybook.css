@@ -1,0 +1,6 @@
+/* Storybook acts as a consumer: it imports Tailwind first, then the design system styles */
+@import 'tailwindcss';
+@import '../src/styles/index.css';
+
+/* Scan component source files for class names */
+@source '../src';

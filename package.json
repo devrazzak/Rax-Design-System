@@ -9,7 +9,8 @@
     "lint:fix": "eslint . --fix",
     "prepare": "husky",
     "build": "pnpm -r --filter \"./packages/*\" run build",
-    "typecheck": "pnpm -r run typecheck"
+    "typecheck": "pnpm -r run typecheck",
+    "dev": "pnpm --filter @rax/tokens build && pnpm --filter @rax/ui storybook"
   },
   "packageManager": "pnpm@12.18.0",
   "devEngines": {
@@ -25,13 +26,14 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
-    "@eslint/js": "^10.0.1",
+    "@eslint/js": "^9.39.5",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
-    "eslint": "^10.14.0",
+    "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-storybook": "^10.6.7",
     "globals": "^17.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
