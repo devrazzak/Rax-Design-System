@@ -2,6 +2,7 @@
     "$schema": "https://json.schemastore.org/prettierrc",
     "printWidth": 120,
     "tabWidth": 4,
+    "useTabs": false,
     "singleQuote": true,
     "arrowParens": "avoid",
     "trailingComma": "all",
@@ -11,16 +12,22 @@
     "importOrder": [
         "<BUILTIN_MODULES>",
         "",
+        "<TYPES>^react$",
         "^react$",
         "^react-dom(.*)$",
+        "",
+        "<TYPES>",
         "<THIRD_PARTY_MODULES>",
         "",
+        "<TYPES>^@rax/",
         "^@rax/(.*)$",
         "",
+        "<TYPES>^@/",
         "^@/lib/(.*)$",
         "^@/hooks/(.*)$",
         "^@/components/(.*)$",
         "",
+        "<TYPES>^[.]",
         "^[.]",
         "",
         "\\.css$"
@@ -28,7 +35,7 @@
     "importOrderTypeScriptVersion": "5.0.0",
     "overrides": [
         {
-            "files": ["*.json", "*.yaml", "*.yml", "*.md"],
+            "files": ["*.yaml", "*.yml"],
             "options": { "tabWidth": 2 }
         }
     ]

@@ -1,46 +1,46 @@
 {
-  "name": "rax-design-system",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint . --max-warnings=0",
-    "lint:fix": "eslint . --fix",
-    "prepare": "husky",
-    "build": "pnpm -r --filter \"./packages/*\" run build",
-    "typecheck": "pnpm -r run typecheck",
-    "test": "pnpm -r run test",
-    "dev": "pnpm --filter @rax/tokens build && pnpm --filter @rax/ui storybook"
-  },
-  "packageManager": "pnpm@12.18.0",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "12.18.0",
-      "onFail": "download"
+    "name": "rax-design-system",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "lint": "eslint . --max-warnings=0",
+        "lint:fix": "eslint . --fix",
+        "prepare": "husky",
+        "build": "pnpm -r --filter \"./packages/*\" run build",
+        "typecheck": "pnpm -r run typecheck",
+        "test": "pnpm -r run test",
+        "dev": "pnpm --filter @rax/tokens build && pnpm --filter @rax/ui storybook"
+    },
+    "packageManager": "pnpm@12.18.0",
+    "devEngines": {
+        "packageManager": {
+            "name": "pnpm",
+            "version": "12.18.0",
+            "onFail": "download"
+        }
+    },
+    "engines": {
+        "node": ">=22"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^21.2.4",
+        "@commitlint/config-conventional": "^21.2.4",
+        "@eslint/js": "^9.39.5",
+        "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
+        "eslint": "^9.39.5",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-jsx-a11y": "^6.10.2",
+        "eslint-plugin-react": "^7.37.5",
+        "eslint-plugin-react-hooks": "^7.1.1",
+        "eslint-plugin-storybook": "^10.6.7",
+        "globals": "^17.14.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^17.6.0",
+        "prettier": "^3.10.0",
+        "prettier-plugin-tailwindcss": "^0.8.1",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.72.2"
     }
-  },
-  "engines": {
-    "node": ">=22"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^21.2.4",
-    "@commitlint/config-conventional": "^21.2.4",
-    "@eslint/js": "^9.39.5",
-    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
-    "eslint": "^9.39.5",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-storybook": "^10.6.7",
-    "globals": "^17.14.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.6.0",
-    "prettier": "^3.10.0",
-    "prettier-plugin-tailwindcss": "^0.8.1",
-    "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.2"
-  }
 }
