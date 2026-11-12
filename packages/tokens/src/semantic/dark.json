@@ -21,8 +21,8 @@
     "accent": { "$value": "{color.neutral.800}", "$type": "color" },
     "accent-foreground": { "$value": "{color.neutral.50}", "$type": "color" },
 
-    "destructive": { "$value": "{color.red.600}", "$type": "color" },
-    "destructive-foreground": { "$value": "{color.white}", "$type": "color" },
+    "destructive": { "$value": "{color.red.500}", "$type": "color" },
+    "destructive-foreground": { "$value": "{color.neutral.950}", "$type": "color" },
 
     "border": { "$value": "{color.neutral.800}", "$type": "color" },
     "input": { "$value": "{color.neutral.800}", "$type": "color" },
