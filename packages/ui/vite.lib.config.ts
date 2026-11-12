@@ -4,7 +4,7 @@ import { defineConfig, mergeConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
 import packageJson from './package.json' with { type: 'json' };
-import baseConfig from './vite.config';
+import baseConfig from './vite.config.ts';
 
 /**
  * Dependencies and peer dependencies are never bundled.

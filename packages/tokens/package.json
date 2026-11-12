@@ -1,9 +1,23 @@
 {
     "name": "@rax-ds/tokens",
-    "version": "0.0.0",
-    "description": "Design tokens for the Rax design system",
-    "type": "module",
+    "version": "0.1.0",
+    "description": "Design tokens (CSS variables) for the Rax design system, with light and dark themes",
+    "keywords": [
+        "design-system",
+        "design-tokens",
+        "css-variables",
+        "style-dictionary"
+    ],
+    "author": "A. Razzak",
     "license": "MIT",
+    "homepage": "https://github.com/devrazzak/Rax-Design-System/tree/main/packages/tokens#readme",
+    "bugs": "https://github.com/devrazzak/Rax-Design-System/issues",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/devrazzak/Rax-Design-System.git",
+        "directory": "packages/tokens"
+    },
+    "type": "module",
     "files": [
         "dist"
     ],
