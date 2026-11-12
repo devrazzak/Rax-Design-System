@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Mail, Trash2 } from 'lucide-react';
 
@@ -74,6 +75,39 @@ export const AsChildLink: Story = {
         children: <a href="/dashboard">Go to dashboard</a>,
     },
 };
+export const Loading: Story = {
+    args: {
+        loading: true,
+        children: 'Saving',
+    },
+};
+
+/** Click repeatedly: only one click is handled every 2 seconds, and keyboard focus stays on the button. */
+function LoadingDemo() {
+    const [loading, setLoading] = useState(false);
+    const [handledClicks, setHandledClicks] = useState(0);
+
+    const handleClick = () => {
+        setHandledClicks(count => count + 1);
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+    };
+
+    return (
+        <div className="flex items-center gap-4">
+            <Button loading={loading} onClick={handleClick}>
+                Donate
+            </Button>
+            <span className="text-sm text-muted-foreground">Handled clicks: {handledClicks}</span>
+        </div>
+    );
+}
+
+export const LoadingInteractive: Story = {
+    render: () => <LoadingDemo />,
+};
 
 export const AllVariants: Story = {
     render: () => (
@@ -84,6 +118,7 @@ export const AllVariants: Story = {
             <Button variant="ghost">Ghost</Button>
             <Button variant="link">Link</Button>
             <Button variant="destructive">Delete</Button>
+            <LoadingDemo />
         </div>
     ),
 };

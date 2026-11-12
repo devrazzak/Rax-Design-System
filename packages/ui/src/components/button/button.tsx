@@ -1,4 +1,6 @@
-import type { ComponentProps } from 'react';
+'use client';
+
+import type { ComponentProps, MouseEvent } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Slot } from 'radix-ui';
 
@@ -37,19 +39,70 @@ export const buttonVariants = cva(
     },
 );
 
-export type ButtonProps = ComponentProps<'button'> &
-    VariantProps<typeof buttonVariants> & {
-        /** Render the child element instead of a <button>, e.g. a Next.js <Link>. */
-        asChild?: boolean;
-    };
+type ButtonBaseProps = ComponentProps<'button'> & VariantProps<typeof buttonVariants>;
 
-export function Button({ className, variant, size, asChild = false, type, ...props }: ButtonProps) {
-    const classes = cn(buttonVariants({ variant, size }), className);
+type NativeButtonProps = ButtonBaseProps & {
+    asChild?: false;
+    /** Shows a spinner, blocks clicks and form submission, and keeps keyboard focus. */
+    loading?: boolean;
+};
 
-    if (asChild) {
-        return <Slot.Root data-slot="button" className={classes} {...props} />;
+type AsChildButtonProps = ButtonBaseProps & {
+    /** Render the child element instead of a <button>, e.g. a Next.js <Link>. */
+    asChild: true;
+    /** Not supported with asChild: links and custom elements cannot be put into a busy state. */
+    loading?: never;
+};
+
+export type ButtonProps = NativeButtonProps | AsChildButtonProps;
+
+function Spinner({ className }: { className?: string }) {
+    return (
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={cn('animate-spin', className)}>
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25" />
+            <path fill="currentColor" d="M4 12a8 8 0 0 1 8-8v4a4 4 0 0 0-4 4H4z" className="opacity-75" />
+        </svg>
+    );
+}
+
+export function Button(props: ButtonProps) {
+    if (props.asChild) {
+        const { asChild: _asChild, loading: _loading, className, variant, size, ...rest } = props;
+        return <Slot.Root data-slot="button" className={cn(buttonVariants({ variant, size }), className)} {...rest} />;
     }
 
-    // The native default is type="submit", which causes accidental form submissions
-    return <button type={type ?? 'button'} data-slot="button" className={classes} {...props} />;
+    const { asChild: _asChild, loading = false, className, variant, size, type, onClick, children, ...rest } = props;
+
+    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+        if (loading) {
+            // Stops both the click handler and form submission while busy
+            event.preventDefault();
+            return;
+        }
+        onClick?.(event);
+    };
+
+    return (
+        <button
+            // The native default is type="submit", which causes accidental form submissions
+            type={type ?? 'button'}
+            data-slot="button"
+            data-loading={loading || undefined}
+            aria-busy={loading || undefined}
+            aria-disabled={loading || undefined}
+            onClick={handleClick}
+            className={cn(buttonVariants({ variant, size }), loading && 'relative cursor-wait', className)}
+            {...rest}
+        >
+            {loading ? (
+                <>
+                    {/* Keeps the original width so the layout does not jump */}
+                    <span className="inline-flex items-center justify-center gap-2 opacity-0">{children}</span>
+                    <Spinner className="absolute inset-0 m-auto" />
+                </>
+            ) : (
+                children
+            )}
+        </button>
+    );
 }
