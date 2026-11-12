@@ -14,7 +14,8 @@
         "playground": "pnpm --filter @rax-ds/tokens build && pnpm --filter @rax-ds/ui build && pnpm --filter playground dev",
         "dev": "pnpm --filter @rax-ds/tokens build && pnpm --filter @rax-ds/ui storybook",
         "changeset": "changeset",
-        "version-packages": "changeset version"
+        "version-packages": "changeset version",
+        "release": "pnpm build && changeset publish"
     },
     "packageManager": "pnpm@12.18.0",
     "devEngines": {
