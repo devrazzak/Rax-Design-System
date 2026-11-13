@@ -10,16 +10,22 @@
         "popover-foreground": { "$value": "{color.neutral.50}", "$type": "color" },
 
         "primary": { "$value": "{color.red.600}", "$type": "color" },
+        "primary-hover": { "$value": "{color.red.700}", "$type": "color" },
+        "primary-outline-hover": { "$value": "{color.white}", "$type": "color" },
         "primary-foreground": { "$value": "{color.white}", "$type": "color" },
 
-        "secondary": { "$value": "{color.neutral.800}", "$type": "color" },
-        "secondary-foreground": { "$value": "{color.neutral.50}", "$type": "color" },
+        "secondary": { "$value": "{color.blue.700}", "$type": "color" },
+        "secondary-hover": { "$value": "{color.blue.600}", "$type": "color" },
+        "secondary-foreground": { "$value": "{color.white}", "$type": "color" },
 
         "muted": { "$value": "{color.neutral.800}", "$type": "color" },
         "muted-foreground": { "$value": "{color.neutral.400}", "$type": "color" },
 
         "accent": { "$value": "{color.neutral.800}", "$type": "color" },
         "accent-foreground": { "$value": "{color.neutral.50}", "$type": "color" },
+
+        "link": { "$value": "{color.neutral.50}", "$type": "color" },
+        "link-hover": { "$value": "{color.neutral.50}", "$type": "color" },
 
         "destructive": { "$value": "{color.red.500}", "$type": "color" },
         "destructive-foreground": { "$value": "{color.neutral.950}", "$type": "color" },
