@@ -1,110 +1,67 @@
-'use client';
-
-import type { ComponentProps, MouseEvent } from 'react';
+import type * as React from 'react';
 
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
 import { Slot } from 'radix-ui';
 
-import { cn } from '@/lib/cn';
+import { cn } from '@/lib/utils/cn';
 
-export const buttonVariants = cva(
-    [
-        'inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors',
-        'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none',
-        'disabled:pointer-events-none disabled:opacity-50',
-        '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
-    ],
+const iconSlide = [
+    '[&_svg[data-icon=inline-end]]:transition-transform',
+    '[&_svg[data-icon=inline-end]]:duration-200',
+    'motion-safe:hover:[&_svg[data-icon=inline-end]]:translate-x-0.5',
+    'motion-safe:focus-visible:[&_svg[data-icon=inline-end]]:translate-x-0.5',
+];
+
+const buttonVariants = cva(
+    "inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium cursor-pointer whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
     {
         variants: {
             variant: {
-                primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
-                secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-                outline: 'border bg-background hover:bg-accent hover:text-accent-foreground',
-                ghost: 'hover:bg-accent hover:text-accent-foreground',
-                link: 'text-primary underline-offset-4 hover:underline',
-                // Outline style on purpose: primary is also red, so a solid red button would look identical
+                primary: 'bg-primary text-primary-foreground hover:bg-primary-hover',
+                secondary:
+                    'bg-secondary text-secondary-foreground hover:bg-secondary-hover aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
+                outline:
+                    'border-border bg-card text-foreground hover:border-primary-outline-hover hover:text-primary-outline-hover aria-expanded:border-primary-outline-hover aria-expanded:text-primary-outline-hover',
+                ghost: 'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50',
                 destructive:
-                    'border border-destructive bg-background text-destructive hover:bg-destructive hover:text-destructive-foreground',
+                    'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
+                link: ['text-link hover:text-link-hover aria-expanded:text-link-hover', iconSlide],
+                linkInverse: ['text-white underline-offset-4 hover:underline', iconSlide],
             },
             size: {
-                sm: 'h-8 px-3 text-xs',
-                md: 'h-9 px-4',
-                lg: 'h-10 px-6',
-                icon: 'size-9',
+                default: 'h-10 gap-1.5 px-4 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3',
+                xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
+                sm: "h-8 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+                lg: 'h-12 gap-1.5 px-5 has-data-[icon=inline-end]:pr-4 has-data-[icon=inline-start]:pl-4',
             },
         },
         defaultVariants: {
             variant: 'primary',
-            size: 'md',
+            size: 'default',
         },
     },
 );
 
-type ButtonBaseProps = ComponentProps<'button'> & VariantProps<typeof buttonVariants>;
-
-type NativeButtonProps = ButtonBaseProps & {
-    asChild?: false;
-    /** Shows a spinner, blocks clicks and form submission, and keeps keyboard focus. */
-    loading?: boolean;
-};
-
-type AsChildButtonProps = ButtonBaseProps & {
-    /** Render the child element instead of a <button>, e.g. a Next.js <Link>. */
-    asChild: true;
-    /** Not supported with asChild: links and custom elements cannot be put into a busy state. */
-    loading?: never;
-};
-
-export type ButtonProps = NativeButtonProps | AsChildButtonProps;
-
-function Spinner({ className }: { className?: string }) {
-    return (
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={cn('animate-spin', className)}>
-            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25" />
-            <path fill="currentColor" d="M4 12a8 8 0 0 1 8-8v4a4 4 0 0 0-4 4H4z" className="opacity-75" />
-        </svg>
-    );
-}
-
-export function Button(props: ButtonProps) {
-    if (props.asChild) {
-        const { asChild: _asChild, loading: _loading, className, variant, size, ...rest } = props;
-        return <Slot.Root data-slot="button" className={cn(buttonVariants({ variant, size }), className)} {...rest} />;
-    }
-
-    const { asChild: _asChild, loading = false, className, variant, size, type, onClick, children, ...rest } = props;
-
-    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-        if (loading) {
-            // Stops both the click handler and form submission while busy
-            event.preventDefault();
-            return;
-        }
-        onClick?.(event);
+type ButtonProps = React.ComponentProps<'button'> &
+    VariantProps<typeof buttonVariants> & {
+        asChild?: boolean;
     };
 
+function Button({ className, variant = 'primary', size = 'default', asChild = false, type, ...props }: ButtonProps) {
+    const Comp = asChild ? Slot.Root : 'button';
+
     return (
-        <button
-            // The native default is type="submit", which causes accidental form submissions
-            type={type ?? 'button'}
+        <Comp
             data-slot="button"
-            data-loading={loading || undefined}
-            aria-busy={loading || undefined}
-            aria-disabled={loading || undefined}
-            onClick={handleClick}
-            className={cn(buttonVariants({ variant, size }), loading && 'relative cursor-wait', className)}
-            {...rest}
-        >
-            {loading ? (
-                <>
-                    {/* Keeps the original width so the layout does not jump */}
-                    <span className="inline-flex items-center justify-center gap-2 opacity-0">{children}</span>
-                    <Spinner className="absolute inset-0 m-auto" />
-                </>
-            ) : (
-                children
-            )}
-        </button>
+            data-variant={variant}
+            data-size={size}
+            type={asChild ? undefined : (type ?? 'button')}
+            className={cn(buttonVariants({ variant, size, className }))}
+            {...props}
+        />
     );
 }
+
+export { Button, buttonVariants };
+export type { ButtonProps };
