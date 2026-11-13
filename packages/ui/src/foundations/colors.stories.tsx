@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { cn } from '@/lib/cn';
+import { cn } from '@/lib/utils/cn';
 
 /**
  * Class names must be written in full so Tailwind can detect them.
