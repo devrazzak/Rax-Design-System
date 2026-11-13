@@ -1,9 +1,13 @@
 import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Mail, Trash2 } from 'lucide-react';
+import { ArrowRightIcon, Mail, Trash2 } from 'lucide-react';
 
+import type { ButtonProps } from './button';
 import { Button } from './button';
+
+const VARIANTS = ['primary', 'secondary', 'outline', 'ghost', 'destructive', 'link'] as const;
+const SIZES = ['xs', 'sm', 'default', 'lg'] as const;
 
 const meta = {
     title: 'Components/Button',
@@ -13,19 +17,25 @@ const meta = {
     argTypes: {
         variant: {
             control: 'select',
-            options: ['primary', 'secondary', 'outline', 'ghost', 'link', 'destructive'],
+            options: [...VARIANTS, 'linkInverse'],
         },
         size: {
-            control: 'select',
-            options: ['sm', 'md', 'lg', 'icon'],
+            control: 'inline-radio',
+            options: SIZES,
         },
+        disabled: { control: 'boolean' },
+        asChild: { control: false },
     },
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {};
+/* -------------------------------------------------------------------------- */
+/* Variants                                                                   */
+/* -------------------------------------------------------------------------- */
+
+export const Primary: Story = { args: { variant: 'primary' } };
 
 export const Secondary: Story = { args: { variant: 'secondary' } };
 
@@ -33,93 +43,218 @@ export const Outline: Story = { args: { variant: 'outline' } };
 
 export const Ghost: Story = { args: { variant: 'ghost' } };
 
-export const Link: Story = { args: { variant: 'link' } };
-
 export const Destructive: Story = {
     args: {
         variant: 'destructive',
         children: (
             <>
-                <Trash2 aria-hidden />
+                <Trash2 data-icon="inline-start" aria-hidden="true" />
                 Delete
             </>
         ),
     },
 };
 
-export const WithIcon: Story = {
+/** Hover or focus the button: the trailing icon slides right (disabled when the OS asks for reduced motion). */
+export const Link: Story = {
+    args: {
+        variant: 'link',
+        children: (
+            <>
+                Explore activities
+                <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
+            </>
+        ),
+    },
+};
+
+/** Always-white link for dark surfaces and images. The wrapper only simulates a dark background. */
+export const LinkInverse: Story = {
+    args: {
+        variant: 'linkInverse',
+        children: (
+            <>
+                Explore activities
+                <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
+            </>
+        ),
+    },
+    decorators: [
+        Story => (
+            <div className="rounded-lg bg-foreground p-6">
+                <Story />
+            </div>
+        ),
+    ],
+};
+
+/* -------------------------------------------------------------------------- */
+/* Sizes and icons                                                            */
+/* -------------------------------------------------------------------------- */
+
+export const Sizes: Story = {
+    render: args => (
+        <div className="flex flex-wrap items-center gap-3">
+            {SIZES.map(size => (
+                <Button key={size} {...args} size={size}>
+                    {size}
+                </Button>
+            ))}
+        </div>
+    ),
+};
+
+export const IconStart: Story = {
     args: {
         children: (
             <>
-                <Mail aria-hidden />
+                <Mail data-icon="inline-start" aria-hidden="true" />
                 Send email
             </>
         ),
     },
 };
 
-/** Icon-only buttons must have an aria-label, otherwise screen readers announce nothing. */
-export const IconOnly: Story = {
+export const IconEnd: Story = {
     args: {
-        size: 'icon',
-        'aria-label': 'Send email',
-        children: <Mail aria-hidden />,
+        children: (
+            <>
+                Continue
+                <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
+            </>
+        ),
     },
 };
 
-export const Disabled: Story = { args: { disabled: true } };
+/**
+ * Dedicated icon sizes are deferred. Until then a square button is made with className,
+ * which also proves that `px-0` overrides the default `px-4` (tailwind-merge via `cn`).
+ * Icon-only buttons must have an aria-label, otherwise screen readers announce nothing.
+ */
+export const IconOnly: Story = {
+    args: {
+        'aria-label': 'Send email',
+        className: 'w-10 px-0',
+        children: <Mail aria-hidden="true" />,
+    },
+};
 
-/** Renders a real <a> element styled as a button. */
+/* -------------------------------------------------------------------------- */
+/* States                                                                     */
+/* -------------------------------------------------------------------------- */
+
+export const Disabled: Story = {
+    render: args => (
+        <div className="flex flex-wrap items-center gap-3">
+            {VARIANTS.map(variant => (
+                <Button key={variant} {...args} variant={variant} disabled>
+                    {variant}
+                </Button>
+            ))}
+        </div>
+    ),
+};
+
+/** Static `aria-expanded="true"`, the state a dropdown or popover trigger is in while open. */
+export const Expanded: Story = {
+    render: args => (
+        <div className="flex flex-wrap items-center gap-3">
+            {(['secondary', 'outline', 'ghost', 'link'] as const).map(variant => (
+                <Button key={variant} {...args} variant={variant} aria-expanded="true">
+                    {variant}
+                </Button>
+            ))}
+        </div>
+    ),
+};
+
+/** `aria-invalid` shows the error ring, used when a button acts as a form field trigger. */
+export const Invalid: Story = {
+    args: { variant: 'outline', 'aria-invalid': true },
+};
+
+/* -------------------------------------------------------------------------- */
+/* Behavior                                                                   */
+/* -------------------------------------------------------------------------- */
+
+/** Renders a real <a> element styled as a button. `type` is not set on it. */
 export const AsChildLink: Story = {
     args: {
         asChild: true,
-        children: <a href="/dashboard">Go to dashboard</a>,
-    },
-};
-export const Loading: Story = {
-    args: {
-        loading: true,
-        children: 'Saving',
+        children: (
+            <a href="/dashboard">
+                Go to dashboard
+                <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
+            </a>
+        ),
     },
 };
 
-/** Click repeatedly: only one click is handled every 2 seconds, and keyboard focus stays on the button. */
-function LoadingDemo() {
-    const [loading, setLoading] = useState(false);
-    const [handledClicks, setHandledClicks] = useState(0);
+/** Inspect the DOM: the button must keep only `h-14`, not both `h-10` and `h-14`. */
+export const ClassNameOverride: Story = {
+    args: { className: 'h-14', children: 'h-14 wins over the default h-10' },
+};
 
-    const handleClick = () => {
-        setHandledClicks(count => count + 1);
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-        }, 2000);
-    };
+function FormTypeDemo() {
+    const [submits, setSubmits] = useState(0);
 
     return (
-        <div className="flex items-center gap-4">
-            <Button loading={loading} onClick={handleClick}>
-                Donate
-            </Button>
-            <span className="text-sm text-muted-foreground">Handled clicks: {handledClicks}</span>
+        <form
+            className="flex items-center gap-3"
+            onSubmit={event => {
+                event.preventDefault();
+                setSubmits(count => count + 1);
+            }}
+        >
+            <Button variant="outline">Cancel (no type)</Button>
+            <Button type="submit">Submit</Button>
+            <span className="text-sm text-muted-foreground">Form submits: {submits}</span>
+        </form>
+    );
+}
+
+/** Click "Cancel": the counter must not change, because the default type is "button". Only "Submit" counts. */
+export const InsideForm: Story = {
+    render: () => <FormTypeDemo />,
+};
+
+/* -------------------------------------------------------------------------- */
+/* Overview                                                                   */
+/* -------------------------------------------------------------------------- */
+
+function VariantMatrix(props: ButtonProps) {
+    return (
+        <div className="grid gap-4">
+            {VARIANTS.map(variant => (
+                <div key={variant} className="flex flex-wrap items-center gap-3">
+                    <span className="w-24 text-sm text-muted-foreground">{variant}</span>
+                    {SIZES.map(size => (
+                        <Button key={size} {...props} variant={variant} size={size}>
+                            {size}
+                        </Button>
+                    ))}
+                </div>
+            ))}
         </div>
     );
 }
 
-export const LoadingInteractive: Story = {
-    render: () => <LoadingDemo />,
+export const AllVariantsAndSizes: Story = {
+    parameters: { layout: 'padded' },
+    render: args => <VariantMatrix {...args} />,
 };
 
-export const AllVariants: Story = {
-    render: () => (
-        <div className="flex flex-wrap items-center gap-3">
-            <Button variant="primary">Primary</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="outline">Outline</Button>
-            <Button variant="ghost">Ghost</Button>
-            <Button variant="link">Link</Button>
-            <Button variant="destructive">Delete</Button>
-            <LoadingDemo />
-        </div>
-    ),
+/** Wraps the matrix in `.dark`, so every semantic token resolves to its dark value. */
+export const DarkMode: Story = {
+    parameters: { layout: 'padded' },
+    decorators: [
+        Story => (
+            <div className="dark rounded-lg bg-background p-6 text-foreground">
+                <Story />
+            </div>
+        ),
+    ],
+    render: args => <VariantMatrix {...args} />,
 };
+
+// Loading stories are deferred until the `loading` prop returns (tracked in DECISIONS.md).
