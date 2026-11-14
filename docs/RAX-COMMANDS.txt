@@ -1,0 +1,164 @@
+RAX DESIGN SYSTEM: COMMAND CHEATSHEET
+======================================
+
+প্রজেক্টের মানচিত্র
+  packages/tokens/                  Style Dictionary build
+  packages/tokens/src/primitive/    primitive token JSON (color.json ইত্যাদি)
+  packages/tokens/src/semantic/     light.json, dark.json (semantic token)
+  packages/ui/src/components/<name>/  <name>.tsx, .stories.tsx, .test.tsx, index.ts
+  packages/ui/src/styles/index.css  token -> Tailwind (@theme inline) mapping
+  packages/ui/src/foundations/      colors.stories.tsx ইত্যাদি
+  packages/ui/src/index.ts          public export (barrel)
+  Package filter-এর নাম: @rax-ds/tokens, @rax-ds/ui, playground
+
+মূল নিয়ম
+  - Repo-র ভেতরে সবসময় pnpm, npm না।
+  - প্রতিটা commit-এর আগে ধাপ "পরীক্ষা" চালাও।
+  - Commit format: type(scope): subject
+      type : feat, fix, docs, refactor, test, chore, perf, build, ci, style, revert
+      scope: ui, tokens, playground, repo, deps, ci, docs, release
+  - Husky + lint-staged + commitlint commit-এর সময় নিজে চলে। Fail করলে commit হয়
+    না, staged ফাইল যেমন ছিল তেমনই থাকে। ঠিক করে আবার commit করো।
+
+1. প্রতিদিনের কাজ
+  pnpm dev
+  # builds tokens, then starts Storybook
+  pnpm --filter @rax-ds/tokens build
+  # rebuild only tokens
+  pnpm --filter @rax-ds/ui storybook
+  # Storybook only (no token rebuild)
+
+2. পরীক্ষা (commit-এর আগে)
+  pnpm build
+  pnpm lint
+  pnpm typecheck
+  pnpm test
+  pnpm lint:fix
+  # auto-fix lint errors
+  pnpm format
+  # run Prettier on everything
+  pnpm --filter @rax-ds/ui test
+  # tests of one package
+
+3. Git: commit আর push
+  git status
+  git diff
+  # unstaged changes
+  git diff --cached --stat
+  # what is staged, including new files
+
+  (ক) আলাদা আলাদা commit (সুপারিশ: এক কাজ, এক commit)
+    git add <path1> <path2>
+    git commit -m "feat(ui): add Input component"
+    # repeat for each concern, then push once
+
+  (খ) সব একসাথে এক commit
+    git add .
+    git commit -m "chore(repo): update tooling"
+
+  Push
+    git log --oneline -5
+    # check before pushing
+    git push
+    git push --follow-tags
+    # only after a release (pushes version tags)
+
+  ভুল সারানো
+    git restore <file>
+    # discard unstaged changes in a file (cannot be undone)
+    git restore --staged <file>
+    # unstage a file, keep the changes
+    git reset --soft HEAD~1
+    # undo last commit, keep changes staged (only if NOT pushed)
+    git commit --amend -m "new message"
+    # fix last commit message (only if NOT pushed)
+
+  Commit-এর ক্রম (একটা কাজে একাধিক অংশ থাকলে)
+    tokens -> ui styles/component -> stories/tests -> docs
+
+4. Token বদলানো
+  # edit packages/tokens/src/primitive/*.json first, then src/semantic/light.json and dark.json
+  pnpm --filter @rax-ds/tokens build
+  # "Reference Errors" = a {color.x.y} path does not exist; fix the name or add the token
+  # map new semantic tokens in packages/ui/src/styles/index.css (@theme inline)
+  pnpm dev
+  # check in Storybook (foundations/colors) in light and dark
+  git add packages/tokens/src
+  git commit -m "feat(tokens): add <what>"
+  git add packages/ui/src/styles/index.css
+  git commit -m "feat(ui): map <what> to Tailwind theme"
+
+5. নতুন component বানানো
+  # NOTE: this repo has no components.json, so `shadcn add` will not work as-is.
+  # Option A: copy the component source from ui.shadcn.com docs by hand.
+  # Option B: add a components.json in packages/ui (aliases must point to src/components, src/lib/utils).
+  # Place the file at packages/ui/src/components/<name>/<name>.tsx
+  git add packages/ui/src/components/<name>
+  git commit -m "chore(ui): add shadcn <name> source"
+  # (untouched CLI output first, so later diffs show only your changes)
+  # customize: tokens, variants, export Props type
+  # add <name>.stories.tsx and <name>.test.tsx
+  # export from packages/ui/src/components/<name>/index.ts and packages/ui/src/index.ts
+  pnpm lint && pnpm typecheck && pnpm test
+  git add packages/ui/src/components/<name>
+  git commit -m "feat(ui): customize <name>"
+  git add packages/ui/src/index.ts
+  git commit -m "feat(ui): export <name>"
+  # needs a changeset (section 8)
+
+6. আগের component refactor
+  # change code, keep behavior the same
+  pnpm lint && pnpm typecheck && pnpm test
+  # check Storybook visually
+  git add <paths>
+  git commit -m "refactor(ui): <what>"
+  # changeset needed only if behavior or public API changed
+
+7. নতুন dependency
+  pnpm --filter @rax-ds/ui add <pkg>
+  # runtime dependency
+  pnpm --filter @rax-ds/ui add -D <pkg>
+  # dev dependency
+  pnpm add -w -D <pkg>
+  # root tooling
+  # react and react-dom stay in peerDependencies, never in dependencies
+  git add package.json packages/ui/package.json pnpm-lock.yaml
+  git commit -m "chore(deps): add <pkg>"
+
+8. Release (npm publish)
+  নিয়ম: publish করা version বদলানো যায় না। 0.x এ breaking হলে minor, বাকি patch।
+  MAJOR কখনো বেছো না।
+  Changeset কখন লাগে: consumer-এর চোখে কিছু বদলালে (feat, fix, breaking)।
+  লাগে না: docs, test, আভ্যন্তরীণ refactor।
+
+  ধাপ ১: পরীক্ষা (section 2)
+  ধাপ ২:
+    pnpm changeset
+    # major: Enter with nothing selected
+    # minor: Space on both packages, then Enter
+    # summary: one English line (goes to CHANGELOG)
+    pnpm changeset status
+  ধাপ ৩:
+    pnpm changeset version
+    git add .
+    git commit -m "chore(release): version packages"
+    git push
+  ধাপ ৪:
+    pnpm release
+    # asks for the 6-digit OTP from the authenticator app
+    # if it fails midway, run pnpm release again (already published versions are skipped)
+    git push --follow-tags
+  ধাপ ৫ (repo-র বাইরে থেকে):
+    cd ~
+    npm view @rax-ds/ui version
+    npm view @rax-ds/tokens version
+    cd ~/my-projects/rax-design-system
+
+  বর্তমান অবস্থা: 0.1.0 publish হয়েছে (12 Nov 2026)। পরেরটা 0.2.0, `loading` ফেরার পর।
+
+9. সমস্যা হলে
+  Storybook-এ রং বা class আসছে না  -> Storybook restart, তারপর DevTools-এ class আছে কি না দেখো
+  Token build "Reference Errors"   -> log verbosity 'verbose' দিয়ে কোন path নেই দেখো
+  npm whoami, npm view fail করছে   -> repo-র বাইরে (cd ~) থেকে চালাও
+  Commit আটকে গেছে                 -> error পড়ো (lint, scope, বা message format), ঠিক করে আবার commit
+  "scope must be one of ..."       -> scope-এর তালিকা উপরে, বা commitlint.config.mjs-এ যোগ করো
