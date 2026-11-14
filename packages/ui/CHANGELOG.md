@@ -1,5 +1,16 @@
 # @rax-ds/ui
 
+## 0.3.0
+
+### Minor Changes
+
+- 34898a5: Summary: Add Heading, Text, Label and Input components
+
+### Patch Changes
+
+- Updated dependencies [34898a5]
+  - @rax-ds/tokens@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes

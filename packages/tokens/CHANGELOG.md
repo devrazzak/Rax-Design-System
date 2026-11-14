@@ -1,5 +1,11 @@
 # @rax-ds/tokens
 
+## 0.3.0
+
+### Minor Changes
+
+- 34898a5: Summary: Add Heading, Text, Label and Input components
+
 ## 0.2.0
 
 ### Minor Changes
