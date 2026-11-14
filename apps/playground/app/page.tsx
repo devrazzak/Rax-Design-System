@@ -1,8 +1,9 @@
 import Link from 'next/link';
 
-import { Button } from '@rax-ds/ui';
+import { Button, Spinner } from '@rax-ds/ui';
 
 import { LoadingDemo } from './loading-demo';
+import { LoadingStates } from './loading-states';
 import { ThemeToggle } from './theme-toggle';
 
 /** Server Component: no "use client". Proves Button works when rendered from the server. */
@@ -28,13 +29,31 @@ export default function HomePage() {
 
             <section className="flex flex-col gap-3">
                 <h2 className="text-lg font-medium">asChild with next/link</h2>
-                <Button asChild>
-                    <Link href="/">Go home</Link>
-                </Button>
+                <div className="flex flex-wrap items-center gap-3">
+                    <Button asChild>
+                        <Link href="/">Go home</Link>
+                    </Button>
+                </div>
             </section>
 
             <section className="flex flex-col gap-3">
-                <h2 className="text-lg font-medium">Loading (Client Component)</h2>
+                <h2 className="text-lg font-medium">Loading states (always on)</h2>
+                <LoadingStates />
+            </section>
+
+            <section className="flex flex-col gap-3">
+                <h2 className="text-lg font-medium">Spinner</h2>
+                <div className="flex flex-wrap items-center gap-6 text-primary">
+                    <Spinner size="sm" />
+                    <Spinner size="md" />
+                    <Spinner size="lg" />
+                    <Spinner size="xl" />
+                    <Spinner size="lg" label="Loading results" />
+                </div>
+            </section>
+
+            <section className="flex flex-col gap-3">
+                <h2 className="text-lg font-medium">Loading (Client Component, click to try)</h2>
                 <LoadingDemo />
             </section>
 
@@ -43,7 +62,9 @@ export default function HomePage() {
                 <p className="text-sm text-muted-foreground">
                     This section overrides --rax-color-primary. Only buttons inside it turn blue.
                 </p>
-                <Button>Blue primary</Button>
+                <div className="flex flex-wrap items-center gap-3">
+                    <Button>Blue primary</Button>
+                </div>
             </section>
         </main>
     );

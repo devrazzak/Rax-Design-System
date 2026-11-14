@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import Link from 'next/link';
+
 import { Button } from '@rax-ds/ui';
 
 /** Simulates a slow request, e.g. saving a form. */
@@ -27,6 +29,10 @@ export function LoadingDemo() {
         <div className="flex items-center gap-4">
             <Button loading={loading} onClick={() => void handleClick()}>
                 Save
+            </Button>
+            {/* Same loading state on a Next.js link: while loading, clicking does not navigate */}
+            <Button asChild variant="outline" loading={loading}>
+                <Link href="/">Continue</Link>
             </Button>
             <span className="text-sm text-muted-foreground">Handled clicks: {handledClicks}</span>
         </div>
