@@ -6,9 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 
 import { Button } from './button';
-
-const VARIANTS = ['primary', 'secondary', 'outline', 'ghost', 'destructive', 'link', 'linkInverse'] as const;
-const SIZES = ['xs', 'sm', 'default', 'lg'] as const;
+import { BUTTON_SIZES, BUTTON_VARIANTS } from './button.variants';
 
 /** Form submit handler that prevents jsdom from trying to navigate. */
 function createSubmitHandler() {
@@ -34,13 +32,13 @@ describe('Button', () => {
     });
 
     describe('variants and sizes', () => {
-        it.each(VARIANTS)('exposes variant "%s" through data-variant', variant => {
+        it.each(BUTTON_VARIANTS)('exposes variant "%s" through data-variant', variant => {
             render(<Button variant={variant}>Save</Button>);
 
             expect(screen.getByRole('button', { name: 'Save' })).toHaveAttribute('data-variant', variant);
         });
 
-        it.each(SIZES)('exposes size "%s" through data-size', size => {
+        it.each(BUTTON_SIZES)('exposes size "%s" through data-size', size => {
             render(<Button size={size}>Save</Button>);
 
             expect(screen.getByRole('button', { name: 'Save' })).toHaveAttribute('data-size', size);
@@ -141,70 +139,223 @@ describe('Button', () => {
         });
     });
 
-    // Deferred until the `loading` prop returns (tracked in DECISIONS.md).
-    // describe('loading', () => {
-    //     it('keeps the accessible name and announces the busy state', () => {
-    //         render(<Button loading>Donate</Button>);
+    describe('loading', () => {
+        it('keeps the accessible name and announces the busy state', () => {
+            render(<Button loading>Save</Button>);
 
-    //         const button = screen.getByRole('button', { name: 'Donate' });
-    //         expect(button).toHaveAttribute('aria-busy', 'true');
-    //         expect(button).toHaveAttribute('aria-disabled', 'true');
-    //     });
+            const button = screen.getByRole('button', { name: 'Save' });
+            expect(button).toHaveAttribute('aria-busy', 'true');
+            expect(button).toHaveAttribute('aria-disabled', 'true');
+            expect(button).toHaveAttribute('data-loading', 'true');
+        });
 
-    //     it('does not call onClick while loading', async () => {
-    //         const user = userEvent.setup();
-    //         const onClick = jest.fn();
-    //         render(
-    //             <Button loading onClick={onClick}>
-    //                 Donate
-    //             </Button>,
-    //         );
+        it('does not set the native disabled attribute, so keyboard focus is kept', () => {
+            render(<Button loading>Save</Button>);
 
-    //         await user.click(screen.getByRole('button', { name: 'Donate' }));
+            expect(screen.getByRole('button', { name: 'Save' })).not.toBeDisabled();
+        });
 
-    //         expect(onClick).not.toHaveBeenCalled();
-    //     });
+        it('keeps keyboard focus when loading starts', () => {
+            const { rerender } = render(<Button>Save</Button>);
+            const button = screen.getByRole('button', { name: 'Save' });
+            button.focus();
 
-    //     it('submits the form when not loading (control case)', async () => {
-    //         const user = userEvent.setup();
-    //         const onSubmit = createSubmitHandler();
-    //         render(
-    //             <form onSubmit={onSubmit}>
-    //                 <Button type="submit">Donate</Button>
-    //             </form>,
-    //         );
+            rerender(<Button loading>Save</Button>);
 
-    //         await user.click(screen.getByRole('button', { name: 'Donate' }));
+            expect(button).toHaveFocus();
+        });
 
-    //         expect(onSubmit).toHaveBeenCalledTimes(1);
-    //     });
+        it('calls onClick when not loading (control case)', async () => {
+            const user = userEvent.setup();
+            const onClick = jest.fn();
+            render(<Button onClick={onClick}>Save</Button>);
 
-    //     it('does not submit the form while loading', async () => {
-    //         const user = userEvent.setup();
-    //         const onSubmit = createSubmitHandler();
-    //         render(
-    //             <form onSubmit={onSubmit}>
-    //                 <Button type="submit" loading>
-    //                     Donate
-    //                 </Button>
-    //             </form>,
-    //         );
+            await user.click(screen.getByRole('button', { name: 'Save' }));
 
-    //         await user.click(screen.getByRole('button', { name: 'Donate' }));
+            expect(onClick).toHaveBeenCalledTimes(1);
+        });
 
-    //         expect(onSubmit).not.toHaveBeenCalled();
-    //     });
+        it('does not call onClick while loading', async () => {
+            const user = userEvent.setup();
+            const onClick = jest.fn();
+            render(
+                <Button loading onClick={onClick}>
+                    Save
+                </Button>,
+            );
 
-    //     it('keeps keyboard focus when loading starts', () => {
-    //         const { rerender } = render(<Button>Donate</Button>);
-    //         const button = screen.getByRole('button', { name: 'Donate' });
-    //         button.focus();
+            await user.click(screen.getByRole('button', { name: 'Save' }));
 
-    //         rerender(<Button loading>Donate</Button>);
+            expect(onClick).not.toHaveBeenCalled();
+        });
 
-    //         expect(button).toHaveFocus();
-    //     });
-    // });
+        it('submits the form when not loading (control case)', async () => {
+            const user = userEvent.setup();
+            const onSubmit = createSubmitHandler();
+            render(
+                <form onSubmit={onSubmit}>
+                    <Button type="submit">Save</Button>
+                </form>,
+            );
+
+            await user.click(screen.getByRole('button', { name: 'Save' }));
+
+            expect(onSubmit).toHaveBeenCalledTimes(1);
+        });
+
+        it('does not submit the form while loading', async () => {
+            const user = userEvent.setup();
+            const onSubmit = createSubmitHandler();
+            render(
+                <form onSubmit={onSubmit}>
+                    <Button type="submit" loading>
+                        Save
+                    </Button>
+                </form>,
+            );
+
+            await user.click(screen.getByRole('button', { name: 'Save' }));
+
+            expect(onSubmit).not.toHaveBeenCalled();
+        });
+
+        it('shows no spinner when not loading', () => {
+            render(<Button>Save</Button>);
+
+            const button = screen.getByRole('button', { name: 'Save' });
+            expect(button.querySelector('[data-slot="spinner"]')).not.toBeInTheDocument();
+            expect(button).not.toHaveAttribute('aria-busy');
+        });
+
+        it('shows the spinner after the label by default', () => {
+            render(<Button loading>Save</Button>);
+
+            const button = screen.getByRole('button', { name: 'Save' });
+            const spinner = button.querySelector('[data-slot="spinner"]');
+            expect(spinner).toBeInTheDocument();
+            expect(button.lastChild).toBe(spinner);
+        });
+
+        it('shows the spinner before the label with loadingPosition="start"', () => {
+            render(
+                <Button loading loadingPosition="start">
+                    Save
+                </Button>,
+            );
+
+            const button = screen.getByRole('button', { name: 'Save' });
+            const spinner = button.querySelector('[data-slot="spinner"]');
+            expect(spinner).toBeInTheDocument();
+            expect(button.firstChild).toBe(spinner);
+        });
+
+        it('keeps the spinner out of the accessible name', () => {
+            render(<Button loading>Save</Button>);
+
+            expect(screen.getByRole('button')).toHaveAccessibleName('Save');
+        });
+
+        it.each([
+            ['Enter', '{Enter}'],
+            ['Space', ' '],
+        ])('does not call onClick when activated with the %s key while loading', async (_name, key) => {
+            const user = userEvent.setup();
+            const onClick = jest.fn();
+            render(
+                <Button loading onClick={onClick}>
+                    Save
+                </Button>,
+            );
+
+            await user.tab();
+            // Control: the button is reachable by keyboard, so the key press below really targets it
+            expect(screen.getByRole('button', { name: 'Save' })).toHaveFocus();
+            await user.keyboard(key);
+
+            expect(onClick).not.toHaveBeenCalled();
+        });
+
+        it('removes the busy state and the spinner when loading ends', () => {
+            const { rerender } = render(<Button loading>Save</Button>);
+            const button = screen.getByRole('button', { name: 'Save' });
+            expect(button).toHaveAttribute('aria-busy', 'true');
+
+            rerender(<Button>Save</Button>);
+
+            expect(button).not.toHaveAttribute('aria-busy');
+            expect(button).not.toHaveAttribute('aria-disabled');
+            expect(button.querySelector('[data-slot="spinner"]')).not.toBeInTheDocument();
+        });
+
+        it.each([
+            ['xs', 'size-3'],
+            ['sm', 'size-3'],
+            ['default', 'size-4'],
+            ['lg', 'size-4'],
+        ] as const)('uses a spinner that fits the "%s" button size', (size, spinnerClass) => {
+            render(
+                <Button loading size={size}>
+                    Save
+                </Button>,
+            );
+
+            const spinner = screen.getByRole('button', { name: 'Save' }).querySelector('[data-slot="spinner"]');
+            expect(spinner).toHaveClass(spinnerClass);
+        });
+
+        describe('with asChild', () => {
+            it('puts the spinner after the link text by default', () => {
+                render(
+                    <Button asChild loading>
+                        <a href="/continue">Continue</a>
+                    </Button>,
+                );
+
+                const link = screen.getByRole('link', { name: 'Continue' });
+                expect(link.lastChild).toBe(link.querySelector('[data-slot="spinner"]'));
+            });
+
+            it('puts the spinner before the link text with loadingPosition="start"', () => {
+                render(
+                    <Button asChild loading loadingPosition="start">
+                        <a href="/continue">Continue</a>
+                    </Button>,
+                );
+
+                const link = screen.getByRole('link', { name: 'Continue' });
+                expect(link.firstChild).toBe(link.querySelector('[data-slot="spinner"]'));
+            });
+
+            it('puts the busy state and the spinner on the child element', () => {
+                render(
+                    <Button asChild loading>
+                        <a href="/continue">Continue</a>
+                    </Button>,
+                );
+
+                const link = screen.getByRole('link', { name: 'Continue' });
+                expect(link).toHaveAttribute('aria-busy', 'true');
+                expect(link.querySelector('[data-slot="spinner"]')).toBeInTheDocument();
+            });
+
+            it('prevents the default action of the link click while loading', async () => {
+                const user = userEvent.setup();
+                const readDefaultPrevented = jest.fn((event: ReactMouseEvent) => event.isDefaultPrevented());
+                render(
+                    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+                    <div onClick={readDefaultPrevented}>
+                        <Button asChild loading>
+                            <a href="/continue">Continue</a>
+                        </Button>
+                    </div>,
+                );
+
+                await user.click(screen.getByRole('link', { name: 'Continue' }));
+
+                expect(readDefaultPrevented).toHaveReturnedWith(true);
+            });
+        });
+    });
 
     describe('prop forwarding', () => {
         it('forwards native attributes to the button element', () => {
@@ -309,7 +460,7 @@ describe('Button', () => {
             expect(await axe(container)).toHaveNoViolations();
         });
 
-        it.each(VARIANTS)('has no violations for variant "%s"', async variant => {
+        it.each(BUTTON_VARIANTS)('has no violations for variant "%s"', async variant => {
             const { container } = render(<Button variant={variant}>Save</Button>);
 
             expect(await axe(container)).toHaveNoViolations();
@@ -331,11 +482,11 @@ describe('Button', () => {
             expect(await axe(container)).toHaveNoViolations();
         });
 
-        // it('has no violations while loading', async () => {
-        //     const { container } = render(<Button loading>Save</Button>);
+        it('has no violations while loading', async () => {
+            const { container } = render(<Button loading>Save</Button>);
 
-        //     expect(await axe(container)).toHaveNoViolations();
-        // });
+            expect(await axe(container)).toHaveNoViolations();
+        });
 
         it('has no violations as an icon-only button with aria-label', async () => {
             const { container } = render(

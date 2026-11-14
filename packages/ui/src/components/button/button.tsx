@@ -5,61 +5,71 @@ import { cva } from 'class-variance-authority';
 import { Slot } from 'radix-ui';
 
 import { cn } from '@/lib/utils/cn';
+import { Spinner } from '@/components/spinner/spinner';
 
-const iconSlide = [
-    '[&_svg[data-icon=inline-end]]:transition-transform',
-    '[&_svg[data-icon=inline-end]]:duration-200',
-    'motion-safe:hover:[&_svg[data-icon=inline-end]]:translate-x-0.5',
-    'motion-safe:focus-visible:[&_svg[data-icon=inline-end]]:translate-x-0.5',
-];
+import { defaultVariants, sizeClasses, variantClasses } from './button.variants';
 
 const buttonVariants = cva(
     "inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium cursor-pointer whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
     {
         variants: {
-            variant: {
-                primary: 'bg-primary text-primary-foreground hover:bg-primary-hover',
-                secondary:
-                    'bg-secondary text-secondary-foreground hover:bg-secondary-hover aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
-                outline:
-                    'border-border bg-card text-foreground hover:border-primary-outline-hover hover:text-primary-outline-hover aria-expanded:border-primary-outline-hover aria-expanded:text-primary-outline-hover',
-                ghost: 'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50',
-                destructive:
-                    'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
-                link: ['text-link hover:text-link-hover aria-expanded:text-link-hover', iconSlide],
-                linkInverse: ['text-white underline-offset-4 hover:underline', iconSlide],
-            },
-            size: {
-                default: 'h-10 gap-1.5 px-4 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3',
-                xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-                sm: "h-8 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-                lg: 'h-12 gap-1.5 px-5 has-data-[icon=inline-end]:pr-4 has-data-[icon=inline-start]:pl-4',
-            },
+            variant: variantClasses,
+            size: sizeClasses,
         },
-        defaultVariants: {
-            variant: 'primary',
-            size: 'default',
-        },
+        defaultVariants,
     },
 );
 
 type ButtonProps = React.ComponentProps<'button'> &
     VariantProps<typeof buttonVariants> & {
+        /** Render the child element instead of a <button>, e.g. a Next.js <Link>. */
         asChild?: boolean;
+        /**
+         * Shows a spinner, blocks clicks and form submission, and keeps keyboard focus.
+         * Every icon passed as children is hidden while loading, so only the spinner shows.
+         */
+        loading?: boolean;
+        /** Which side of the label the spinner appears on while loading. */
+        loadingPosition?: 'start' | 'end';
     };
 
-function Button({ className, variant = 'primary', size = 'default', asChild = false, type, ...props }: ButtonProps) {
+// Hides every icon from the children, but not the spinner's own svg
+const loadingStyles = 'cursor-wait [&_svg:not([data-slot=spinner-icon])]:hidden';
+
+function Button({
+    className,
+    variant = defaultVariants.variant,
+    size = defaultVariants.size,
+    asChild = false,
+    loading = false,
+    loadingPosition = 'end',
+    type,
+    onClick,
+    children,
+    ...props
+}: ButtonProps) {
     const Comp = asChild ? Slot.Root : 'button';
+
+    const spinner = loading ? <Spinner size={size === 'xs' || size === 'sm' ? 'sm' : 'md'} /> : null;
 
     return (
         <Comp
             data-slot="button"
             data-variant={variant}
             data-size={size}
+            data-loading={loading || undefined}
+            aria-busy={loading || undefined}
+            aria-disabled={loading || undefined}
             type={asChild ? undefined : (type ?? 'button')}
-            className={cn(buttonVariants({ variant, size, className }))}
+            onClick={loading ? event => event.preventDefault() : onClick}
+            className={cn(buttonVariants({ variant, size }), loading && loadingStyles, className)}
             {...props}
-        />
+        >
+            {/* Slottable keeps the spinner next to the child element's content when asChild is used */}
+            {loadingPosition === 'start' && spinner}
+            <Slot.Slottable>{children}</Slot.Slottable>
+            {loadingPosition === 'end' && spinner}
+        </Comp>
     );
 }
 
