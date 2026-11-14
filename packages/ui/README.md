@@ -44,7 +44,7 @@ import { Button } from '@rax-ds/ui';
 export function Example() {
     return (
         <>
-            <Button>Donate</Button>
+            <Button>Save</Button>
             <Button variant="outline">Cancel</Button>
             <Button loading>Saving</Button>
             <Button asChild>

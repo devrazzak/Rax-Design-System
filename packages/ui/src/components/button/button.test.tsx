@@ -71,11 +71,11 @@ describe('Button', () => {
             const onSubmit = createSubmitHandler();
             render(
                 <form onSubmit={onSubmit}>
-                    <Button type="submit">Donate</Button>
+                    <Button type="submit">Save</Button>
                 </form>,
             );
 
-            await user.click(screen.getByRole('button', { name: 'Donate' }));
+            await user.click(screen.getByRole('button', { name: 'Save' }));
 
             expect(onSubmit).toHaveBeenCalledTimes(1);
         });
@@ -360,13 +360,13 @@ describe('Button', () => {
     describe('prop forwarding', () => {
         it('forwards native attributes to the button element', () => {
             render(
-                <Button id="donate" data-testid="cta" aria-expanded="true" aria-haspopup="menu">
-                    Donate
+                <Button id="save" data-testid="cta" aria-expanded="true" aria-haspopup="menu">
+                    Save
                 </Button>,
             );
 
             const button = screen.getByTestId('cta');
-            expect(button).toHaveAttribute('id', 'donate');
+            expect(button).toHaveAttribute('id', 'save');
             expect(button).toHaveAttribute('aria-expanded', 'true');
             expect(button).toHaveAttribute('aria-haspopup', 'menu');
         });
@@ -384,12 +384,12 @@ describe('Button', () => {
         it('renders the child element instead of a button', () => {
             render(
                 <Button asChild>
-                    <a href="/donate">Donate</a>
+                    <a href="/continue">Continue</a>
                 </Button>,
             );
 
-            const link = screen.getByRole('link', { name: 'Donate' });
-            expect(link).toHaveAttribute('href', '/donate');
+            const link = screen.getByRole('link', { name: 'Continue' });
+            expect(link).toHaveAttribute('href', '/continue');
             expect(link).toHaveAttribute('data-slot', 'button');
             expect(link).not.toHaveAttribute('type');
             expect(screen.queryByRole('button')).not.toBeInTheDocument();
@@ -398,21 +398,21 @@ describe('Button', () => {
         it('does not put a type attribute on the child, even when one is passed', () => {
             render(
                 <Button asChild type="submit">
-                    <a href="/donate">Donate</a>
+                    <a href="/continue">Continue</a>
                 </Button>,
             );
 
-            expect(screen.getByRole('link', { name: 'Donate' })).not.toHaveAttribute('type');
+            expect(screen.getByRole('link', { name: 'Continue' })).not.toHaveAttribute('type');
         });
 
         it('keeps the data-variant and data-size attributes on the child', () => {
             render(
                 <Button asChild variant="link" size="lg">
-                    <a href="/donate">Donate</a>
+                    <a href="/continue">Continue</a>
                 </Button>,
             );
 
-            const link = screen.getByRole('link', { name: 'Donate' });
+            const link = screen.getByRole('link', { name: 'Continue' });
             expect(link).toHaveAttribute('data-variant', 'link');
             expect(link).toHaveAttribute('data-size', 'lg');
         });
@@ -423,13 +423,13 @@ describe('Button', () => {
             const onChildClick = jest.fn((event: ReactMouseEvent) => event.preventDefault());
             render(
                 <Button asChild onClick={onButtonClick}>
-                    <a href="/donate" onClick={onChildClick}>
-                        Donate
+                    <a href="/continue" onClick={onChildClick}>
+                        Continue
                     </a>
                 </Button>,
             );
 
-            await user.click(screen.getByRole('link', { name: 'Donate' }));
+            await user.click(screen.getByRole('link', { name: 'Continue' }));
 
             expect(onButtonClick).toHaveBeenCalledTimes(1);
             expect(onChildClick).toHaveBeenCalledTimes(1);
@@ -475,7 +475,7 @@ describe('Button', () => {
         it('has no violations as a link rendered with asChild', async () => {
             const { container } = render(
                 <Button asChild>
-                    <a href="/donate">Donate</a>
+                    <a href="/continue">Continue</a>
                 </Button>,
             );
 
