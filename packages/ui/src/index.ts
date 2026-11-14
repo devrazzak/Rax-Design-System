@@ -3,3 +3,4 @@ export { Spinner, spinnerVariants, type SpinnerProps } from '@/components/spinne
 export { cn } from '@/lib/utils/cn';
 export { Heading, type HeadingProps } from '@/components/heading/heading';
 export { Text, type TextProps } from '@/components/text/text';
+export { Label, type LabelProps } from '@/components/label/label';
