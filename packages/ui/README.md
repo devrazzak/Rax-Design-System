@@ -39,7 +39,7 @@ Toggle the `dark` class on `<html>`, for example with [`next-themes`](https://gi
 ```tsx
 import Link from 'next/link';
 
-import { Button } from '@rax-ds/ui';
+import { Button, Spinner } from '@rax-ds/ui';
 
 export function Example() {
     return (
@@ -47,6 +47,7 @@ export function Example() {
             <Button>Save</Button>
             <Button variant="outline">Cancel</Button>
             <Button loading>Saving</Button>
+            <Spinner label="Loading results" />
             <Button asChild>
                 <Link href="/dashboard">Dashboard</Link>
             </Button>
@@ -54,15 +55,6 @@ export function Example() {
     );
 }
 ```
-
-### Button
-
-| Prop      | Type                                                                          | Default     |
-| --------- | ----------------------------------------------------------------------------- | ----------- |
-| `variant` | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'link' \| 'destructive'` | `'primary'` |
-| `size`    | `'sm' \| 'md' \| 'lg' \| 'icon'`                                              | `'md'`      |
-| `loading` | `boolean`                                                                     | `false`     |
-| `asChild` | `boolean`                                                                     | `false`     |
 
 `type` defaults to `"button"`. Set `type="submit"` explicitly for submit buttons.
 
