@@ -1,5 +1,11 @@
 # @rax-ds/tokens
 
+## 0.2.0
+
+### Minor Changes
+
+- ffcb763: Add Spinner component and a loading state for Button (loading, loadingPosition, asChild support)
+
 ## 0.1.0
 
 ### Minor Changes
