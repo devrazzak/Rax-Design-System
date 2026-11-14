@@ -8,6 +8,8 @@ const preview: Preview = {
         controls: {
             matchers: { color: /(background|color)$/i, date: /Date$/i },
         },
+        // Shows each story's source in a Code panel below the canvas (Storybook 10)
+        docs: { codePanel: true },
         // Show accessibility violations in the panel without failing anything yet
         a11y: { test: 'todo' },
     },
