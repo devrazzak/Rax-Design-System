@@ -1,6 +1,6 @@
 {
     "name": "@rax-ds/tokens",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "description": "Design tokens (CSS variables) for the Rax design system, with light and dark themes",
     "keywords": [
         "design-system",

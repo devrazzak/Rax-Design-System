@@ -1,5 +1,11 @@
 # @rax-ds/tokens
 
+## 0.5.0
+
+### Minor Changes
+
+- e3af4f0: Add the semantic `overlay` color for the backdrop behind dialogs.
+
 ## 0.4.1
 
 ### Patch Changes

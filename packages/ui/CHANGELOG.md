@@ -1,5 +1,17 @@
 # @rax-ds/ui
 
+## 0.5.0
+
+### Minor Changes
+
+- e3af4f0: Add InputOTP, Accordion, Dialog and DropdownMenu components. Add the XIcon icon and shared fade and zoom animations. Select content now uses the zoom animation and a `rounded-md` radius.
+
+### Patch Changes
+
+- 65276c7: BREAKING: Label and Text size "base" is now "md", to match the other components.
+- Updated dependencies [e3af4f0]
+  - @rax-ds/tokens@0.5.0
+
 ## 0.4.1
 
 ### Patch Changes
