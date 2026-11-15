@@ -35,6 +35,8 @@
 
         "border": { "$value": "{color.neutral.800}", "$type": "color" },
         "input": { "$value": "{color.neutral.800}", "$type": "color" },
-        "ring": { "$value": "{color.neutral.400}", "$type": "color" }
+        "ring": { "$value": "{color.neutral.400}", "$type": "color" },
+
+        "overlay": { "$value": "oklch(0 0 0 / 0.7)", "$type": "color", "$description": "black at 70%" }
     }
 }
