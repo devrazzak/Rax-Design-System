@@ -65,9 +65,29 @@
     --radius-2xl: var(--rax-radius-2xl);
 }
 
-/* Blinking caret of the OTP input's active slot */
+/* Animations shared by components: the OTP caret and the accordion height */
 @theme {
     --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+    --animate-accordion-down: accordion-down 200ms ease-out;
+    --animate-accordion-up: accordion-up 200ms ease-out;
+
+    @keyframes accordion-down {
+        from {
+            height: 0;
+        }
+        to {
+            height: var(--radix-accordion-content-height);
+        }
+    }
+
+    @keyframes accordion-up {
+        from {
+            height: var(--radix-accordion-content-height);
+        }
+        to {
+            height: 0;
+        }
+    }
 
     @keyframes caret-blink {
         0%,
