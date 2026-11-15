@@ -55,6 +55,8 @@
     --color-input: var(--rax-color-input);
     --color-ring: var(--rax-color-ring);
 
+    --color-overlay: var(--rax-color-overlay);
+
     --font-sans: var(--rax-font-family-sans);
     --font-mono: var(--rax-font-family-mono);
 
@@ -65,11 +67,15 @@
     --radius-2xl: var(--rax-radius-2xl);
 }
 
-/* Animations shared by components: the OTP caret and the accordion height */
+/* Animations shared by components: the OTP caret, the accordion height, and the fade and zoom of overlays */
 @theme {
     --animate-caret-blink: caret-blink 1.25s ease-out infinite;
     --animate-accordion-down: accordion-down 200ms ease-out;
     --animate-accordion-up: accordion-up 200ms ease-out;
+    --animate-fade-in: fade-in 150ms ease-out;
+    --animate-fade-out: fade-out 150ms ease-in;
+    --animate-zoom-in: zoom-in 150ms ease-out;
+    --animate-zoom-out: zoom-out 150ms ease-in;
 
     @keyframes accordion-down {
         from {
@@ -86,6 +92,32 @@
         }
         to {
             height: 0;
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fade-out {
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes zoom-in {
+        from {
+            opacity: 0;
+            scale: 0.95;
+        }
+    }
+
+    @keyframes zoom-out {
+        to {
+            opacity: 0;
+            scale: 0.95;
         }
     }
 
