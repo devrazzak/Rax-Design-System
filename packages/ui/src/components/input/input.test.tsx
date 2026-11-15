@@ -84,7 +84,7 @@ describe('Input', () => {
 
             const input = screen.getByLabelText('Name');
             expect(input).toHaveClass('h-20');
-            expect(input).not.toHaveClass('h-10');
+            expect(input).not.toHaveClass('h-12');
         });
 
         it('forwards native attributes to the root element', () => {
