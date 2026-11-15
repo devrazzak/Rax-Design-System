@@ -5,7 +5,7 @@ export type TextTag = (typeof TEXT_TAGS)[number];
 export const sizeClasses = {
     xs: 'text-xs',
     sm: 'text-sm',
-    base: 'text-base',
+    md: 'text-base',
     lg: 'text-lg',
     xl: 'text-xl',
 };
@@ -31,6 +31,6 @@ export const TEXT_WEIGHTS = Object.keys(weightClasses) as (keyof typeof weightCl
 export const TEXT_COLORS = Object.keys(colorClasses) as (keyof typeof colorClasses)[];
 
 export const defaultTag: TextTag = 'p';
-export const defaultSize: keyof typeof sizeClasses = 'base';
+export const defaultSize: keyof typeof sizeClasses = 'md';
 export const defaultWeight: keyof typeof weightClasses = 'regular';
 export const defaultColor: keyof typeof colorClasses = 'foreground';
