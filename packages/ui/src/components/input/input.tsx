@@ -12,13 +12,7 @@ type InputProps = Omit<ComponentProps<'input'>, 'size'> & {
 };
 
 function Input({ size = defaultSize, className, ...props }: InputProps) {
-    return (
-        <input
-            data-slot="input"
-            className={cn('w-full min-w-0', fieldClasses, sizeClasses[size], className)}
-            {...props}
-        />
-    );
+    return <input data-slot="input" className={cn(fieldClasses, sizeClasses[size], className)} {...props} />;
 }
 
 export { Input };

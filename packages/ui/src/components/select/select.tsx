@@ -29,7 +29,7 @@ function SelectTrigger({ size = defaultSize, className, children, ...props }: Se
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
             className={cn(
-                'flex w-full items-center justify-between gap-1.5 whitespace-nowrap select-none data-placeholder:text-muted-foreground *:data-[slot=select-value]:line-clamp-1',
+                'flex items-center justify-between gap-1.5 whitespace-nowrap select-none data-placeholder:text-muted-foreground *:data-[slot=select-value]:line-clamp-1',
                 fieldClasses,
                 sizeClasses[size],
                 className,
