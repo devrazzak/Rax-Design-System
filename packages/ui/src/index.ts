@@ -11,6 +11,16 @@ export { Checkbox, type CheckboxProps } from '@/components/checkbox/checkbox';
 export { RadioGroup, RadioGroupItem, type RadioGroupItemProps } from '@/components/radio-group/radio-group';
 export { Switch, type SwitchProps } from '@/components/switch/switch';
 export {
+    InputOTP,
+    InputOTPGroup,
+    InputOTPSeparator,
+    InputOTPSlot,
+    REGEXP_ONLY_CHARS,
+    REGEXP_ONLY_DIGITS,
+    REGEXP_ONLY_DIGITS_AND_CHARS,
+    type InputOTPProps,
+} from '@/components/input-otp/input-otp';
+export {
     InputGroup,
     InputGroupAddon,
     InputGroupButton,
