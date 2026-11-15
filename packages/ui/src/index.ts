@@ -11,6 +11,13 @@ export { Checkbox, type CheckboxProps } from '@/components/checkbox/checkbox';
 export { RadioGroup, RadioGroupItem, type RadioGroupItemProps } from '@/components/radio-group/radio-group';
 export { Switch, type SwitchProps } from '@/components/switch/switch';
 export {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+    type AccordionProps,
+} from '@/components/accordion/accordion';
+export {
     InputOTP,
     InputOTPGroup,
     InputOTPSeparator,
