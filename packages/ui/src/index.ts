@@ -11,6 +11,13 @@ export { Checkbox, type CheckboxProps } from '@/components/checkbox/checkbox';
 export { RadioGroup, RadioGroupItem, type RadioGroupItemProps } from '@/components/radio-group/radio-group';
 export { Switch, type SwitchProps } from '@/components/switch/switch';
 export {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupButton,
+    InputGroupInput,
+    type InputGroupProps,
+} from '@/components/input-group/input-group';
+export {
     Field,
     FieldContent,
     FieldDescription,
