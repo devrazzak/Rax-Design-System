@@ -18,6 +18,19 @@ export {
     type AccordionProps,
 } from '@/components/accordion/accordion';
 export {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogOverlay,
+    DialogPortal,
+    DialogTitle,
+    DialogTrigger,
+    type DialogContentProps,
+} from '@/components/dialog/dialog';
+export {
     InputOTP,
     InputOTPGroup,
     InputOTPSeparator,
