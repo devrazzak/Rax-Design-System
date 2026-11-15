@@ -1,5 +1,13 @@
 # @rax-ds/ui
 
+## 0.4.1
+
+### Patch Changes
+
+- c3a40d3: Update the README with setup, dark mode, components list and form usage.
+- Updated dependencies [c3a40d3]
+  - @rax-ds/tokens@0.4.1
+
 ## 0.4.0
 
 ### Minor Changes
