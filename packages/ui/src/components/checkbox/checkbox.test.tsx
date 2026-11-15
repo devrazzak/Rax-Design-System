@@ -130,7 +130,7 @@ describe('Checkbox', () => {
                     <Checkbox name="terms" aria-label="Terms" />
                 </form>,
             );
-            const form = screen.getByTestId('form');
+            const form = screen.getByTestId<HTMLFormElement>('form');
 
             expect(new FormData(form).get('terms')).toBeNull();
 
@@ -146,7 +146,7 @@ describe('Checkbox', () => {
                 </form>,
             );
 
-            expect(new FormData(screen.getByTestId('form')).get('plan')).toBe('pro');
+            expect(new FormData(screen.getByTestId<HTMLFormElement>('form')).get('plan')).toBe('pro');
         });
     });
 
