@@ -31,6 +31,20 @@ export {
     type DialogContentProps,
 } from '@/components/dialog/dialog';
 export {
+    DropdownMenu,
+    DropdownMenuCheckboxItem,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+    type DropdownMenuContentProps,
+    type DropdownMenuItemProps,
+} from '@/components/dropdown-menu/dropdown-menu';
+export {
     InputOTP,
     InputOTPGroup,
     InputOTPSeparator,
