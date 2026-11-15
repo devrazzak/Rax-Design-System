@@ -11,6 +11,9 @@ Element.prototype.setPointerCapture = jest.fn();
 Element.prototype.releasePointerCapture = jest.fn();
 Element.prototype.scrollIntoView = jest.fn();
 
+// InputOTP calls this to detect a password manager badge covering the input
+document.elementFromPoint = jest.fn(() => null);
+
 global.ResizeObserver = class {
     observe = jest.fn();
     unobserve = jest.fn();
