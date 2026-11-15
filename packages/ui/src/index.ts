@@ -6,3 +6,14 @@ export { Heading, type HeadingProps } from '@/components/heading/heading';
 export { Text, type TextProps } from '@/components/text/text';
 export { Label, type LabelProps } from '@/components/label/label';
 export { Input, type InputProps } from '@/components/input/input';
+export {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectSeparator,
+    SelectTrigger,
+    SelectValue,
+    type SelectTriggerProps,
+} from '@/components/select/select';
