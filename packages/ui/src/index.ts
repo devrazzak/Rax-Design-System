@@ -9,6 +9,7 @@ export { Input, type InputProps } from '@/components/input/input';
 export { Textarea, type TextareaProps } from '@/components/textarea/textarea';
 export { Checkbox, type CheckboxProps } from '@/components/checkbox/checkbox';
 export { RadioGroup, RadioGroupItem, type RadioGroupItemProps } from '@/components/radio-group/radio-group';
+export { Switch, type SwitchProps } from '@/components/switch/switch';
 export {
     Select,
     SelectContent,
