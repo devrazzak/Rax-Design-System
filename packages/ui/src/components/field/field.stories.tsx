@@ -26,6 +26,9 @@ const meta = {
     argTypes: {
         orientation: { control: 'inline-radio', options: FIELD_ORIENTATIONS },
     },
+    args: {
+        orientation: 'vertical',
+    },
     decorators: [
         Story => (
             <div className="w-80">
