@@ -7,6 +7,7 @@ export { Text, type TextProps } from '@/components/text/text';
 export { Label, type LabelProps } from '@/components/label/label';
 export { Input, type InputProps } from '@/components/input/input';
 export { Textarea, type TextareaProps } from '@/components/textarea/textarea';
+export { Checkbox, type CheckboxProps } from '@/components/checkbox/checkbox';
 export {
     Select,
     SelectContent,
