@@ -49,6 +49,10 @@ export const WithLabel: Story = {
     ),
 };
 
+export const Invalid: Story = {
+    args: { 'aria-invalid': true, defaultValue: 'not-an-email' },
+};
+
 export const Disabled: Story = {
     args: { disabled: true, defaultValue: 'Disabled value' },
 };
