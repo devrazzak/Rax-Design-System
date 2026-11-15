@@ -58,7 +58,7 @@ function SelectContent({
                 position={position}
                 sideOffset={sideOffset}
                 className={cn(
-                    'relative z-50 max-h-[min(18rem,var(--radix-select-content-available-height))] overflow-x-hidden overflow-y-auto rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10',
+                    'relative z-50 max-h-[min(18rem,var(--radix-select-content-available-height))] overflow-x-hidden overflow-y-auto rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10 data-[state=closed]:motion-safe:animate-zoom-out data-[state=open]:motion-safe:animate-zoom-in',
                     position === 'popper' ? 'min-w-(--radix-select-trigger-width)' : 'min-w-36',
                     className,
                 )}
