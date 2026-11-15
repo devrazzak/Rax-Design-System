@@ -29,6 +29,9 @@
 
         "destructive": { "$value": "{color.red.700}", "$type": "color" },
         "destructive-foreground": { "$value": "{color.white}", "$type": "color" },
+        "destructive-subtle": { "$value": "{color.red.50}", "$type": "color" },
+        "destructive-subtle-hover": { "$value": "{color.red.100}", "$type": "color" },
+        "destructive-subtle-foreground": { "$value": "{color.red.700}", "$type": "color" },
 
         "border": { "$value": "{color.neutral.200}", "$type": "color" },
         "input": { "$value": "{color.neutral.200}", "$type": "color" },

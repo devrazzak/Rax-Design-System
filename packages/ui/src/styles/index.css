@@ -47,6 +47,9 @@
 
     --color-destructive: var(--rax-color-destructive);
     --color-destructive-foreground: var(--rax-color-destructive-foreground);
+    --color-destructive-subtle: var(--rax-color-destructive-subtle);
+    --color-destructive-subtle-hover: var(--rax-color-destructive-subtle-hover);
+    --color-destructive-subtle-foreground: var(--rax-color-destructive-subtle-foreground);
 
     --color-border: var(--rax-color-border);
     --color-input: var(--rax-color-input);
