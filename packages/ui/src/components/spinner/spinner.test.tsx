@@ -39,7 +39,7 @@ describe('Spinner', () => {
             render(<Spinner data-testid="spinner" />);
 
             const spinner = screen.getByTestId('spinner');
-            expect(spinner).toHaveClass('size-4', 'text-current');
+            expect(spinner).toHaveClass('size-5', 'text-current');
         });
 
         it.each(SPINNER_SIZES)('applies size "%s"', size => {
@@ -61,7 +61,7 @@ describe('Spinner', () => {
 
             const spinner = screen.getByTestId('spinner');
             expect(spinner).toHaveClass('size-10');
-            expect(spinner).not.toHaveClass('size-4');
+            expect(spinner).not.toHaveClass('size-5');
         });
 
         it('forwards native attributes to the root element', () => {

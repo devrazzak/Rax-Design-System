@@ -1,8 +1,11 @@
 export const sizeClasses = {
-    sm: 'size-3',
-    md: 'size-4',
-    lg: 'size-8',
-    xl: 'size-12',
+    xs: 'size-3',
+    sm: 'size-4 [&_path]:[stroke-width:1.5]',
+    md: 'size-5 [&_path]:[stroke-width:1.5]',
+    lg: 'size-6 [&_path]:[stroke-width:1.5]',
+    xl: 'size-7 [&_path]:[stroke-width:1.5]',
+    '2xl': 'size-16 [&_path]:[stroke-width:0.8]',
+    page: 'size-48 [&_path]:[stroke-width:0.3]',
 };
 
 export const colorClasses = {
