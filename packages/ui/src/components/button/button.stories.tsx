@@ -60,6 +60,26 @@ export const LinkInverse: Story = {
     ],
 };
 
+export const Variants: Story = {
+    render: args => (
+        <div className="flex flex-wrap items-center gap-3">
+            {BUTTON_VARIANTS.map(variant =>
+                variant === 'linkInverse' ? (
+                    <div key={variant} className="rounded-lg bg-foreground p-2">
+                        <Button {...args} variant={variant}>
+                            {variant}
+                        </Button>
+                    </div>
+                ) : (
+                    <Button key={variant} {...args} variant={variant}>
+                        {variant}
+                    </Button>
+                ),
+            )}
+        </div>
+    ),
+};
+
 export const Sizes: Story = {
     render: args => (
         <div className="flex flex-wrap items-center gap-3">
@@ -107,8 +127,6 @@ export const Disabled: Story = {
         </div>
     ),
 };
-
-export const Invalid: Story = { args: { variant: 'outline', 'aria-invalid': true } };
 
 export const AsChildLink: Story = { args: { asChild: true, children: <a href="/dashboard">Go to dashboard</a> } };
 

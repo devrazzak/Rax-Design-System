@@ -27,7 +27,7 @@ describe('Button', () => {
             const button = screen.getByRole('button', { name: 'Save' });
             expect(button).toHaveAttribute('data-slot', 'button');
             expect(button).toHaveAttribute('data-variant', 'primary');
-            expect(button).toHaveAttribute('data-size', 'default');
+            expect(button).toHaveAttribute('data-size', 'md');
         });
     });
 
@@ -289,9 +289,10 @@ describe('Button', () => {
 
         it.each([
             ['xs', 'size-3'],
-            ['sm', 'size-3'],
-            ['default', 'size-4'],
-            ['lg', 'size-4'],
+            ['sm', 'size-4'],
+            ['md', 'size-5'],
+            ['lg', 'size-6'],
+            ['xl', 'size-7'],
         ] as const)('uses a spinner that fits the "%s" button size', (size, spinnerClass) => {
             render(
                 <Button loading size={size}>
