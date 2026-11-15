@@ -50,8 +50,12 @@ Any theme library that sets the `dark` class works too, for example [`next-theme
 | `Checkbox`, `RadioGroup`, `Switch` | Yes/no and one-of-many controls.                    |
 | `InputGroup`                       | An input with icons, text or buttons beside it.     |
 | `Field`                            | A control with its label, hint and error message.   |
+| `InputOTP`                         | A one-time code split into separate slots.          |
+| `Accordion`                        | Sections that expand and collapse.                  |
+| `Dialog`                           | A modal window above the page.                      |
+| `DropdownMenu`                     | A menu of actions opened from a button.             |
 
-Form controls come in four sizes: `sm`, `md` (default), `lg` and `xl`.
+Form controls, `Accordion` and `DropdownMenu` come in four sizes: `sm`, `md` (default), `lg` and `xl`. `Dialog` uses the same names for its width, plus `full`.
 
 ## Usage
 
@@ -99,6 +103,78 @@ export function EmailField({ error }: { error?: string }) {
 ```
 
 `FieldError` renders nothing when it has no message. The package does not depend on a form library, so use it with React Hook Form, TanStack Form or plain state.
+
+### Dialog
+
+`DialogTrigger` opens the dialog and returns focus to itself when the dialog closes. Every dialog needs a `DialogTitle` and a `DialogDescription` for screen readers:
+
+```tsx
+import {
+    Button,
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@rax-ds/ui';
+
+export function DeleteDialog() {
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button variant="destructive">Delete</Button>
+            </DialogTrigger>
+            <DialogContent size="sm">
+                <DialogHeader>
+                    <DialogTitle>Delete this item?</DialogTitle>
+                    <DialogDescription>This action cannot be undone.</DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                    <DialogClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                    </DialogClose>
+                    <Button variant="destructive">Delete</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    );
+}
+```
+
+### Dropdown menu
+
+Set `size` once on `DropdownMenuContent`. Every item follows it:
+
+```tsx
+import {
+    Button,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@rax-ds/ui';
+
+export function RowActions() {
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="outline">Actions</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent size="sm">
+                <DropdownMenuItem>Edit</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    );
+}
+```
+
+To open a `Dialog` from a menu item, keep the `Dialog` next to the menu (not inside the menu content) and set `modal={false}` on `DropdownMenu`. See the `OpensDialog` story.
 
 ## Theming
 

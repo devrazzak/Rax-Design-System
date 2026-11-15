@@ -21,7 +21,7 @@ Usually installed automatically by `@rax-ds/ui`. Use this package directly only 
 
 All variables use the `--rax-` prefix.
 
-- Color: `--rax-color-primary`, `--rax-color-background`, `--rax-color-foreground`, ...
+- Color: `--rax-color-primary`, `--rax-color-background`, `--rax-color-foreground`, `--rax-color-overlay` (dialog backdrop), ...
 - Font: `--rax-font-family-sans`, `--rax-font-family-mono`
 - Radius: `--rax-radius-sm` to `--rax-radius-2xl`
 
