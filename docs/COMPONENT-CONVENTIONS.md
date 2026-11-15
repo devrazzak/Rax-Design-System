@@ -33,7 +33,7 @@ The component passes these to `cva`. Stories and tests read the name lists, so a
 ## Tests
 
 - Loop over the name lists (`it.each(COMPONENT_VARIANTS)`) so new variants are covered automatically.
-- Write defaults and key behavior as literals (`toHaveClass('size-4')`). They are the spec, so changing one should fail a test.
+- Write defaults and key behavior as literals (`toHaveClass('size-5')`). They are the spec, so changing one should fail a test.
 
 ## Server Components
 
