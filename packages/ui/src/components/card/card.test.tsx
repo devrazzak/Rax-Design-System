@@ -88,14 +88,14 @@ describe('Card', () => {
             expect(screen.getByTestId('card')).toHaveClass('has-data-[slot=card-footer]:pb-0');
         });
 
-        it('draws the footer flush with a top border and a muted background', () => {
+        it('draws the footer flush with a top border', () => {
             render(<CardFooter data-testid="footer">Footer</CardFooter>);
 
             expect(screen.getByTestId('footer')).toHaveClass(
                 'flex',
                 'items-center',
                 'border-t',
-                'bg-muted',
+                'border-border',
                 'p-(--card-spacing)',
             );
         });
