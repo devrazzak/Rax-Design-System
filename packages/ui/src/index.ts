@@ -10,6 +10,7 @@ export { Textarea, type TextareaProps } from '@/components/textarea/textarea';
 export { Checkbox, type CheckboxProps } from '@/components/checkbox/checkbox';
 export { RadioGroup, RadioGroupItem, type RadioGroupItemProps } from '@/components/radio-group/radio-group';
 export { Switch, type SwitchProps } from '@/components/switch/switch';
+export { Toggle, toggleVariants, type ToggleProps } from '@/components/toggle/toggle';
 export {
     Accordion,
     AccordionContent,
@@ -17,6 +18,31 @@ export {
     AccordionTrigger,
     type AccordionProps,
 } from '@/components/accordion/accordion';
+export {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogOverlay,
+    AlertDialogPortal,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+    type AlertDialogContentProps,
+} from '@/components/alert-dialog/alert-dialog';
+export {
+    Avatar,
+    AvatarBadge,
+    AvatarFallback,
+    AvatarGroup,
+    AvatarGroupCount,
+    AvatarImage,
+    type AvatarGroupCountProps,
+    type AvatarProps,
+} from '@/components/avatar/avatar';
+export { Badge, badgeVariants, type BadgeProps } from '@/components/badge/badge';
 export {
     Dialog,
     DialogClose,
