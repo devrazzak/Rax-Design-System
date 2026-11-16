@@ -24,6 +24,8 @@
         "accent": { "$value": "{color.neutral.800}", "$type": "color" },
         "accent-foreground": { "$value": "{color.neutral.50}", "$type": "color" },
 
+        "skeleton": { "$value": "{color.neutral.800}", "$type": "color" },
+
         "link": { "$value": "{color.neutral.50}", "$type": "color" },
         "link-hover": { "$value": "{color.neutral.50}", "$type": "color" },
 
