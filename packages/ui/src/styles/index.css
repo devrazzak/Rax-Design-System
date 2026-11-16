@@ -67,7 +67,7 @@
     --radius-2xl: var(--rax-radius-2xl);
 }
 
-/* Animations shared by components: the OTP caret, the accordion height, and the fade and zoom of overlays */
+/* Animations shared by components: the OTP caret, the accordion height, the fade and zoom of overlays, and the slide of panels */
 @theme {
     --animate-caret-blink: caret-blink 1.25s ease-out infinite;
     --animate-accordion-down: accordion-down 200ms ease-out;
@@ -76,6 +76,8 @@
     --animate-fade-out: fade-out 150ms ease-in;
     --animate-zoom-in: zoom-in 150ms ease-out;
     --animate-zoom-out: zoom-out 150ms ease-in;
+    --animate-slide-in: slide-in 200ms ease-out;
+    --animate-slide-out: slide-out 200ms ease-in;
 
     @keyframes accordion-down {
         from {
@@ -118,6 +120,19 @@
         to {
             opacity: 0;
             scale: 0.95;
+        }
+    }
+
+    /* The distance to travel is set by the component with --slide-offset, so one pair serves every side */
+    @keyframes slide-in {
+        from {
+            translate: var(--slide-offset);
+        }
+    }
+
+    @keyframes slide-out {
+        to {
+            translate: var(--slide-offset);
         }
     }
 
