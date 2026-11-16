@@ -43,7 +43,10 @@ Any theme library that sets the `dark` class works too, for example [`next-theme
 | Component                          | Use it for                                          |
 | ---------------------------------- | --------------------------------------------------- |
 | `Button`                           | Actions. Variants, sizes, loading state, `asChild`. |
+| `Toggle`, `ToggleGroup`            | Buttons that stay pressed, alone or in a group.     |
 | `Spinner`                          | A loading indicator.                                |
+| `Skeleton`                         | A placeholder shape while content loads.            |
+| `Progress`                         | How far a task has come.                            |
 | `Heading`, `Text`                  | Typography.                                         |
 | `Label`                            | A label for a form control.                         |
 | `Input`, `Textarea`, `Select`      | Text and choice fields.                             |
@@ -51,11 +54,22 @@ Any theme library that sets the `dark` class works too, for example [`next-theme
 | `InputGroup`                       | An input with icons, text or buttons beside it.     |
 | `Field`                            | A control with its label, hint and error message.   |
 | `InputOTP`                         | A one-time code split into separate slots.          |
+| `Card`                             | A bordered surface that groups related content.     |
+| `Avatar`, `Badge`                  | A person's picture and a short status label.        |
+| `Alert`                            | A message inline in the page. Info, warning, error. |
+| `Table`                            | Rows and columns of data.                           |
+| `Separator`                        | A thin line between content.                        |
+| `Breadcrumb`                       | The path to the current page.                       |
+| `Tabs`                             | Switch between views in the same place.             |
 | `Accordion`                        | Sections that expand and collapse.                  |
-| `Dialog`                           | A modal window above the page.                      |
+| `ScrollArea`                       | A scrollable region with a styled scrollbar.        |
+| `Dialog`, `AlertDialog`            | A modal window, and one that needs a decision.      |
+| `Drawer`                           | A panel that slides in from an edge.                |
 | `DropdownMenu`                     | A menu of actions opened from a button.             |
+| `Popover`                          | A floating panel opened from a button.              |
+| `Tooltip`                          | A short hint on hover or focus.                     |
 
-Form controls, `Accordion` and `DropdownMenu` come in four sizes: `sm`, `md` (default), `lg` and `xl`. `Dialog` uses the same names for its width, plus `full`.
+Most components come in four sizes: `sm`, `md` (default), `lg` and `xl`. `Dialog` and `Drawer` use the same names for their width, plus `full`. `Card` sets `padding` and `radius` instead of a size, and `Button` and `Spinner` have extra sizes.
 
 ## Usage
 
@@ -175,6 +189,45 @@ export function RowActions() {
 ```
 
 To open a `Dialog` from a menu item, keep the `Dialog` next to the menu (not inside the menu content) and set `modal={false}` on `DropdownMenu`. See the `OpensDialog` story.
+
+### Tooltip and popover
+
+`Tooltip` needs one `TooltipProvider` above it, usually at the root of your app. A tooltip is a short hint only, so put anything the user must read or click in a `Popover`:
+
+```tsx
+import {
+    Button,
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from '@rax-ds/ui';
+
+export function Example() {
+    return (
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button variant="outline">Hover me</Button>
+                </TooltipTrigger>
+                <TooltipContent>Add to library</TooltipContent>
+            </Tooltip>
+
+            <Popover>
+                <PopoverTrigger asChild>
+                    <Button variant="outline">Open</Button>
+                </PopoverTrigger>
+                <PopoverContent aria-label="Dimensions">Set the dimensions for the layer.</PopoverContent>
+            </Popover>
+        </TooltipProvider>
+    );
+}
+```
+
+`PopoverContent` has the `dialog` role, so give it an `aria-label` (or `aria-labelledby`) for screen readers.
 
 ## Theming
 
