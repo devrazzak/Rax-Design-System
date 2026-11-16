@@ -142,3 +142,4 @@ export {
     SelectValue,
     type SelectTriggerProps,
 } from '@/components/select/select';
+export { Separator, type SeparatorProps } from '@/components/separator/separator';
