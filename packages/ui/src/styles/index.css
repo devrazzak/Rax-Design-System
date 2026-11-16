@@ -38,6 +38,7 @@
 
     --color-muted: var(--rax-color-muted);
     --color-muted-foreground: var(--rax-color-muted-foreground);
+    --color-skeleton: var(--rax-color-skeleton);
 
     --color-accent: var(--rax-color-accent);
     --color-accent-foreground: var(--rax-color-accent-foreground);
