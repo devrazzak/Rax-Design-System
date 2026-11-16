@@ -1,6 +1,8 @@
 export { CheckIcon } from './check-icon';
 export { ChevronDownIcon } from './chevron-down-icon';
+export { ChevronRightIcon } from './chevron-right-icon';
 export { ChevronUpIcon } from './chevron-up-icon';
+export { EllipsisIcon } from './ellipsis-icon';
 export { EyeIcon } from './eye-icon';
 export { EyeOffIcon } from './eye-off-icon';
 export { MinusIcon } from './minus-icon';
