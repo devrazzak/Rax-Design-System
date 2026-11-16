@@ -31,6 +31,19 @@ export {
     type DialogContentProps,
 } from '@/components/dialog/dialog';
 export {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerOverlay,
+    DrawerPortal,
+    DrawerTitle,
+    DrawerTrigger,
+    type DrawerContentProps,
+} from '@/components/drawer/drawer';
+export {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
