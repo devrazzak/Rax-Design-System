@@ -179,3 +179,4 @@ export {
     PopoverTrigger,
 } from '@/components/popover/popover';
 export { ScrollArea, ScrollBar } from '@/components/scroll-area/scroll-area';
+export { ToggleGroup, ToggleGroupItem, type ToggleGroupProps } from '@/components/toggle-group/toggle-group';
