@@ -35,6 +35,14 @@
         "destructive-subtle-hover": { "$value": "{color.red.100}", "$type": "color" },
         "destructive-subtle-foreground": { "$value": "{color.red.700}", "$type": "color" },
 
+        "info": { "$value": "{color.blue.700}", "$type": "color" },
+        "info-subtle": { "$value": "{color.blue.50}", "$type": "color" },
+        "info-subtle-foreground": { "$value": "{color.blue.700}", "$type": "color" },
+
+        "warning": { "$value": "{color.yellow.700}", "$type": "color" },
+        "warning-subtle": { "$value": "{color.yellow.50}", "$type": "color" },
+        "warning-subtle-foreground": { "$value": "{color.yellow.700}", "$type": "color" },
+
         "border": { "$value": "{color.neutral.200}", "$type": "color" },
         "input": { "$value": "{color.neutral.200}", "$type": "color" },
         "ring": { "$value": "{color.neutral.500}", "$type": "color" },
