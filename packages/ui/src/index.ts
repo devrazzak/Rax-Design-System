@@ -144,3 +144,11 @@ export {
 } from '@/components/select/select';
 export { Separator, type SeparatorProps } from '@/components/separator/separator';
 export { Skeleton, type SkeletonProps } from '@/components/skeleton/skeleton';
+export {
+    Alert,
+    AlertAction,
+    AlertDescription,
+    AlertTitle,
+    alertVariants,
+    type AlertProps,
+} from '@/components/alert/alert';
