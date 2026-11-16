@@ -169,3 +169,12 @@ export {
     TooltipTrigger,
     type TooltipContentProps,
 } from '@/components/tooltip/tooltip';
+export {
+    Popover,
+    PopoverAnchor,
+    PopoverContent,
+    PopoverDescription,
+    PopoverHeader,
+    PopoverTitle,
+    PopoverTrigger,
+} from '@/components/popover/popover';
