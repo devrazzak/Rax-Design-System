@@ -180,3 +180,13 @@ export {
 } from '@/components/popover/popover';
 export { ScrollArea, ScrollBar } from '@/components/scroll-area/scroll-area';
 export { ToggleGroup, ToggleGroupItem, type ToggleGroupProps } from '@/components/toggle-group/toggle-group';
+export {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableFooter,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/table/table';
