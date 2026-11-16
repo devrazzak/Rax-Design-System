@@ -162,3 +162,10 @@ export {
     type TabsListProps,
     type TabsProps,
 } from '@/components/tabs/tabs';
+export {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+    type TooltipContentProps,
+} from '@/components/tooltip/tooltip';
