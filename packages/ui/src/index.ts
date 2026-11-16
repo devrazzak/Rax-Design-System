@@ -54,6 +54,16 @@ export {
     type BreadcrumbProps,
 } from '@/components/breadcrumb/breadcrumb';
 export {
+    Card,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+    type CardProps,
+} from '@/components/card/card';
+export {
     Dialog,
     DialogClose,
     DialogContent,
