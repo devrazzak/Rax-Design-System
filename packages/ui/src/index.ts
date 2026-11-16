@@ -152,3 +152,4 @@ export {
     alertVariants,
     type AlertProps,
 } from '@/components/alert/alert';
+export { Progress, type ProgressProps } from '@/components/progress/progress';
