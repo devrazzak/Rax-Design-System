@@ -52,6 +52,14 @@
     --color-destructive-subtle-hover: var(--rax-color-destructive-subtle-hover);
     --color-destructive-subtle-foreground: var(--rax-color-destructive-subtle-foreground);
 
+    --color-info: var(--rax-color-info);
+    --color-info-subtle: var(--rax-color-info-subtle);
+    --color-info-subtle-foreground: var(--rax-color-info-subtle-foreground);
+
+    --color-warning: var(--rax-color-warning);
+    --color-warning-subtle: var(--rax-color-warning-subtle);
+    --color-warning-subtle-foreground: var(--rax-color-warning-subtle-foreground);
+
     --color-border: var(--rax-color-border);
     --color-input: var(--rax-color-input);
     --color-ring: var(--rax-color-ring);
