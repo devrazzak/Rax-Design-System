@@ -44,6 +44,16 @@ export {
 } from '@/components/avatar/avatar';
 export { Badge, badgeVariants, type BadgeProps } from '@/components/badge/badge';
 export {
+    Breadcrumb,
+    BreadcrumbEllipsis,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+    type BreadcrumbProps,
+} from '@/components/breadcrumb/breadcrumb';
+export {
     Dialog,
     DialogClose,
     DialogContent,
