@@ -1,5 +1,16 @@
 # @rax-ds/ui
 
+## 0.6.0
+
+### Minor Changes
+
+- 82f0df2: Add Card, Separator, Skeleton, Alert, Progress, Tabs, Tooltip, Popover, ScrollArea, ToggleGroup and Table. Components now use the larger radius scale from `@rax-ds/tokens`.
+
+### Patch Changes
+
+- Updated dependencies [82f0df2]
+  - @rax-ds/tokens@0.6.0
+
 ## 0.5.0
 
 ### Minor Changes
