@@ -153,3 +153,12 @@ export {
     type AlertProps,
 } from '@/components/alert/alert';
 export { Progress, type ProgressProps } from '@/components/progress/progress';
+export {
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+    tabsListVariants,
+    type TabsListProps,
+    type TabsProps,
+} from '@/components/tabs/tabs';
