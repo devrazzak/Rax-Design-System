@@ -50,6 +50,7 @@ Any theme library that sets the `dark` class works too, for example [`next-theme
 | `Heading`, `Text`                  | Typography.                                         |
 | `Label`                            | A label for a form control.                         |
 | `Input`, `Textarea`, `Select`      | Text and choice fields.                             |
+| `OptionSelect`                     | A `Select` built from an array of options.          |
 | `Checkbox`, `RadioGroup`, `Switch` | Yes/no and one-of-many controls.                    |
 | `InputGroup`                       | An input with icons, text or buttons beside it.     |
 | `Field`                            | A control with its label, hint and error message.   |
@@ -113,6 +114,21 @@ export function EmailField({ error }: { error?: string }) {
             <FieldError id="email-error">{error}</FieldError>
         </Field>
     );
+}
+```
+
+`OptionSelect` takes an `options` array of `{ value, label }` instead of `SelectItem` children. The values are strings, so convert an id with `String(id)`. For groups or custom items, use the `Select` parts directly:
+
+```tsx
+import { OptionSelect } from '@rax-ds/ui';
+
+const options = [
+    { value: 'news', label: 'News' },
+    { value: 'events', label: 'Events' },
+];
+
+export function CategoryField() {
+    return <OptionSelect options={options} placeholder="Select a category" onValueChange={console.log} />;
 }
 ```
 
