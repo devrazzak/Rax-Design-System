@@ -190,3 +190,8 @@ export {
     TableHeader,
     TableRow,
 } from '@/components/table/table';
+export {
+    OptionSelect,
+    type OptionSelectOption,
+    type OptionSelectProps,
+} from '@/components/option-select/option-select';
