@@ -136,10 +136,14 @@ describe('OptionSelect', () => {
             expect(screen.getByRole('combobox', { name: 'Favorite fruit' })).toHaveAttribute('id', 'fruit-select');
         });
 
-        it('passes the name to the form', () => {
-            const { container } = render(<TestOptionSelect name="fruit" defaultValue="apple" />);
+        it('sends the name and value with the form', () => {
+            render(
+                <form aria-label="Order">
+                    <TestOptionSelect name="fruit" defaultValue="apple" />
+                </form>,
+            );
 
-            expect(container.querySelector('select[name="fruit"]')).toBeInTheDocument();
+            expect(new FormData(screen.getByRole('form', { name: 'Order' })).get('fruit')).toBe('apple');
         });
     });
 
