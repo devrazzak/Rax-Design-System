@@ -1,5 +1,11 @@
 # @rax-ds/ui
 
+## 0.7.0
+
+### Minor Changes
+
+- 474c3b6: Add the OptionSelect component, a Select built from an array of `{ value, label }` options.
+
 ## 0.6.0
 
 ### Minor Changes
