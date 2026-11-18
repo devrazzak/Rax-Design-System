@@ -5,6 +5,7 @@ export { Spinner, spinnerVariants, type SpinnerProps } from '@/components/spinne
 export { Heading, type HeadingProps } from '@/components/heading/heading';
 export { Text, type TextProps } from '@/components/text/text';
 export { Container, type ContainerProps } from '@/components/container/container';
+export { Section, type SectionProps } from '@/components/section/section';
 export { Label, type LabelProps } from '@/components/label/label';
 export { Input, type InputProps } from '@/components/input/input';
 export { Textarea, type TextareaProps } from '@/components/textarea/textarea';
