@@ -48,6 +48,8 @@ Any theme library that sets the `dark` class works too, for example [`next-theme
 | `Skeleton`                         | A placeholder shape while content loads.            |
 | `Progress`                         | How far a task has come.                            |
 | `Heading`, `Text`                  | Typography.                                         |
+| `Container`, `Section`             | A centered page width, and a page section.          |
+| `Stack`, `Row`, `Grid`             | Vertical, horizontal and grid layouts.              |
 | `Label`                            | A label for a form control.                         |
 | `Input`, `Textarea`, `Select`      | Text and choice fields.                             |
 | `OptionSelect`                     | A `Select` built from an array of options.          |
