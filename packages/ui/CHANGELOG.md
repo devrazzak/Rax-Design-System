@@ -1,5 +1,11 @@
 # @rax-ds/ui
 
+## 0.9.0
+
+### Minor Changes
+
+- 3145e6a: Add the `none` spacing to Section. Section now has no vertical spacing by default, pass `spacing="md"` to keep the old padding.
+
 ## 0.8.0
 
 ### Minor Changes
