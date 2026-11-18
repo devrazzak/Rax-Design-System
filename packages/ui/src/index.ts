@@ -4,6 +4,7 @@ export { Button, buttonVariants, type ButtonProps } from '@/components/button/bu
 export { Spinner, spinnerVariants, type SpinnerProps } from '@/components/spinner/spinner';
 export { Heading, type HeadingProps } from '@/components/heading/heading';
 export { Text, type TextProps } from '@/components/text/text';
+export { Container, type ContainerProps } from '@/components/container/container';
 export { Label, type LabelProps } from '@/components/label/label';
 export { Input, type InputProps } from '@/components/input/input';
 export { Textarea, type TextareaProps } from '@/components/textarea/textarea';
