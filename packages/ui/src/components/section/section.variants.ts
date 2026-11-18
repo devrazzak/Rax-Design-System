@@ -4,6 +4,7 @@ export type SectionTag = (typeof SECTION_TAGS)[number];
 
 /** Vertical padding. It grows smoothly with the screen width between a minimum and a maximum. */
 export const spacingClasses = {
+    none: 'py-0',
     sm: 'py-[clamp(1.5rem,4vw,2rem)]',
     md: 'py-[clamp(2rem,6vw,4rem)]',
     lg: 'py-[clamp(3rem,8vw,6rem)]',
@@ -19,7 +20,7 @@ export const toneClasses = {
 };
 
 export const defaultTag: SectionTag = 'section';
-export const defaultSpacing: keyof typeof spacingClasses = 'md';
+export const defaultSpacing: keyof typeof spacingClasses = 'none';
 export const defaultTone: keyof typeof toneClasses = 'default';
 
 /** Names are read from the object above, so stories and tests never drift from the component. */

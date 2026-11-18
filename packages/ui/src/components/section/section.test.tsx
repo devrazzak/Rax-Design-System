@@ -44,11 +44,11 @@ describe('Section', () => {
     });
 
     describe('spacing', () => {
-        it('uses the md spacing by default', () => {
+        it('has no vertical spacing by default', () => {
             render(<Section data-testid="section" />);
 
-            expect(defaultSpacing).toBe('md');
-            expect(screen.getByTestId('section')).toHaveClass('py-[clamp(2rem,6vw,4rem)]');
+            expect(defaultSpacing).toBe('none');
+            expect(screen.getByTestId('section')).toHaveClass('py-0');
         });
 
         it.each(SECTION_SPACINGS)('applies spacing "%s"', spacing => {
