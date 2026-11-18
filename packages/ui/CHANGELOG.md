@@ -1,5 +1,15 @@
 # @rax-ds/ui
 
+## 0.8.0
+
+### Minor Changes
+
+- a9ae87e: Add the Container component, a centered wrapper with a max width and fluid side padding.
+- 37c8236: Add the Grid and GridItem components, a responsive column grid with a shared gap scale and column spans.
+- 37c8236: Add the Row component, a horizontal flex layout with gap, alignment, justify and wrap.
+- d706a3c: Add the Section component, a page section with responsive vertical spacing and a background tone.
+- 37c8236: Add the Stack component, a vertical flex layout with a shared gap scale and alignment.
+
 ## 0.7.1
 
 ### Patch Changes
