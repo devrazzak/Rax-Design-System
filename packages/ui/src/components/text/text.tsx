@@ -4,14 +4,11 @@ import { cn } from '@/lib/utils/cn';
 
 import type { TextTag } from './text.variants';
 import {
-    alignClasses,
     colorClasses,
     defaultColor,
     defaultSize,
     defaultTag,
     defaultWeight,
-    displayClasses,
-    justifyClasses,
     sizeClasses,
     textAlignClasses,
     textTransformClasses,
@@ -25,17 +22,11 @@ type TextProps = ComponentProps<'p'> & {
     size?: keyof typeof sizeClasses;
     weight?: keyof typeof weightClasses;
     color?: keyof typeof colorClasses;
-    /** Sets the CSS display. Not set by default, so `span` stays inline and `p` stays block. */
-    display?: keyof typeof displayClasses;
     /** Horizontal text alignment. Uses `start` and `end`, so it follows the reading direction. */
     textAlign?: keyof typeof textAlignClasses;
     textTransform?: keyof typeof textTransformClasses;
     /** Letter spacing. */
     tracking?: keyof typeof trackingClasses;
-    /** Aligns the children on the cross axis. Only works with `display="flex"` or `display="inlineFlex"`. */
-    align?: keyof typeof alignClasses;
-    /** Distributes the children on the main axis. Only works with `display="flex"` or `display="inlineFlex"`. */
-    justify?: keyof typeof justifyClasses;
 };
 
 function Text({
@@ -43,12 +34,9 @@ function Text({
     size = defaultSize,
     weight = defaultWeight,
     color = defaultColor,
-    display,
     textAlign,
     textTransform,
     tracking,
-    align,
-    justify,
     className,
     ...props
 }: TextProps) {
@@ -61,12 +49,9 @@ function Text({
                 sizeClasses[size],
                 weightClasses[weight],
                 colorClasses[color],
-                display && displayClasses[display],
                 textAlign && textAlignClasses[textAlign],
                 textTransform && textTransformClasses[textTransform],
                 tracking && trackingClasses[tracking],
-                align && alignClasses[align],
-                justify && justifyClasses[justify],
                 className,
             )}
             {...props}
