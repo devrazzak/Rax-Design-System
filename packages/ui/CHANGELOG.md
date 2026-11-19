@@ -1,5 +1,11 @@
 # @rax-ds/ui
 
+## 0.13.1
+
+### Patch Changes
+
+- aba1418: Add the `asChild` prop to IconButton, for an icon-only link.
+
 ## 0.13.0
 
 ### Minor Changes
