@@ -1,7 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Heading } from './heading';
-import { HEADING_COLORS, HEADING_SIZES, HEADING_TAGS, HEADING_WEIGHTS } from './heading.variants';
+import {
+    HEADING_COLORS,
+    HEADING_SIZES,
+    HEADING_TAGS,
+    HEADING_TEXT_TRANSFORMS,
+    HEADING_WEIGHTS,
+} from './heading.variants';
 
 const meta = {
     title: 'Components/Heading',
@@ -13,6 +19,7 @@ const meta = {
         size: { control: 'select', options: HEADING_SIZES },
         weight: { control: 'inline-radio', options: HEADING_WEIGHTS },
         color: { control: 'select', options: HEADING_COLORS },
+        textTransform: { control: 'inline-radio', options: HEADING_TEXT_TRANSFORMS },
         children: { control: 'text' },
     },
 } satisfies Meta<typeof Heading>;
@@ -68,6 +75,18 @@ export const Colors: Story = {
                         {color} color
                     </Heading>
                 </div>
+            ))}
+        </div>
+    ),
+};
+
+export const TextTransforms: Story = {
+    render: args => (
+        <div className="flex flex-col gap-4">
+            {HEADING_TEXT_TRANSFORMS.map(textTransform => (
+                <Heading key={textTransform} {...args} textTransform={textTransform}>
+                    {textTransform}: the quick brown fox
+                </Heading>
             ))}
         </div>
     ),
