@@ -1,5 +1,17 @@
 # @rax-ds/ui
 
+## 0.11.0
+
+### Minor Changes
+
+- ed34fef: Heading size `base` is renamed to `md`, the same as Text. Add the `textTransform` prop to Heading.
+- 67708ca: Add the IconButton component, an icon-only Button with a tooltip and a `rounded` option.
+
+### Patch Changes
+
+- cd832ba: Grid `columns` also accepts an object per breakpoint, for example `{ base: 1, md: 2, lg: 4 }`.
+- 42793c7: Add a `foreground` tone to Section.
+
 ## 0.10.1
 
 ### Patch Changes
