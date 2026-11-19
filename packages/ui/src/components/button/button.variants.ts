@@ -19,10 +19,7 @@ export const variantClasses = {
     destructive:
         'bg-destructive-subtle text-destructive-subtle-foreground hover:bg-destructive-subtle-hover aria-expanded:bg-destructive-subtle-hover focus-visible:border-destructive focus-visible:ring-destructive/40',
     link: ['text-link hover:text-link-hover aria-expanded:text-link-hover focus-visible:ring-link/40', iconSlide],
-    linkInverse: [
-        'text-white underline-offset-4 hover:underline aria-expanded:underline focus-visible:ring-white/50',
-        iconSlide,
-    ],
+    linkWhite: ['text-white hover:text-primary aria-expanded:text-primary focus-visible:ring-white/50', iconSlide],
 };
 
 export const sizeClasses = {
