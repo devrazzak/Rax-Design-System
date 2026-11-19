@@ -23,6 +23,16 @@ function renderIconButton(props?: Partial<IconButtonProps>) {
     );
 }
 
+function renderAsLink() {
+    return render(
+        <IconButton asChild label="Send email">
+            <a href="/mail">
+                <svg aria-hidden="true" />
+            </a>
+        </IconButton>,
+    );
+}
+
 /** The `region` rule asks a whole page to sit inside landmarks, which does not apply to a single component. */
 const axeOptions = { rules: { region: { enabled: false } } };
 
@@ -81,6 +91,27 @@ describe('IconButton', () => {
             await user.hover(screen.getByRole('button'));
 
             expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+        });
+    });
+
+    describe('asChild', () => {
+        it('renders the child element instead of a button', () => {
+            renderAsLink();
+
+            const link = screen.getByRole('link', { name: 'Send email' });
+            expect(link).toHaveAttribute('href', '/mail');
+            expect(link).toHaveAttribute('data-slot', 'icon-button');
+            expect(link).toHaveClass('w-12', 'rounded-md');
+            expect(screen.queryByRole('button')).not.toBeInTheDocument();
+        });
+
+        it('shows the tooltip on the link', async () => {
+            const user = userEvent.setup();
+            renderAsLink();
+
+            await user.hover(screen.getByRole('link'));
+
+            expect(await screen.findByRole('tooltip')).toHaveTextContent('Send email');
         });
     });
 
