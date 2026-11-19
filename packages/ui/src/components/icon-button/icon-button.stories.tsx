@@ -57,6 +57,17 @@ export const Rounded: Story = {
     ),
 };
 
+export const AsChildLink: Story = {
+    args: {
+        asChild: true,
+        children: (
+            <a href="/mail">
+                <Mail aria-hidden="true" />
+            </a>
+        ),
+    },
+};
+
 export const WithoutTooltip: Story = { args: { tooltip: false } };
 
 export const Disabled: Story = { args: { disabled: true } };
