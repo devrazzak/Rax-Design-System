@@ -15,8 +15,15 @@ function TooltipProvider({ delayDuration = 0, ...props }: ComponentProps<typeof 
     return <TooltipPrimitive.Provider delayDuration={delayDuration} {...props} />;
 }
 
-// Root renders no element of its own, so there is nothing to wrap
-const Tooltip = TooltipPrimitive.Root;
+// Radix throws when a tooltip has no provider, so every Tooltip brings its own, with no delay by default.
+// This means a provider higher up is ignored. To change the delay, set `delayDuration` on the Tooltip.
+function Tooltip(props: ComponentProps<typeof TooltipPrimitive.Root>) {
+    return (
+        <TooltipProvider>
+            <TooltipPrimitive.Root {...props} />
+        </TooltipProvider>
+    );
+}
 
 function TooltipTrigger(props: ComponentProps<typeof TooltipPrimitive.Trigger>) {
     return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
