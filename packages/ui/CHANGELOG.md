@@ -1,5 +1,11 @@
 # @rax-ds/ui
 
+## 0.10.1
+
+### Patch Changes
+
+- 2304fff: Add a `surface` variant to Button.
+
 ## 0.10.0
 
 ### Minor Changes
