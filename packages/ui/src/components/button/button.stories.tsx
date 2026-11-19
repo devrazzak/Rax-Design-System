@@ -45,6 +45,8 @@ export const Outline: Story = { args: { variant: 'outline' } };
 
 export const White: Story = { args: { variant: 'white' } };
 
+export const Surface: Story = { args: { variant: 'surface' } };
+
 export const Ghost: Story = { args: { variant: 'ghost' } };
 
 export const Destructive: Story = { args: { variant: 'destructive' } };
@@ -66,7 +68,7 @@ export const Variants: Story = {
     render: args => (
         <div className="flex flex-wrap items-center gap-3">
             {BUTTON_VARIANTS.map(variant =>
-                variant === 'linkInverse' ? (
+                variant === 'linkInverse' || variant === 'white' ? (
                     <div key={variant} className="rounded-lg bg-foreground p-2">
                         <Button {...args} variant={variant}>
                             {variant}
