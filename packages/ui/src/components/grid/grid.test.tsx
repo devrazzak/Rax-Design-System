@@ -4,7 +4,17 @@ import { axe } from 'jest-axe';
 import { defaultGap, gapClasses, GAPS } from '@/lib/utils/gap-classes';
 
 import { Grid, GridItem } from './grid';
-import { columnsClasses, defaultColumns, GRID_COLUMNS, GRID_SPANS, spanClasses } from './grid.variants';
+import {
+    baseColumnsClasses,
+    columnsClasses,
+    defaultColumns,
+    GRID_COLUMNS,
+    GRID_SPANS,
+    lgColumnsClasses,
+    smColumnsClasses,
+    spanClasses,
+    xlColumnsClasses,
+} from './grid.variants';
 
 describe('Grid', () => {
     describe('behavior', () => {
@@ -41,6 +51,57 @@ describe('Grid', () => {
             render(<Grid data-testid="grid" columns={columns} />);
 
             expect(screen.getByTestId('grid')).toHaveClass(columnsClasses[columns]);
+        });
+    });
+
+    describe('responsive columns', () => {
+        it('applies a count per breakpoint', () => {
+            render(<Grid data-testid="grid" columns={{ base: 1, md: 2, lg: 4 }} />);
+
+            expect(screen.getByTestId('grid')).toHaveClass('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-4');
+        });
+
+        it('applies the sm count', () => {
+            render(<Grid data-testid="grid" columns={{ base: 1, sm: 2, md: 3 }} />);
+
+            expect(screen.getByTestId('grid')).toHaveClass('grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-3');
+        });
+
+        it('applies the xl count', () => {
+            render(<Grid data-testid="grid" columns={{ base: 1, md: 2, lg: 3, xl: 4 }} />);
+
+            const grid = screen.getByTestId('grid');
+            expect(grid).toHaveClass('lg:grid-cols-3', 'xl:grid-cols-4');
+            expect(grid).not.toHaveClass('lg:grid-cols-4');
+        });
+
+        it('is one column below md when base is not given', () => {
+            render(<Grid data-testid="grid" columns={{ md: 3 }} />);
+
+            expect(screen.getByTestId('grid')).toHaveClass('grid-cols-1', 'md:grid-cols-3');
+        });
+
+        it('adds no class for a breakpoint that is not given', () => {
+            render(<Grid data-testid="grid" columns={{ base: 2 }} />);
+
+            expect(screen.getByTestId('grid').className).not.toMatch(/md:grid-cols|lg:grid-cols/);
+        });
+
+        it.each(GRID_COLUMNS)('applies %s columns at every breakpoint', columns => {
+            render(
+                <Grid
+                    data-testid="grid"
+                    columns={{ base: columns, sm: columns, md: columns, lg: columns, xl: columns }}
+                />,
+            );
+
+            expect(screen.getByTestId('grid')).toHaveClass(
+                baseColumnsClasses[columns],
+                smColumnsClasses[columns],
+                columnsClasses[columns],
+                lgColumnsClasses[columns],
+                xlColumnsClasses[columns],
+            );
         });
     });
 
