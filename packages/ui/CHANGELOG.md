@@ -1,5 +1,12 @@
 # @rax-ds/ui
 
+## 0.10.0
+
+### Minor Changes
+
+- 7265aa1: Add a `white` variant to Button.
+- 17d4990: Add `display`, `textAlign`, `textTransform`, `tracking`, `align` and `justify` props to Text.
+
 ## 0.9.0
 
 ### Minor Changes
