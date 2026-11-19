@@ -5,7 +5,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/tooltip/to
 
 import { defaultRounded, defaultSize, roundedClasses, sizeClasses } from './icon-button.variants';
 
-type IconButtonProps = Omit<ButtonProps, 'asChild' | 'aria-label' | 'size'> & {
+type IconButtonProps = Omit<ButtonProps, 'aria-label' | 'size'> & {
     /** Accessible name and tooltip text. Required, because an icon alone has no name. */
     label: string;
     /** Shows the label in a tooltip on hover and focus. */
