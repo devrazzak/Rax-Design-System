@@ -40,7 +40,8 @@ function List({
     className,
     ...props
 }: ListProps) {
-    const Comp: ElementType = as;
+    // The cast keeps TypeScript from narrowing to 'ul' | 'ol', because their ref types differ
+    const Comp = as as ElementType;
 
     return (
         <Comp
