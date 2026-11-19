@@ -1,5 +1,11 @@
 # @rax-ds/ui
 
+## 0.11.1
+
+### Patch Changes
+
+- 36fe521: Add the List and ListItem components, with `disc`, `decimal` and `none` markers and an icon option.
+
 ## 0.11.0
 
 ### Minor Changes
