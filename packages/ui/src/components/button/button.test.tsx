@@ -45,6 +45,33 @@ describe('Button', () => {
         });
     });
 
+    describe('link variants', () => {
+        it.each(['link', 'linkWhite'] as const)('"%s" has no fixed height or padding', variant => {
+            render(<Button variant={variant}>Read more</Button>);
+
+            const button = screen.getByRole('button', { name: 'Read more' });
+            expect(button).toHaveClass('h-auto', 'p-0');
+            expect(button).not.toHaveClass('h-12');
+            expect(button).not.toHaveClass('px-6');
+        });
+
+        it.each(['link', 'linkWhite'] as const)('"%s" keeps the font size of its size', variant => {
+            render(
+                <Button variant={variant} size="lg">
+                    Read more
+                </Button>,
+            );
+
+            expect(screen.getByRole('button', { name: 'Read more' })).toHaveClass('text-lg');
+        });
+
+        it('keeps the height and padding of the other variants', () => {
+            render(<Button variant="outline">Save</Button>);
+
+            expect(screen.getByRole('button', { name: 'Save' })).toHaveClass('h-12', 'px-6');
+        });
+    });
+
     describe('type attribute', () => {
         it('defaults to type="button"', () => {
             render(<Button>Save</Button>);
