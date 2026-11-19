@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 
 import { BUTTON_VARIANTS } from '@/components/button/button.variants';
-import { TooltipProvider } from '@/components/tooltip/tooltip';
 
 import type { IconButtonProps } from './icon-button';
 import { IconButton } from './icon-button';
@@ -16,14 +15,11 @@ import {
     sizeClasses,
 } from './icon-button.variants';
 
-/** IconButton shows a tooltip, so it needs the provider every tooltip needs. */
 function renderIconButton(props?: Partial<IconButtonProps>) {
     return render(
-        <TooltipProvider>
-            <IconButton label="Send email" {...props}>
-                <svg aria-hidden="true" />
-            </IconButton>
-        </TooltipProvider>,
+        <IconButton label="Send email" {...props}>
+            <svg aria-hidden="true" />
+        </IconButton>,
     );
 }
 
@@ -56,6 +52,10 @@ describe('IconButton', () => {
     });
 
     describe('tooltip', () => {
+        it('renders without a TooltipProvider above it', () => {
+            expect(() => renderIconButton()).not.toThrow();
+        });
+
         it('shows the label when the button is hovered', async () => {
             const user = userEvent.setup();
             renderIconButton();

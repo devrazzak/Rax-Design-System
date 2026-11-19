@@ -17,18 +17,15 @@ import {
 
 type TestTooltipProps = ComponentProps<typeof Tooltip> & {
     content?: TooltipContentProps;
-    delayDuration?: number;
 };
 
-/** One trigger and one tooltip, wrapped in the provider every tooltip needs. */
-function TestTooltip({ content, delayDuration, ...props }: TestTooltipProps) {
+/** One trigger and one tooltip. There is no provider above it, because Tooltip brings its own. */
+function TestTooltip({ content, ...props }: TestTooltipProps) {
     return (
-        <TooltipProvider delayDuration={delayDuration}>
-            <Tooltip {...props}>
-                <TooltipTrigger>Trigger</TooltipTrigger>
-                <TooltipContent {...content}>Add to library</TooltipContent>
-            </Tooltip>
-        </TooltipProvider>
+        <Tooltip {...props}>
+            <TooltipTrigger>Trigger</TooltipTrigger>
+            <TooltipContent {...content}>Add to library</TooltipContent>
+        </Tooltip>
     );
 }
 
@@ -152,7 +149,20 @@ describe('Tooltip', () => {
             expect(await screen.findByRole('tooltip', undefined, { timeout: 300 })).toBeInTheDocument();
         });
 
-        it('waits for a delayDuration given to the provider', async () => {
+        it('ignores the delayDuration of a provider above it', async () => {
+            const user = userEvent.setup();
+            render(
+                <TooltipProvider delayDuration={1000}>
+                    <TestTooltip />
+                </TooltipProvider>,
+            );
+
+            await user.hover(screen.getByRole('button', { name: 'Trigger' }));
+
+            expect(await screen.findByRole('tooltip', undefined, { timeout: 300 })).toBeInTheDocument();
+        });
+
+        it('waits for a delayDuration given to the Tooltip', async () => {
             const user = userEvent.setup();
             render(<TestTooltip delayDuration={1000} />);
 
