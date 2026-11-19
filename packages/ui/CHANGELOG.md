@@ -1,5 +1,11 @@
 # @rax-ds/ui
 
+## 0.12.0
+
+### Minor Changes
+
+- 3e7429d: Rename the Button variant `linkInverse` to `linkWhite`. It now turns primary on hover and has no underline.
+
 ## 0.11.1
 
 ### Patch Changes
