@@ -3,19 +3,13 @@ import { axe } from 'jest-axe';
 
 import { Text } from './text';
 import {
-    alignClasses,
     colorClasses,
     defaultColor,
     defaultSize,
     defaultTag,
     defaultWeight,
-    displayClasses,
-    justifyClasses,
     sizeClasses,
-    TEXT_ALIGNS,
     TEXT_COLORS,
-    TEXT_DISPLAYS,
-    TEXT_JUSTIFIES,
     TEXT_SIZES,
     TEXT_TAGS,
     TEXT_TEXT_ALIGNS,
@@ -90,21 +84,11 @@ describe('Text', () => {
     });
 
     describe('layout and typography', () => {
-        it('sets no display, transform, tracking or align by default', () => {
+        it('sets no text align, transform or tracking by default', () => {
             render(<Text data-testid="text">Hello</Text>);
 
             const text = screen.getByTestId('text');
             expect(text.className).toBe('text-base font-normal text-foreground');
-        });
-
-        it.each(TEXT_DISPLAYS)('applies display "%s"', display => {
-            render(
-                <Text data-testid="text" display={display}>
-                    Hello
-                </Text>,
-            );
-
-            expect(screen.getByTestId('text')).toHaveClass(displayClasses[display]);
         });
 
         it.each(TEXT_TEXT_ALIGNS)('applies textAlign "%s"', textAlign => {
@@ -137,49 +121,14 @@ describe('Text', () => {
             expect(screen.getByTestId('text')).toHaveClass(trackingClasses[tracking]);
         });
 
-        it.each(TEXT_ALIGNS)('applies align "%s"', align => {
-            render(
-                <Text data-testid="text" display="flex" align={align}>
-                    Hello
-                </Text>,
-            );
-
-            expect(screen.getByTestId('text')).toHaveClass(alignClasses[align]);
-        });
-
-        it.each(TEXT_JUSTIFIES)('applies justify "%s"', justify => {
-            render(
-                <Text data-testid="text" display="flex" justify={justify}>
-                    Hello
-                </Text>,
-            );
-
-            expect(screen.getByTestId('text')).toHaveClass(justifyClasses[justify]);
-        });
-
         it('writes the key classes as literals', () => {
             render(
-                <Text
-                    data-testid="text"
-                    display="flex"
-                    textAlign="center"
-                    textTransform="uppercase"
-                    tracking="wide"
-                    align="center"
-                    justify="between"
-                >
+                <Text data-testid="text" textAlign="center" textTransform="uppercase" tracking="wide">
                     Hello
                 </Text>,
             );
 
-            expect(screen.getByTestId('text')).toHaveClass(
-                'flex',
-                'text-center',
-                'uppercase',
-                'tracking-wide',
-                'items-center',
-                'justify-between',
-            );
+            expect(screen.getByTestId('text')).toHaveClass('text-center', 'uppercase', 'tracking-wide');
         });
     });
 
