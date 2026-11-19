@@ -11,8 +11,10 @@ import {
     HEADING_COLORS,
     HEADING_SIZES,
     HEADING_TAGS,
+    HEADING_TEXT_TRANSFORMS,
     HEADING_WEIGHTS,
     sizeClasses,
+    textTransformClasses,
     weightClasses,
 } from './heading.variants';
 
@@ -72,10 +74,36 @@ describe('Heading', () => {
             expect(screen.getByRole('heading')).toHaveClass(colorClasses[defaultColor]);
         });
 
+        it('maps size "md" to text-base, the same as Text', () => {
+            render(<Heading size="md">Title</Heading>);
+
+            expect(screen.getByRole('heading')).toHaveClass('text-base');
+        });
+
         it.each(HEADING_COLORS)('applies color "%s"', color => {
             render(<Heading color={color}>Title</Heading>);
 
             expect(screen.getByRole('heading')).toHaveClass(colorClasses[color]);
+        });
+    });
+
+    describe('textTransform', () => {
+        it('adds no transform class by default', () => {
+            render(<Heading>Title</Heading>);
+
+            expect(screen.getByRole('heading').className).not.toMatch(/uppercase|lowercase|capitalize/);
+        });
+
+        it.each(HEADING_TEXT_TRANSFORMS)('applies textTransform "%s"', textTransform => {
+            render(<Heading textTransform={textTransform}>Title</Heading>);
+
+            expect(screen.getByRole('heading')).toHaveClass(textTransformClasses[textTransform]);
+        });
+
+        it('writes the key classes as literals', () => {
+            render(<Heading textTransform="uppercase">Title</Heading>);
+
+            expect(screen.getByRole('heading')).toHaveClass('uppercase');
         });
     });
 
