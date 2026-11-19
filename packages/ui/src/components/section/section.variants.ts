@@ -17,6 +17,7 @@ export const toneClasses = {
     muted: 'bg-muted',
     primary: 'bg-primary',
     secondary: 'bg-secondary',
+    foreground: 'bg-foreground',
 };
 
 export const defaultTag: SectionTag = 'section';
