@@ -12,6 +12,7 @@ export const variantClasses = {
         'bg-secondary text-secondary-foreground hover:bg-secondary-hover aria-expanded:bg-secondary-hover focus-visible:border-secondary focus-visible:ring-secondary/40',
     outline:
         'bg-card text-foreground border-border hover:border-primary-outline-hover hover:text-primary-outline-hover aria-expanded:border-primary-outline-hover aria-expanded:text-primary-outline-hover focus-visible:border-primary focus-visible:ring-primary/40',
+    white: 'bg-transparent text-foreground border-foreground hover:border-primary hover:text-primary aria-expanded:border-primary aria-expanded:text-primary focus-visible:border-primary focus-visible:ring-primary/40',
     ghost: 'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground focus-visible:border-primary focus-visible:ring-primary/40',
     destructive:
         'bg-destructive-subtle text-destructive-subtle-foreground hover:bg-destructive-subtle-hover aria-expanded:bg-destructive-subtle-hover focus-visible:border-destructive focus-visible:ring-destructive/40',
