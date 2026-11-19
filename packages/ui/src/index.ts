@@ -10,6 +10,7 @@ export { Section, type SectionProps } from '@/components/section/section';
 export { Stack, type StackProps } from '@/components/stack/stack';
 export { Row, type RowProps } from '@/components/row/row';
 export { Grid, GridItem, type GridItemProps, type GridProps } from '@/components/grid/grid';
+export { List, ListItem, type ListItemProps, type ListProps } from '@/components/list/list';
 export { Label, type LabelProps } from '@/components/label/label';
 export { Input, type InputProps } from '@/components/input/input';
 export { Textarea, type TextareaProps } from '@/components/textarea/textarea';
