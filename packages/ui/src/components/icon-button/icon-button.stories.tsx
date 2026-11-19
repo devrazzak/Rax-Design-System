@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Mail } from 'lucide-react';
 
 import { BUTTON_VARIANTS } from '@/components/button/button.variants';
-import { TooltipProvider } from '@/components/tooltip/tooltip';
 
 import { IconButton } from './icon-button';
 import { ICON_BUTTON_ROUNDEDS, ICON_BUTTON_SIZES } from './icon-button.variants';
@@ -20,14 +19,6 @@ const meta = {
         disabled: { control: 'boolean' },
         children: { control: false },
     },
-    // Tooltips need one TooltipProvider above them. In an app it sits once at the root.
-    decorators: [
-        Story => (
-            <TooltipProvider>
-                <Story />
-            </TooltipProvider>
-        ),
-    ],
 } satisfies Meta<typeof IconButton>;
 
 export default meta;

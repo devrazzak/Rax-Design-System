@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from '@/components/button/button';
 
 import type { TooltipContentProps } from './tooltip';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip';
 import { TOOLTIP_SIZES, TOOLTIP_VARIANTS } from './tooltip.variants';
 
 const SIDES = ['top', 'right', 'bottom', 'left'] as const;
@@ -41,7 +41,6 @@ function ClickTooltip(args: TooltipContentProps) {
 }
 
 // The controls belong to TooltipContent, so each story wraps it in Tooltip.
-// Tooltips need one TooltipProvider above them. In an app it sits once at the root.
 const meta = {
     title: 'Components/Tooltip',
     component: TooltipContent,
@@ -52,13 +51,6 @@ const meta = {
         size: { control: 'inline-radio', options: TOOLTIP_SIZES },
         side: { control: 'inline-radio', options: SIDES },
     },
-    decorators: [
-        Story => (
-            <TooltipProvider>
-                <Story />
-            </TooltipProvider>
-        ),
-    ],
 } satisfies Meta<typeof TooltipContent>;
 
 export default meta;
