@@ -5,7 +5,7 @@ export type HeadingTag = (typeof HEADING_TAGS)[number];
 export const sizeClasses = {
     xs: 'text-xs',
     sm: 'text-sm',
-    base: 'text-base',
+    md: 'text-base',
     lg: 'text-lg',
     xl: 'text-lg lg:text-xl',
     '2xl': 'text-xl lg:text-2xl',
@@ -29,6 +29,12 @@ export const colorClasses = {
     white: 'text-white',
 };
 
+export const textTransformClasses = {
+    uppercase: 'uppercase',
+    lowercase: 'lowercase',
+    capitalize: 'capitalize',
+};
+
 /** Used when no size is passed, so the tag alone gives a sensible look. */
 export const defaultSizeByTag: Record<HeadingTag, keyof typeof sizeClasses> = {
     h1: '5xl',
@@ -43,6 +49,7 @@ export const defaultSizeByTag: Record<HeadingTag, keyof typeof sizeClasses> = {
 export const HEADING_SIZES = Object.keys(sizeClasses) as (keyof typeof sizeClasses)[];
 export const HEADING_WEIGHTS = Object.keys(weightClasses) as (keyof typeof weightClasses)[];
 export const HEADING_COLORS = Object.keys(colorClasses) as (keyof typeof colorClasses)[];
+export const HEADING_TEXT_TRANSFORMS = Object.keys(textTransformClasses) as (keyof typeof textTransformClasses)[];
 
 export const defaultTag: HeadingTag = 'h2';
 export const defaultWeight: keyof typeof weightClasses = 'semibold';

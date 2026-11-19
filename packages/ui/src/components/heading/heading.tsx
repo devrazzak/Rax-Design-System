@@ -10,6 +10,7 @@ import {
     defaultTag,
     defaultWeight,
     sizeClasses,
+    textTransformClasses,
     weightClasses,
 } from './heading.variants';
 
@@ -20,6 +21,7 @@ type HeadingProps = ComponentProps<HeadingTag> & {
     size?: keyof typeof sizeClasses;
     weight?: keyof typeof weightClasses;
     color?: keyof typeof colorClasses;
+    textTransform?: keyof typeof textTransformClasses;
 };
 
 function Heading({
@@ -27,6 +29,7 @@ function Heading({
     size = defaultSizeByTag[as],
     weight = defaultWeight,
     color = defaultColor,
+    textTransform,
     className,
     ...props
 }: HeadingProps) {
@@ -35,7 +38,13 @@ function Heading({
     return (
         <Comp
             data-slot="heading"
-            className={cn(sizeClasses[size], weightClasses[weight], colorClasses[color], className)}
+            className={cn(
+                sizeClasses[size],
+                weightClasses[weight],
+                colorClasses[color],
+                textTransform && textTransformClasses[textTransform],
+                className,
+            )}
             {...props}
         />
     );
