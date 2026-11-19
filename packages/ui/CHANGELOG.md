@@ -1,5 +1,16 @@
 # @rax-ds/ui
 
+## 0.13.0
+
+### Minor Changes
+
+- 5139147: Remove the `display`, `align` and `justify` props from Text. Use `className` or the Row and Stack components for layout.
+
+### Patch Changes
+
+- b11d96f: Button `link` and `linkWhite` variants no longer have a fixed height or padding, only the font size of their size.
+- bf68c20: Tooltip and IconButton no longer need a `TooltipProvider` above them. Set `delayDuration` on the Tooltip, because a provider above it is ignored.
+
 ## 0.12.0
 
 ### Minor Changes
