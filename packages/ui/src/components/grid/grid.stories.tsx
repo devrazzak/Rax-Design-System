@@ -21,7 +21,10 @@ const meta = {
         children: items.map(item => <Box key={item}>{item}</Box>),
     },
     argTypes: {
-        columns: { control: 'select', options: GRID_COLUMNS },
+        columns: {
+            control: 'object',
+            description: 'A number (from `md` up) or an object like `{ base: 1, md: 2, lg: 4 }`.',
+        },
         gap: { control: 'select', options: GAPS },
         children: { control: false },
     },
@@ -45,6 +48,10 @@ export const Columns: Story = {
             ))}
         </div>
     ),
+};
+
+export const Responsive: Story = {
+    args: { columns: { base: 1, md: 2, lg: 4 } },
 };
 
 export const Gaps: Story = {
