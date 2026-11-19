@@ -43,6 +43,8 @@ export const Secondary: Story = { args: { variant: 'secondary' } };
 
 export const Outline: Story = { args: { variant: 'outline' } };
 
+export const White: Story = { args: { variant: 'white' } };
+
 export const Ghost: Story = { args: { variant: 'ghost' } };
 
 export const Destructive: Story = { args: { variant: 'destructive' } };
