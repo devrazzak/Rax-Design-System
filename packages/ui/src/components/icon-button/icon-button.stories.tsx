@@ -39,7 +39,7 @@ export const Default: Story = {};
 export const Variants: Story = {
     render: args => (
         <div className="flex flex-wrap items-center gap-3">
-            {BUTTON_VARIANTS.filter(variant => variant !== 'linkInverse' && variant !== 'white').map(variant => (
+            {BUTTON_VARIANTS.filter(variant => variant !== 'linkWhite' && variant !== 'white').map(variant => (
                 <IconButton key={variant} {...args} variant={variant} label={variant} />
             ))}
         </div>

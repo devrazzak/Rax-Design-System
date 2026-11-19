@@ -53,8 +53,8 @@ export const Destructive: Story = { args: { variant: 'destructive' } };
 
 export const Link: Story = { args: { variant: 'link' } };
 
-export const LinkInverse: Story = {
-    args: { variant: 'linkInverse' },
+export const LinkWhite: Story = {
+    args: { variant: 'linkWhite' },
     decorators: [
         Story => (
             <div className="rounded-lg bg-foreground p-4">
@@ -68,7 +68,7 @@ export const Variants: Story = {
     render: args => (
         <div className="flex flex-wrap items-center gap-3">
             {BUTTON_VARIANTS.map(variant =>
-                variant === 'linkInverse' || variant === 'white' ? (
+                variant === 'linkWhite' || variant === 'white' ? (
                     <div key={variant} className="rounded-lg bg-foreground p-2">
                         <Button {...args} variant={variant}>
                             {variant}
@@ -123,7 +123,7 @@ export const IconOnly: Story = { args: { 'aria-label': 'Send email', children: <
 export const Disabled: Story = {
     render: args => (
         <div className="flex flex-wrap items-center gap-3">
-            {BUTTON_VARIANTS.filter(variant => variant !== 'linkInverse').map(variant => (
+            {BUTTON_VARIANTS.filter(variant => variant !== 'linkWhite').map(variant => (
                 <Button key={variant} {...args} variant={variant} disabled>
                     {variant}
                 </Button>
