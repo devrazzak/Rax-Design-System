@@ -14,9 +14,10 @@ import { defaultVariants, sizeClasses, variantClasses } from './button.variants'
 const buttonVariants = cva(
     'inline-flex shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding font-medium cursor-pointer whitespace-nowrap transition-all outline-none select-none focus-visible:ring-3 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0',
     {
+        // The order matters: variant comes after size, so a variant can override the size classes (see `link`)
         variants: {
-            variant: variantClasses,
             size: sizeClasses,
+            variant: variantClasses,
         },
         defaultVariants,
     },

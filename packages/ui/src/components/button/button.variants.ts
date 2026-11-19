@@ -5,6 +5,9 @@ const iconSlide = [
     'motion-safe:focus-visible:[&_svg[data-icon=inline-end]]:translate-x-0.5',
 ];
 
+/** A link is plain text: it keeps the font size and gap of its size, but has no fixed height or padding. */
+const linkBox = 'h-auto p-0 has-data-[icon=inline-end]:pr-0 has-data-[icon=inline-start]:pl-0';
+
 export const variantClasses = {
     primary:
         'bg-primary text-primary-foreground hover:bg-primary-hover aria-expanded:bg-primary-hover focus-visible:border-primary focus-visible:ring-primary/40',
@@ -18,8 +21,16 @@ export const variantClasses = {
     ghost: 'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground focus-visible:border-primary focus-visible:ring-primary/40',
     destructive:
         'bg-destructive-subtle text-destructive-subtle-foreground hover:bg-destructive-subtle-hover aria-expanded:bg-destructive-subtle-hover focus-visible:border-destructive focus-visible:ring-destructive/40',
-    link: ['text-link hover:text-link-hover aria-expanded:text-link-hover focus-visible:ring-link/40', iconSlide],
-    linkWhite: ['text-white hover:text-primary aria-expanded:text-primary focus-visible:ring-white/50', iconSlide],
+    link: [
+        'text-link hover:text-link-hover aria-expanded:text-link-hover focus-visible:ring-link/40',
+        linkBox,
+        iconSlide,
+    ],
+    linkWhite: [
+        'text-white hover:text-primary aria-expanded:text-primary focus-visible:ring-white/50',
+        linkBox,
+        iconSlide,
+    ],
 };
 
 export const sizeClasses = {
