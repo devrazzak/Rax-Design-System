@@ -5,6 +5,7 @@
 ### Minor Changes
 
 - 7265aa1: Add a `white` variant to Button.
+- c545be4: Add a `surface` variant to Button.
 - 17d4990: Add `display`, `textAlign`, `textTransform`, `tracking`, `align` and `justify` props to Text.
 
 ## 0.9.0
