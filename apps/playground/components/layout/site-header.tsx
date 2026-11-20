@@ -1,4 +1,5 @@
 import { siteConfig } from '@/config/site';
+import { BlocksIcon } from 'lucide-react';
 import Link from 'next/link';
 
 import { Container, IconButton, Row, Section } from '@rax-ds/ui';
@@ -6,35 +7,27 @@ import { Container, IconButton, Row, Section } from '@rax-ds/ui';
 import { GitHubIcon } from '@/components/icons/github-icon';
 import { CommandMenu } from '@/components/search/command-menu';
 
+import { MainNav } from './main-nav';
 import { MobileNav } from './mobile-nav';
 import { ThemeToggle } from './theme-toggle';
 
 export function SiteHeader() {
     return (
-        <Section as="header" className="sticky top-0 z-40 border-b border-border">
+        // Slightly see-through with a blur, so content scrolling under the sticky header stays readable
+        <Section as="header" className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
             <Container size="full">
                 <Row gap="md" className="h-14">
                     <MobileNav />
-                    <Link href="/" className="font-semibold">
-                        {siteConfig.name}
+                    {/* On small screens only the mark shows, so the header fits; the label keeps the link's name */}
+                    <Link
+                        href="/"
+                        aria-label={siteConfig.name}
+                        className="flex items-center gap-2 font-semibold whitespace-nowrap"
+                    >
+                        <BlocksIcon aria-hidden="true" className="size-5 text-primary" />
+                        <span className="hidden sm:inline">{siteConfig.name}</span>
                     </Link>
-                    {/* The design system has no nav component, so the native landmark wraps a Row */}
-                    <nav aria-label="Main" className="hidden md:block">
-                        <Row gap="md">
-                            <Link
-                                href="/docs"
-                                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                            >
-                                Docs
-                            </Link>
-                            <Link
-                                href="/docs/components"
-                                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                            >
-                                Components
-                            </Link>
-                        </Row>
-                    </nav>
+                    <MainNav />
                     <Row gap="sm" className="ml-auto">
                         <CommandMenu />
                         <IconButton asChild variant="ghost" size="sm" label="GitHub">

@@ -34,9 +34,16 @@ export function CommandMenu() {
 
     return (
         <>
-            <Button variant="surface" size="sm" onClick={() => setOpen(true)} className="text-muted-foreground">
+            <Button
+                variant="surface"
+                size="sm"
+                aria-label="Search documentation"
+                onClick={() => setOpen(true)}
+                className="text-muted-foreground"
+            >
                 <SearchIcon data-icon="inline-start" />
-                Search
+                {/* Icon only on small screens, so the header fits */}
+                <span className="hidden sm:inline">Search</span>
                 <kbd className="ml-4 hidden font-mono text-xs md:inline">⌘K</kbd>
             </Button>
             <Dialog open={open} onOpenChange={setOpen}>

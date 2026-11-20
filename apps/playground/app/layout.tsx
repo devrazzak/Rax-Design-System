@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { Inter } from 'next/font/google';
 
+import { SiteFooter } from '@/components/layout/site-footer';
 import { SiteHeader } from '@/components/layout/site-header';
 
 import './globals.css';
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <body className="antialiased">
                 <SiteHeader />
                 {children}
+                <SiteFooter />
             </body>
         </html>
     );
