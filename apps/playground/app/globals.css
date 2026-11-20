@@ -5,3 +5,14 @@
 :root {
     --rax-font-family-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Shiki writes both themes as CSS variables (defaultColor: false); pick one by the theme class */
+.shiki,
+.shiki span {
+    color: var(--shiki-light);
+}
+
+.dark .shiki,
+.dark .shiki span {
+    color: var(--shiki-dark);
+}

@@ -1,4 +1,5 @@
 import type { ComponentProps } from 'react';
+import { isValidElement } from 'react';
 
 import type { MDXComponents } from 'mdx/types';
 import Link from 'next/link';
@@ -16,6 +17,9 @@ import {
     TableRow,
     Text,
 } from '@rax-ds/ui';
+
+import { CodeBlock } from '@/components/code/code-block';
+import { InstallCommand } from '@/components/code/install-command';
 
 const linkClassName = 'font-medium text-primary underline underline-offset-4';
 
@@ -45,6 +49,17 @@ const components: MDXComponents = {
                 {children}
             </a>
         ),
+    // A fenced block arrives as <pre><code className="language-tsx">text</code></pre>
+    pre: ({ children }: ComponentProps<'pre'>) => {
+        if (!isValidElement<ComponentProps<'code'>>(children) || typeof children.props.children !== 'string') {
+            return <pre>{children}</pre>;
+        }
+
+        const lang = /language-(\w+)/.exec(children.props.className ?? '')?.[1] ?? 'text';
+
+        return <CodeBlock code={children.props.children.trimEnd()} lang={lang} className="my-6" />;
+    },
+    // Inline code only; fenced code is handled by `pre` above
     code: (props: ComponentProps<'code'>) => (
         <code className="rounded-sm bg-muted px-1.5 py-0.5 font-mono text-sm" {...props} />
     ),
@@ -59,6 +74,8 @@ const components: MDXComponents = {
     tr: TableRow,
     th: TableHead,
     td: TableCell,
+    // Custom components that MDX files can use without importing them
+    InstallCommand,
 };
 
 export function useMDXComponents(): MDXComponents {
