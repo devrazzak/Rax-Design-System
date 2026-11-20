@@ -51,6 +51,21 @@ Version তখন: `@rax-ds/ui` 0.8.0, `@rax-ds/tokens` 0.6.0।
 - [ ] **Jest coverage threshold।** `test:coverage` আছে কিন্তু কোনো limit enforce হয় না। `jest.config.js`-এ `coverageThreshold` দেওয়া যায়।
 - [ ] **Spinner-এর import style।** `import type * as React from 'react'`, বাকি component-এ `import type { ComponentProps } from 'react'`। Bug না, শুধু style mismatch।
 
+## 5. Docs site বানানোর সময় পাওয়া (21 Nov 2026)
+
+- [ ] **`packages/ui/README.md`-এর Tooltip অংশ পুরনো।** README বলে root-এ একটা `TooltipProvider` লাগে। কিন্তু এখন প্রতিটি `Tooltip` নিজের provider আনে, উপরের provider কাজে লাগে না। README থেকে ঐ অংশ বাদ দাও, আর বলো delay বদলাতে `Tooltip`-এ `delayDuration` দিতে হয়। README-only, তাই changeset লাগবে না।
+- [ ] **Section `tone="foreground"`-এ লেখার রং নেই।** `Text`/`Heading`-এর `color`-এ এমন কোনো মান নেই যেটা foreground background-এ দুই theme-এই পড়া যায়। Docs-এ এখন `text-background` class দিয়ে কাজ চালানো। হয় `color`-এ নতুন মান (যেমন `background`) যোগ করো, নয়তো tone-টা আবার ভাবো।
+- [ ] **`Alert` সবসময় `role="alert"` দেয়।** Page load-এ screen reader সাথে সাথে পড়ে ফেলে, যেটা জরুরি error-এর জন্য ঠিক কিন্তু স্থির tip বা note-এর জন্য বিরক্তিকর। Caller যেন `role` override করতে পারে (বা default `role="status"`/কিছু না) সেটা ভাবো।
+- [ ] **Spinner-এর `inverse` → `white`** (section 2-এ আছে)। নাম বদলালে docs-এর `apps/playground/props/spinner.ts` আর Spinner example-ও বদলাতে হবে।
+- [ ] **Prettier import order-এ `@/` alias-এর group অসম্পূর্ণ।** `.prettierrc`-এ শুধু `@/lib`, `@/hooks`, `@/components` আছে, তাই `@/icons`, `@/config`, `@/types` ইত্যাদি third-party group-এ গিয়ে `next`/`radix-ui`-এর আগে বসে। `"^@/components/(.*)$"`-এর পরে `"^@/(.*)$"` যোগ করলে ঠিক হয়। এতে ui package-এর কিছু file আবার format হবে, তাই আলাদা commit: `chore(repo): group all @/ imports`।
+- [ ] **Overlay animation যোগ হলে docs-এ কিছু করতে হবে না।** Search dialog আর mobile drawer DS component, তাই animation আপনা থেকে চলে আসবে।
+
+### Docs site-এর পরের উন্নতি (তাড়া নেই)
+
+- [ ] Theme customizer-এ dark theme-এর জন্য আলাদা রং, আর copy করা CSS-এ `.dark` block।
+- [ ] Page কয়েকশো হলে search index আলাদা JSON file-এ সরানো (এখন প্রতিটি page-এর সাথে যায়)।
+- [ ] `/view/...` page-এ header/footer ছাড়া একদম ফাঁকা layout (route group দিয়ে), যদি দরকার হয়।
+
 ---
 
 ## যা ভালো আছে (বদলানোর দরকার নেই)
