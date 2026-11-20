@@ -12,6 +12,7 @@ Component details live in [docs/COMPONENT-CONVENTIONS.md](docs/COMPONENT-CONVENT
 - Do not start a new component on your own. The owner copies the shadcn code and gives instructions. There is no `components.json` and no shadcn CLI.
 - Overlay animations (Select, Dialog, Dropdown Menu, Popover, Tooltip) are left out on purpose until the overlay components exist. Then add one shared animation set.
 - Do not publish or release unless asked. Add a changeset for every change users of the package can see.
+- The docs site lives in `apps/playground` (see its README). When a component's props, variants or defaults change, update its docs there in the same change: `props/<name>.ts`, the examples in `examples/<name>/` and `content/docs/components/<name>.mdx`. A new token needs its name in `config/tokens.ts`.
 
 ## Commands
 
@@ -38,6 +39,7 @@ More commands are in `docs/RAX-COMMANDS.txt`.
     3. `feat(ui): export <name>`
     4. `docs(ui): add <name> stories`
     5. `test(ui): add <name> tests`
+    6. `docs(playground): add <name> docs`
 - Husky, lint-staged and commitlint run on commit. If one fails, fix the problem and commit again.
 
 ## Tokens and theming
