@@ -1,0 +1,84 @@
+import { drawerContentProps, drawerProps } from '@/props/drawer';
+
+<ComponentPreview name="drawer/drawer-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Button, Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from '@rax-ds/ui';
+
+export function FiltersDrawer() {
+    return (
+        <Drawer>
+            <DrawerTrigger asChild>
+                <Button variant="outline">Filters</Button>
+            </DrawerTrigger>
+            <DrawerContent side="right">
+                <DrawerHeader>
+                    <DrawerTitle>Filters</DrawerTitle>
+                    <DrawerDescription>Narrow down the list.</DrawerDescription>
+                </DrawerHeader>
+            </DrawerContent>
+        </Drawer>
+    );
+}
+```
+
+Every drawer needs a `DrawerTitle` and a `DrawerDescription`.
+
+## Examples
+
+### Sides
+
+`side` chooses the edge the drawer is attached to. The default is `right`.
+
+<ComponentPreview name="drawer/drawer-sides" />
+
+### Sizes
+
+`size` sets the maximum width of a left or right drawer. Top and bottom drawers always fill the width.
+
+<ComponentPreview name="drawer/drawer-sizes" />
+
+### With a form
+
+Set `closeOnOutsideClick={false}` so a click outside does not discard what the user typed.
+
+<ComponentPreview name="drawer/drawer-form" />
+
+### Without the close button
+
+<ComponentPreview name="drawer/drawer-no-close-button" />
+
+### Controlled
+
+<ComponentPreview name="drawer/drawer-controlled" />
+
+## Accessibility
+
+- Built on the Radix Dialog, so it behaves like [Dialog](/docs/components/dialog): `role="dialog"`, focus moves in and is kept inside, and returns to the trigger on close.
+- `Escape` closes the drawer, and so does a click outside, unless `closeOnOutsideClick` is `false`.
+- The close button has the label "Close".
+- A title and a description are required.
+
+## API reference
+
+### Drawer
+
+Radix Dialog root props are passed through. Drawer renders no element of its own.
+
+<PropsTable items={drawerProps} />
+
+### DrawerContent
+
+Radix Dialog content props are passed through.
+
+<PropsTable items={drawerContentProps} />
+
+### Other parts
+
+`DrawerTrigger`, `DrawerClose`, `DrawerTitle` and `DrawerDescription` take the props of their Radix parts. `DrawerHeader` and `DrawerFooter` take native `<div>` props. `DrawerOverlay` and `DrawerPortal` are exported for custom layouts.

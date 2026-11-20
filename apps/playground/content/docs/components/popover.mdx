@@ -1,0 +1,79 @@
+import { popoverContentProps, popoverProps } from '@/props/popover';
+
+<ComponentPreview name="popover/popover-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Button, Popover, PopoverContent, PopoverDescription, PopoverTrigger } from '@rax-ds/ui';
+
+export function HelpPopover() {
+    return (
+        <Popover>
+            <PopoverTrigger asChild>
+                <Button variant="outline">Help</Button>
+            </PopoverTrigger>
+            <PopoverContent>
+                <PopoverDescription>Orders placed before noon ship the same day.</PopoverDescription>
+            </PopoverContent>
+        </Popover>
+    );
+}
+```
+
+A popover is a floating panel that can hold interactive content. For a short text hint use [Tooltip](/docs/components/tooltip), and for a list of actions use [DropdownMenu](/docs/components/dropdown-menu).
+
+## Examples
+
+### Align
+
+<ComponentPreview name="popover/popover-align" />
+
+### Side
+
+The popover opens on the preferred side and flips when there is not enough room.
+
+<ComponentPreview name="popover/popover-side" />
+
+### With a form
+
+<ComponentPreview name="popover/popover-form" />
+
+### Anchor
+
+`PopoverAnchor` positions the popover against another element than the trigger.
+
+<ComponentPreview name="popover/popover-anchor" />
+
+### Controlled
+
+<ComponentPreview name="popover/popover-controlled" />
+
+## Accessibility
+
+- Built on the Radix Popover. The trigger has `aria-expanded` and `aria-controls`, and the content has `role="dialog"`.
+- `Enter` and `Space` on the trigger open the popover. `Escape` closes it, and so does a click outside. Focus moves into the popover on open and returns to the trigger on close.
+- The popover is not modal by default, so the rest of the page stays usable.
+- Unlike [Dialog](/docs/components/dialog), a title and a description are optional. `PopoverTitle` and `PopoverDescription` are plain elements and are not linked with ARIA attributes. If the popover needs a name, add `aria-label` to `PopoverContent`.
+
+## API reference
+
+### Popover
+
+Radix Popover root props are passed through.
+
+<PropsTable items={popoverProps} />
+
+### PopoverContent
+
+Radix Popover content props are passed through.
+
+<PropsTable items={popoverContentProps} />
+
+### Other parts
+
+`PopoverTrigger` and `PopoverAnchor` take the props of their Radix parts. `PopoverHeader` takes native `<div>` props, `PopoverTitle` takes `<div>` props and `PopoverDescription` takes `<p>` props.

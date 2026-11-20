@@ -1,0 +1,97 @@
+import { alertDialogButtonProps, alertDialogContentProps, alertDialogProps } from '@/props/alert-dialog';
+
+<ComponentPreview name="alert-dialog/alert-dialog-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+    Button,
+} from '@rax-ds/ui';
+
+export function DeleteOrder() {
+    return (
+        <AlertDialog>
+            <AlertDialogTrigger asChild>
+                <Button variant="destructive">Delete order</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent size="sm">
+                <AlertDialogHeader>
+                    <AlertDialogTitle>Delete this order?</AlertDialogTitle>
+                    <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction variant="destructive">Delete</AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
+    );
+}
+```
+
+An alert dialog interrupts the user to ask for a decision. For other content in a modal window, use [Dialog](/docs/components/dialog).
+
+## Examples
+
+### Sizes
+
+There is no `full` size, because confirmations are short. The default is `md`.
+
+<ComponentPreview name="alert-dialog/alert-dialog-sizes" />
+
+### Confirming an action
+
+The action button uses the primary variant unless you pass another. Use `destructive` only when the action deletes something.
+
+<ComponentPreview name="alert-dialog/alert-dialog-confirm" />
+
+### Reacting to the action
+
+`AlertDialogAction` and `AlertDialogCancel` close the dialog and also run their own `onClick`.
+
+<ComponentPreview name="alert-dialog/alert-dialog-controlled" />
+
+## Accessibility
+
+- Built on the Radix Alert Dialog. The content has `role="alertdialog"`, and the title and the description are linked to it.
+- Focus moves into the dialog on open and is kept inside it. The cancel button receives focus first, so a quick `Enter` does not confirm. Focus returns to the trigger on close.
+- `Escape` closes the dialog. Unlike [Dialog](/docs/components/dialog), a click outside does not close it, and there is no close button, so the user must choose an answer.
+- A title and a description are required.
+
+## API reference
+
+### AlertDialog
+
+Radix Alert Dialog root props are passed through.
+
+<PropsTable items={alertDialogProps} />
+
+### AlertDialogContent
+
+Radix Alert Dialog content props are passed through.
+
+<PropsTable items={alertDialogContentProps} />
+
+### AlertDialogAction and AlertDialogCancel
+
+Both render a [Button](/docs/components/button) and pass the other props to the Radix part.
+
+<PropsTable items={alertDialogButtonProps} />
+
+### Other parts
+
+`AlertDialogHeader` and `AlertDialogFooter` take native `<div>` props. `AlertDialogTrigger`, `AlertDialogTitle` and `AlertDialogDescription` take the props of their Radix parts.

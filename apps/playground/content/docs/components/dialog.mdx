@@ -1,0 +1,97 @@
+import { dialogContentProps, dialogProps } from '@/props/dialog';
+
+<ComponentPreview name="dialog/dialog-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import {
+    Button,
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@rax-ds/ui';
+
+export function DeleteDialog() {
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button variant="destructive">Delete</Button>
+            </DialogTrigger>
+            <DialogContent size="sm">
+                <DialogHeader>
+                    <DialogTitle>Delete this item?</DialogTitle>
+                    <DialogDescription>This action cannot be undone.</DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                    <DialogClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                    </DialogClose>
+                    <Button variant="destructive">Delete</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    );
+}
+```
+
+Every dialog needs a `DialogTitle` and a `DialogDescription`. For a confirmation that needs a decision, use [AlertDialog](/docs/components/alert-dialog). For a panel from an edge of the screen, use [Drawer](/docs/components/drawer).
+
+## Examples
+
+### Sizes
+
+`size` sets the maximum width. `full` fills the screen width and keeps a small margin. The default is `md`.
+
+<ComponentPreview name="dialog/dialog-sizes" />
+
+### With a form
+
+<ComponentPreview name="dialog/dialog-form" />
+
+### Without the close button
+
+Pass `showCloseButton={false}` when the footer already has a way to close the dialog.
+
+<ComponentPreview name="dialog/dialog-no-close-button" />
+
+### Controlled
+
+Keep the open state yourself with `open` and `onOpenChange`. A controlled dialog needs no `DialogTrigger`.
+
+<ComponentPreview name="dialog/dialog-controlled" />
+
+## Accessibility
+
+- Built on the Radix Dialog. The content has `role="dialog"`, and the title and the description are linked to it with `aria-labelledby` and `aria-describedby`.
+- Focus moves into the dialog on open and is kept inside it. When the dialog closes, focus returns to the trigger.
+- `Escape` closes the dialog, and so does a click outside it.
+- The close button has the label "Close".
+- A title and a description are required. Without them the dialog has no accessible name or description.
+
+## API reference
+
+### Dialog
+
+Radix Dialog root props are passed through. Dialog renders no element of its own.
+
+<PropsTable items={dialogProps} />
+
+### DialogContent
+
+Radix Dialog content props are passed through.
+
+<PropsTable items={dialogContentProps} />
+
+### Other parts
+
+`DialogTrigger` and `DialogClose` take the props of their Radix parts, and `asChild` lets them use your own button. `DialogTitle` and `DialogDescription` take the props of their Radix parts. `DialogHeader` and `DialogFooter` take native `<div>` props. `DialogOverlay` and `DialogPortal` are exported for custom layouts.

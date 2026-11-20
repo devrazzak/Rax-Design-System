@@ -1,0 +1,82 @@
+import { tooltipContentProps, tooltipProps } from '@/props/tooltip';
+
+<ComponentPreview name="tooltip/tooltip-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Button, Tooltip, TooltipContent, TooltipTrigger } from '@rax-ds/ui';
+
+export function SaveButton() {
+    return (
+        <Tooltip>
+            <TooltipTrigger asChild>
+                <Button>Save</Button>
+            </TooltipTrigger>
+            <TooltipContent>Save your changes</TooltipContent>
+        </Tooltip>
+    );
+}
+```
+
+Every `Tooltip` brings its own provider, with no delay, so you do not need a `TooltipProvider` at the root. A provider higher up in the tree is ignored. To change the delay, set `delayDuration` on the `Tooltip`.
+
+A tooltip is for a short text hint. Do not put interactive content in it. Use [Popover](/docs/components/popover) for that.
+
+## Examples
+
+### Variants
+
+`default` is dark on light and light on dark. The others follow the brand colors, and the arrow takes the color of the variant.
+
+<ComponentPreview name="tooltip/tooltip-variants" />
+
+### Sizes
+
+<ComponentPreview name="tooltip/tooltip-sizes" />
+
+### Side
+
+The tooltip opens on the preferred side and flips when there is not enough room.
+
+<ComponentPreview name="tooltip/tooltip-side" />
+
+### Delay
+
+The default is no delay. Set `delayDuration` on `Tooltip` to wait before it shows.
+
+<ComponentPreview name="tooltip/tooltip-delay" />
+
+### On an icon button
+
+[IconButton](/docs/components/icon-button) already shows its label in a tooltip, so you do not need to add one.
+
+<ComponentPreview name="tooltip/tooltip-icon-button" />
+
+## Accessibility
+
+- Built on the Radix Tooltip. The tooltip opens on hover and on keyboard focus of the trigger, and `Escape` closes it.
+- The trigger is described by the tooltip content through `aria-describedby`, and the content has `role="tooltip"`.
+- Touch devices do not show tooltips on hover, so do not hide essential information in one. An icon-only control still needs its own accessible name.
+
+## API reference
+
+### Tooltip
+
+Radix Tooltip root props are passed through.
+
+<PropsTable items={tooltipProps} />
+
+### TooltipContent
+
+Radix Tooltip content props are passed through.
+
+<PropsTable items={tooltipContentProps} />
+
+### Other parts
+
+`TooltipTrigger` takes the props of its Radix part, and `asChild` lets it use your own element. `TooltipProvider` is exported and sets `delayDuration` to 0 by default, but `Tooltip` does not use a provider from higher up.

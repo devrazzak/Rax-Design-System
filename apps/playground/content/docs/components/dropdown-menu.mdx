@@ -1,0 +1,124 @@
+import {
+    dropdownMenuCheckboxItemProps,
+    dropdownMenuContentProps,
+    dropdownMenuItemProps,
+    dropdownMenuProps,
+    dropdownMenuRadioGroupProps,
+    dropdownMenuRadioItemProps,
+} from '@/props/dropdown-menu';
+
+<ComponentPreview name="dropdown-menu/dropdown-menu-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import {
+    Button,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@rax-ds/ui';
+
+export function RowActions() {
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="outline">Actions</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent size="sm">
+                <DropdownMenuItem>Edit</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    );
+}
+```
+
+Set `size` once on `DropdownMenuContent`. Every item follows it.
+
+## Examples
+
+### Sizes
+
+<ComponentPreview name="dropdown-menu/dropdown-menu-sizes" />
+
+### Groups and labels
+
+<ComponentPreview name="dropdown-menu/dropdown-menu-groups" />
+
+### With icons
+
+Icons in an item follow the text size. Use `variant="destructive"` for actions that delete or cannot be undone.
+
+<ComponentPreview name="dropdown-menu/dropdown-menu-with-icons" />
+
+### Disabled item
+
+<ComponentPreview name="dropdown-menu/dropdown-menu-disabled" />
+
+### Checkbox items
+
+<ComponentPreview name="dropdown-menu/dropdown-menu-checkbox-items" />
+
+### Radio items
+
+<ComponentPreview name="dropdown-menu/dropdown-menu-radio-items" />
+
+### With an icon button
+
+Use `align="end"` so the menu lines up with the right edge of a small trigger.
+
+<ComponentPreview name="dropdown-menu/dropdown-menu-icon-trigger" />
+
+### Controlled
+
+Run code when an item is chosen with `onSelect`.
+
+<ComponentPreview name="dropdown-menu/dropdown-menu-controlled" />
+
+## Accessibility
+
+- Built on the Radix Dropdown Menu. The content has `role="menu"` and the items have `role="menuitem"`, `menuitemcheckbox` or `menuitemradio`.
+- `Enter`, `Space` or `ArrowDown` on the trigger opens the menu. `ArrowUp` and `ArrowDown` move between items, `Enter` or `Space` selects, and `Escape` closes. Typing a letter jumps to a matching item. Focus returns to the trigger on close.
+- An icon-only trigger needs an accessible name. [IconButton](/docs/components/icon-button) requires one.
+
+## API reference
+
+### DropdownMenu
+
+Radix Dropdown Menu root props are passed through.
+
+<PropsTable items={dropdownMenuProps} />
+
+### DropdownMenuContent
+
+Radix Dropdown Menu content props are passed through.
+
+<PropsTable items={dropdownMenuContentProps} />
+
+### DropdownMenuItem
+
+<PropsTable items={dropdownMenuItemProps} />
+
+### DropdownMenuCheckboxItem
+
+<PropsTable items={dropdownMenuCheckboxItemProps} />
+
+### DropdownMenuRadioGroup
+
+<PropsTable items={dropdownMenuRadioGroupProps} />
+
+### DropdownMenuRadioItem
+
+<PropsTable items={dropdownMenuRadioItemProps} />
+
+### Other parts
+
+`DropdownMenuTrigger`, `DropdownMenuGroup`, `DropdownMenuLabel` and `DropdownMenuSeparator` take the props of their Radix parts.
