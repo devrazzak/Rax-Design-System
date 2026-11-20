@@ -27,3 +27,16 @@ export interface TocItem {
     title: string;
     level: 2 | 3;
 }
+
+export interface SearchItem {
+    title: string;
+    description: string;
+    href: string;
+    /** The `##` and `###` headings of the page, linked by their anchor. */
+    headings: readonly { title: string; href: string }[];
+}
+
+export interface SearchSection {
+    title: string;
+    items: readonly SearchItem[];
+}

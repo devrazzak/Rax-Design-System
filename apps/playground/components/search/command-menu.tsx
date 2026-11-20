@@ -2,17 +2,34 @@
 
 import { useEffect, useState } from 'react';
 
-import { docsNav } from '@/config/docs-nav';
 import { Command } from 'cmdk';
-import { SearchIcon } from 'lucide-react';
+import { HashIcon, SearchIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { Button, Dialog, DialogContent, DialogTitle } from '@rax-ds/ui';
 
-import { getDocHref } from '@/lib/docs';
+import type { SearchSection } from '@/types/docs';
 
-export function CommandMenu() {
+const groupHeadingClassName =
+    '[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground';
+const itemClassName =
+    'flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm data-[selected=true]:bg-muted [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground';
+
+// Plain text matching instead of cmdk's fuzzy default, which matches scattered letters ("loading" found "Installation").
+// A match in the title ranks above a match in the keywords (section and description).
+function filterItems(value: string, search: string, keywords?: string[]) {
+    const query = search.trim().toLowerCase();
+    if (value.toLowerCase().includes(query)) return 1;
+    return keywords?.some(keyword => keyword.toLowerCase().includes(query)) ? 0.5 : 0;
+}
+
+interface CommandMenuProps {
+    sections: readonly SearchSection[];
+}
+
+export function CommandMenu({ sections }: CommandMenuProps) {
     const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState('');
     const router = useRouter();
 
     useEffect(() => {
@@ -29,6 +46,7 @@ export function CommandMenu() {
 
     const goTo = (href: string) => {
         setOpen(false);
+        setSearch('');
         router.push(href);
     };
 
@@ -55,8 +73,10 @@ export function CommandMenu() {
                 >
                     <DialogTitle className="sr-only">Search documentation</DialogTitle>
                     {/* cmdk renders its own input and listbox with keyboard support, so DS Input is not used here */}
-                    <Command label="Search documentation">
+                    <Command label="Search documentation" filter={filterItems}>
                         <Command.Input
+                            value={search}
+                            onValueChange={setSearch}
                             placeholder="Search docs..."
                             className="h-12 w-full border-b border-border bg-transparent px-4 text-base outline-none placeholder:text-muted-foreground"
                         />
@@ -64,25 +84,48 @@ export function CommandMenu() {
                             <Command.Empty className="py-6 text-center text-sm text-muted-foreground">
                                 No results found.
                             </Command.Empty>
-                            {docsNav.map(section => (
+                            {sections.map(section => (
                                 <Command.Group
                                     key={section.title}
                                     heading={section.title}
-                                    className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground"
+                                    className={groupHeadingClassName}
                                 >
                                     {section.items.map(item => (
                                         <Command.Item
-                                            key={item.slug}
+                                            key={item.href}
                                             value={item.title}
                                             keywords={[section.title, item.description]}
-                                            onSelect={() => goTo(getDocHref(item.slug))}
-                                            className="cursor-pointer rounded-md px-2 py-2 text-sm data-[selected=true]:bg-muted"
+                                            onSelect={() => goTo(item.href)}
+                                            className={itemClassName}
                                         >
                                             {item.title}
                                         </Command.Item>
                                     ))}
                                 </Command.Group>
                             ))}
+                            {/* Headings only appear while typing, otherwise the list would be hundreds of items long */}
+                            {search && (
+                                <Command.Group heading="On the page" className={groupHeadingClassName}>
+                                    {sections.flatMap(section =>
+                                        section.items.flatMap(item =>
+                                            item.headings.map(heading => (
+                                                <Command.Item
+                                                    key={heading.href}
+                                                    value={`${item.title} ${heading.title}`}
+                                                    onSelect={() => goTo(heading.href)}
+                                                    className={itemClassName}
+                                                >
+                                                    <HashIcon aria-hidden="true" />
+                                                    {heading.title}
+                                                    <span className="ml-auto text-xs text-muted-foreground">
+                                                        {item.title}
+                                                    </span>
+                                                </Command.Item>
+                                            )),
+                                        ),
+                                    )}
+                                </Command.Group>
+                            )}
                         </Command.List>
                     </Command>
                 </DialogContent>

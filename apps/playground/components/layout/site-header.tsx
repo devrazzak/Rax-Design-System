@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { Container, IconButton, Row, Section } from '@rax-ds/ui';
 
+import { getSearchIndex } from '@/lib/search';
 import { GitHubIcon } from '@/components/icons/github-icon';
 import { CommandMenu } from '@/components/search/command-menu';
 
@@ -11,7 +12,9 @@ import { MainNav } from './main-nav';
 import { MobileNav } from './mobile-nav';
 import { ThemeToggle } from './theme-toggle';
 
-export function SiteHeader() {
+export async function SiteHeader() {
+    const searchIndex = await getSearchIndex();
+
     return (
         // Slightly see-through with a blur, so content scrolling under the sticky header stays readable
         <Section as="header" className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
@@ -29,7 +32,7 @@ export function SiteHeader() {
                     </Link>
                     <MainNav />
                     <Row gap="sm" className="ml-auto">
-                        <CommandMenu />
+                        <CommandMenu sections={searchIndex} />
                         <IconButton asChild variant="ghost" size="sm" label="GitHub">
                             <a href={siteConfig.links.github} target="_blank" rel="noreferrer">
                                 <GitHubIcon className="size-5" />
