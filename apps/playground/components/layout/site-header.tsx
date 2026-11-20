@@ -12,7 +12,7 @@ import { ThemeToggle } from './theme-toggle';
 export function SiteHeader() {
     return (
         <Section as="header" className="sticky top-0 z-40 border-b border-border">
-            <Container>
+            <Container size="full">
                 <Row gap="md" className="h-14">
                     <MobileNav />
                     <Link href="/" className="font-semibold">

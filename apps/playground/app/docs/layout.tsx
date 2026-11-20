@@ -6,7 +6,7 @@ import { SidebarNav } from '@/components/layout/sidebar-nav';
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
     return (
-        <Container>
+        <Container size="full">
             <Row align="start" gap="xl">
                 {/* Below md the sidebar lives in the mobile drawer instead */}
                 <Section

@@ -38,7 +38,8 @@ export default async function DocPage({ params }: PageProps<'/docs/[[...slug]]'>
     ]);
 
     return (
-        <Row align="start" gap="xl">
+        // The article and the table of contents sit in the middle of the space next to the sidebar
+        <Row align="start" justify="center" gap="xl">
             <Section as="article" spacing="sm" className="max-w-3xl min-w-0 flex-1">
                 <Section as="header" className="mb-10">
                     <Stack gap="sm">
