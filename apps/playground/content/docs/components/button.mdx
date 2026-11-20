@@ -1,0 +1,72 @@
+import { buttonProps } from '@/props/button';
+
+<ComponentPreview name="button/button-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Button } from '@rax-ds/ui';
+
+export function SaveButton() {
+    return <Button>Save</Button>;
+}
+```
+
+## Examples
+
+### Variants
+
+<ComponentPreview name="button/button-variants" />
+
+### On a colored background
+
+`white` and `linkWhite` stay readable on the primary color, on images and on dark sections.
+
+<ComponentPreview name="button/button-on-color" />
+
+### Sizes
+
+The heights match `Input` and `Select` of the same size, so a button lines up with a field next to it.
+
+<ComponentPreview name="button/button-sizes" />
+
+### With an icon
+
+Mark the icon with `data-icon="inline-start"` or `data-icon="inline-end"`. The button sizes the icon and adjusts the padding on that side.
+
+<ComponentPreview name="button/button-with-icon" />
+
+### Loading
+
+<ComponentPreview name="button/button-loading" />
+
+### Disabled
+
+<ComponentPreview name="button/button-disabled" />
+
+### As a link
+
+Use `asChild` to render a link that looks like a button. The link keeps its own semantics and navigation.
+
+<ComponentPreview name="button/button-as-child" />
+
+## Accessibility
+
+- Activates with `Enter` and `Space`, like a native button.
+- While `loading`, the button sets `aria-busy` and `aria-disabled` but stays focusable, so keyboard and screen reader users do not lose their place.
+- Use a link (`asChild` with `<a>` or `<Link>`) when the button goes to another page, and a button when it does something on the page.
+
+<Alert variant="info-subtle">
+    <AlertTitle>Icon-only buttons</AlertTitle>
+    <AlertDescription>Use `IconButton` for icon-only buttons. Its `label` is the accessible name.</AlertDescription>
+</Alert>
+
+## API reference
+
+All native `<button>` props are passed through.
+
+<PropsTable items={buttonProps} />
