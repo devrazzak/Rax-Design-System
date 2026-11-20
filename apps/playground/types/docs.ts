@@ -10,3 +10,18 @@ export interface DocSection {
     title: string;
     items: readonly DocItem[];
 }
+
+export interface PropDef {
+    name: string;
+    /** The TypeScript type as the reader should see it, for example `'sm' | 'md'`. */
+    type: string;
+    default?: string;
+    description?: string;
+}
+
+export interface TocItem {
+    /** Same id rehype-slug gives the heading. */
+    id: string;
+    title: string;
+    level: 2 | 3;
+}

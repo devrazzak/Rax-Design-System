@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Container, IconButton, Row, Section } from '@rax-ds/ui';
 
 import { GitHubIcon } from '@/components/icons/github-icon';
+import { CommandMenu } from '@/components/search/command-menu';
 
 import { MobileNav } from './mobile-nav';
 import { ThemeToggle } from './theme-toggle';
@@ -26,9 +27,16 @@ export function SiteHeader() {
                             >
                                 Docs
                             </Link>
+                            <Link
+                                href="/docs/components/button"
+                                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                            >
+                                Components
+                            </Link>
                         </Row>
                     </nav>
                     <Row gap="sm" className="ml-auto">
+                        <CommandMenu />
                         <IconButton asChild variant="ghost" size="sm" label="GitHub">
                             <a href={siteConfig.links.github} target="_blank" rel="noreferrer">
                                 <GitHubIcon className="size-5" />
