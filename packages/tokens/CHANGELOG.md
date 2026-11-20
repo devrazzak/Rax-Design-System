@@ -1,5 +1,11 @@
 # @rax-ds/tokens
 
+## 0.6.1
+
+### Patch Changes
+
+- 2aa6a9f: Link the docs site from the npm page and improve the README
+
 ## 0.6.0
 
 ### Minor Changes

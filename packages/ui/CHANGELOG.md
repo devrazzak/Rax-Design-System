@@ -1,5 +1,13 @@
 # @rax-ds/ui
 
+## 0.13.2
+
+### Patch Changes
+
+- 2aa6a9f: Link the docs site from the npm page and improve the README
+- Updated dependencies [2aa6a9f]
+  - @rax-ds/tokens@0.6.1
+
 ## 0.13.1
 
 ### Patch Changes
