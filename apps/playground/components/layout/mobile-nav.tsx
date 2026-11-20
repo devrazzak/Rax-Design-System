@@ -24,10 +24,8 @@ export function MobileNav() {
                 <DrawerHeader>
                     <DrawerTitle>{siteConfig.name}</DrawerTitle>
                 </DrawerHeader>
-                <ScrollArea className="min-h-0 flex-1">
-                    <div className="px-2 pb-6">
-                        <SidebarNav onNavigate={() => setOpen(false)} />
-                    </div>
+                <ScrollArea className="min-h-0 flex-1 px-2 pb-6">
+                    <SidebarNav onNavigate={() => setOpen(false)} />
                 </ScrollArea>
             </DrawerContent>
         </Drawer>
