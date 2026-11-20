@@ -12,6 +12,7 @@
         "typecheck": "pnpm -r run typecheck",
         "test": "pnpm -r run test",
         "playground": "pnpm --filter @rax-ds/tokens build && pnpm --filter @rax-ds/ui build && pnpm --filter playground dev",
+        "playground:build": "pnpm --filter @rax-ds/tokens build && pnpm --filter @rax-ds/ui build && pnpm --filter playground build",
         "dev": "pnpm --filter @rax-ds/tokens build && pnpm --filter @rax-ds/ui storybook",
         "changeset": "changeset",
         "version-packages": "changeset version",
