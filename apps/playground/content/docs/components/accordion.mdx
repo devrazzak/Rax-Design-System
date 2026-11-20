@@ -1,0 +1,74 @@
+import { accordionItemProps, accordionProps } from '@/props/accordion';
+
+<ComponentPreview name="accordion/accordion-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@rax-ds/ui';
+
+export function Faq() {
+    return (
+        <Accordion type="single" collapsible>
+            <AccordionItem value="returns">
+                <AccordionTrigger>Can I return an item?</AccordionTrigger>
+                <AccordionContent>Yes, within 30 days of delivery.</AccordionContent>
+            </AccordionItem>
+        </Accordion>
+    );
+}
+```
+
+`type` is required. Set `size` once on `Accordion`, and every item follows.
+
+## Examples
+
+### Multiple open items
+
+With `type="multiple"` several items can be open at the same time.
+
+<ComponentPreview name="accordion/accordion-multiple" />
+
+### Sizes
+
+<ComponentPreview name="accordion/accordion-sizes" />
+
+### Open by default
+
+<ComponentPreview name="accordion/accordion-default-open" />
+
+### Disabled
+
+<ComponentPreview name="accordion/accordion-disabled" />
+
+### Controlled
+
+With `type="single"` and `collapsible`, the value is an empty string when everything is closed.
+
+<ComponentPreview name="accordion/accordion-controlled" />
+
+## Accessibility
+
+- Built on the Radix Accordion. Each trigger is a button inside a heading, with `aria-expanded` and `aria-controls` pointing to its panel.
+- `Enter` and `Space` open or close the focused item. `ArrowDown` and `ArrowUp` move focus between triggers, and `Home` and `End` jump to the first and the last.
+- The trigger text is the accessible name of the section, so make it describe the content.
+
+## API reference
+
+### Accordion
+
+Radix Accordion root props are passed through.
+
+<PropsTable items={accordionProps} />
+
+### AccordionItem
+
+<PropsTable items={accordionItemProps} />
+
+### Other parts
+
+`AccordionTrigger` and `AccordionContent` take the props of their Radix parts. The `className` of `AccordionContent` goes on the inner box, because the outer one animates its height.

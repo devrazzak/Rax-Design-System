@@ -1,0 +1,84 @@
+import { breadcrumbLinkProps, breadcrumbProps } from '@/props/breadcrumb';
+
+<ComponentPreview name="breadcrumb/breadcrumb-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from '@rax-ds/ui';
+
+export function Trail() {
+    return (
+        <Breadcrumb>
+            <BreadcrumbList>
+                <BreadcrumbItem>
+                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                    <BreadcrumbPage>Orders</BreadcrumbPage>
+                </BreadcrumbItem>
+            </BreadcrumbList>
+        </Breadcrumb>
+    );
+}
+```
+
+## Examples
+
+### Sizes
+
+<ComponentPreview name="breadcrumb/breadcrumb-sizes" />
+
+### Custom separator
+
+Put your own icon inside `BreadcrumbSeparator`. The default is a chevron.
+
+<ComponentPreview name="breadcrumb/breadcrumb-separator" />
+
+### Collapsed items
+
+`BreadcrumbEllipsis` stands in for the levels that are left out.
+
+<ComponentPreview name="breadcrumb/breadcrumb-ellipsis" />
+
+### As a link component
+
+Use `asChild` on `BreadcrumbLink` to render a Next.js `Link` for client-side navigation.
+
+<ComponentPreview name="breadcrumb/breadcrumb-as-child" />
+
+## Accessibility
+
+- Renders a `nav` with `aria-label="breadcrumb"` that holds an ordered list, so screen readers announce a navigation landmark and the position in the trail.
+- `BreadcrumbPage` marks the current page with `aria-current="page"`. It is not a link.
+- Separators and the ellipsis are hidden from screen readers (`aria-hidden`). The ellipsis contains the screen-reader-only text "More".
+
+## API reference
+
+### Breadcrumb
+
+All native `<nav>` props are passed through.
+
+<PropsTable items={breadcrumbProps} />
+
+### BreadcrumbLink
+
+All native `<a>` props are passed through.
+
+<PropsTable items={breadcrumbLinkProps} />
+
+### Other parts
+
+`BreadcrumbList` takes native `<ol>` props, `BreadcrumbItem` and `BreadcrumbSeparator` take `<li>` props, and `BreadcrumbPage` and `BreadcrumbEllipsis` take `<span>` props.

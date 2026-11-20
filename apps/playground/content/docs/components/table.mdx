@@ -1,0 +1,74 @@
+import { tableProps } from '@/props/table';
+
+<ComponentPreview name="table/table-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@rax-ds/ui';
+
+export function Orders() {
+    return (
+        <Table>
+            <TableHeader>
+                <TableRow>
+                    <TableHead>Order</TableHead>
+                    <TableHead>Total</TableHead>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                <TableRow>
+                    <TableCell>ORD-1042</TableCell>
+                    <TableCell>$250.00</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    );
+}
+```
+
+The table sits in a bordered box that scrolls sideways when the table is wider than the space.
+
+## Examples
+
+### Footer
+
+<ComponentPreview name="table/table-footer" />
+
+### Selected row
+
+Set `data-state="selected"` on a `TableRow` to highlight it.
+
+<ComponentPreview name="table/table-selected-row" />
+
+### With other components
+
+<ComponentPreview name="table/table-with-components" />
+
+### Horizontal scroll
+
+A table that is wider than its box scrolls inside the box.
+
+<ComponentPreview name="table/table-scroll" />
+
+## Accessibility
+
+- Renders a native `table` with `thead`, `tbody`, `tfoot`, `th`, `td` and `caption`, so screen readers announce rows, columns and headers.
+- Use `TableHeader` and `TableHead` for headers, and a `TableCaption` to describe the table.
+- A column with only icon buttons needs a header, hidden visually with `sr-only` if it should not be seen.
+
+## API reference
+
+### Table
+
+All native `<table>` props are passed through.
+
+<PropsTable items={tableProps} />
+
+### Other parts
+
+`TableHeader`, `TableBody` and `TableFooter` take native `<thead>`, `<tbody>` and `<tfoot>` props. `TableRow` takes `<tr>` props, `TableHead` takes `<th>` props, `TableCell` takes `<td>` props and `TableCaption` takes `<caption>` props. The caption is placed below the table.

@@ -1,0 +1,78 @@
+import { avatarGroupCountProps, avatarImageProps, avatarProps } from '@/props/avatar';
+
+<ComponentPreview name="avatar/avatar-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Avatar, AvatarFallback, AvatarImage } from '@rax-ds/ui';
+
+export function UserAvatar() {
+    return (
+        <Avatar>
+            <AvatarImage src="/photos/alex.png" alt="Alex Morgan" />
+            <AvatarFallback>AM</AvatarFallback>
+        </Avatar>
+    );
+}
+```
+
+## Examples
+
+### Sizes
+
+The size sets the diameter and the text size of the initials.
+
+<ComponentPreview name="avatar/avatar-sizes" />
+
+### Fallback
+
+`AvatarFallback` shows while the image loads, and when it fails to load.
+
+<ComponentPreview name="avatar/avatar-fallback" />
+
+### With a badge
+
+`AvatarBadge` is a small dot in the corner. Its size follows the avatar. A dot that carries meaning needs `role="img"` and an `aria-label`.
+
+<ComponentPreview name="avatar/avatar-with-badge" />
+
+### Group
+
+`AvatarGroup` overlaps its avatars. Give every avatar and the `AvatarGroupCount` the same size.
+
+<ComponentPreview name="avatar/avatar-group" />
+
+## Accessibility
+
+- Built on the Radix Avatar. The image is a regular `img`, so give it an `alt` with the name of the person. Initials in the fallback are read as text.
+- If the name is already next to the avatar, use `alt=""` so it is not read twice.
+- `AvatarBadge` is silent unless you add `role="img"` and `aria-label`. Do not rely on its color alone.
+
+## API reference
+
+### Avatar
+
+Radix Avatar root props are passed through.
+
+<PropsTable items={avatarProps} />
+
+### AvatarImage
+
+Radix Avatar image props are passed through.
+
+<PropsTable items={avatarImageProps} />
+
+### AvatarGroupCount
+
+All native `<div>` props are passed through.
+
+<PropsTable items={avatarGroupCountProps} />
+
+### Other parts
+
+`AvatarFallback` takes the props of its Radix part. `AvatarBadge` takes native `<span>` props and `AvatarGroup` takes native `<div>` props.

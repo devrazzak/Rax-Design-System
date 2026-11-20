@@ -1,0 +1,84 @@
+import { tabsContentProps, tabsListProps, tabsProps, tabsTriggerProps } from '@/props/tabs';
+
+<ComponentPreview name="tabs/tabs-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@rax-ds/ui';
+
+export function Account() {
+    return (
+        <Tabs defaultValue="profile">
+            <TabsList>
+                <TabsTrigger value="profile">Profile</TabsTrigger>
+                <TabsTrigger value="billing">Billing</TabsTrigger>
+            </TabsList>
+            <TabsContent value="profile">Update your name and photo.</TabsContent>
+            <TabsContent value="billing">See your invoices.</TabsContent>
+        </Tabs>
+    );
+}
+```
+
+Each `TabsTrigger` and the `TabsContent` it opens share the same `value`.
+
+## Examples
+
+### Line variant
+
+<ComponentPreview name="tabs/tabs-line" />
+
+### Sizes
+
+The tab height matches [Input](/docs/components/input) of the same size, with the padding of the default variant.
+
+<ComponentPreview name="tabs/tabs-sizes" />
+
+### Vertical
+
+<ComponentPreview name="tabs/tabs-vertical" />
+
+### Disabled tab
+
+<ComponentPreview name="tabs/tabs-disabled" />
+
+### Controlled
+
+<ComponentPreview name="tabs/tabs-controlled" />
+
+### With cards
+
+<ComponentPreview name="tabs/tabs-with-cards" />
+
+## Accessibility
+
+- Built on the Radix Tabs. The list has `role="tablist"`, the triggers `role="tab"` with `aria-selected`, and the panels `role="tabpanel"`.
+- `Tab` moves focus into the tab list and then to the active panel. The arrow keys move between tabs (left and right, or up and down when vertical), and `Home` and `End` jump to the first and the last. By default a tab is activated when it gets focus.
+- The panel shows a focus outline, because it can be reached with the keyboard.
+
+## API reference
+
+### Tabs
+
+Radix Tabs root props are passed through.
+
+<PropsTable items={tabsProps} />
+
+### TabsList
+
+Radix Tabs list props are passed through.
+
+<PropsTable items={tabsListProps} />
+
+### TabsTrigger
+
+<PropsTable items={tabsTriggerProps} />
+
+### TabsContent
+
+<PropsTable items={tabsContentProps} />

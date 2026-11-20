@@ -1,0 +1,72 @@
+import { cardProps } from '@/props/card';
+
+<ComponentPreview name="card/card-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@rax-ds/ui';
+
+export function SummaryCard() {
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle>Recent orders</CardTitle>
+                <CardDescription>You have 3 orders waiting.</CardDescription>
+            </CardHeader>
+            <CardContent>Orders 1040, 1041 and 1042.</CardContent>
+        </Card>
+    );
+}
+```
+
+A card is a bordered surface that groups related content. It is full width by default, so give it a width when you place it in a row. It sets no gap between its parts and no text size, so each child decides its own.
+
+## Examples
+
+### Padding
+
+`padding` is set once on the card, and every part reads it.
+
+<ComponentPreview name="card/card-padding" />
+
+### Radius
+
+<ComponentPreview name="card/card-radius" />
+
+### With an action
+
+`CardAction` sits in the top-right corner of the header.
+
+<ComponentPreview name="card/card-with-action" />
+
+### With an image
+
+An image as the first child touches the top edge of the card.
+
+<ComponentPreview name="card/card-with-image" />
+
+### Form
+
+<ComponentPreview name="card/card-form" />
+
+## Accessibility
+
+- Card is a plain `div` and adds no role. `CardTitle` is a `div` too, not a heading. If the title should be in the outline of the page, render a [Heading](/docs/components/heading) inside it.
+- A clickable card needs a real link or button inside it, so keyboard and screen reader users can reach it.
+
+## API reference
+
+### Card
+
+All native `<div>` props are passed through.
+
+<PropsTable items={cardProps} />
+
+### Other parts
+
+`CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent` and `CardFooter` take native `<div>` props.
