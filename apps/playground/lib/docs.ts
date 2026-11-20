@@ -1,6 +1,6 @@
 import { docsNav } from '@/config/docs-nav';
 
-import type { DocItem } from '@/types/docs';
+import type { DocItem, DocSection } from '@/types/docs';
 
 const allDocs: readonly DocItem[] = docsNav.flatMap(section => section.items);
 
@@ -21,4 +21,9 @@ export function getPrevNext(slug: string): { prev?: DocItem; next?: DocItem } {
     const index = allDocs.findIndex(doc => doc.slug === slug);
 
     return { prev: allDocs[index - 1], next: allDocs[index + 1] };
+}
+
+/** The sidebar section a page belongs to, for the breadcrumb. */
+export function getDocSection(slug: string): DocSection | undefined {
+    return docsNav.find(section => section.items.some(doc => doc.slug === slug));
 }

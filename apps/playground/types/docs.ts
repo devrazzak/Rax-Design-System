@@ -4,6 +4,8 @@ export interface DocItem {
     title: string;
     /** Used for the page meta description, search results and the page header. */
     description: string;
+    /** The Radix primitive the component is built on, as in its docs URL (for example `dropdown-menu`). */
+    radix?: string;
 }
 
 export interface DocSection {

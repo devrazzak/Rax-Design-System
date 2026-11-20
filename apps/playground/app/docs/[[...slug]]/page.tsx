@@ -2,12 +2,18 @@ import type { MDXContent } from 'mdx/types';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { Heading, Row, ScrollArea, Section, Stack, Text } from '@rax-ds/ui';
+import { Row, ScrollArea, Section } from '@rax-ds/ui';
 
 import { getAllDocs, getDocBySlug } from '@/lib/docs';
 import { getTableOfContents } from '@/lib/toc';
+import { DocHeader } from '@/components/layout/doc-header';
 import { DocPager } from '@/components/layout/doc-pager';
 import { TableOfContents } from '@/components/layout/table-of-contents';
+
+// Dev-only instant validation also simulates a client navigation to an unknown slug, where this page calls
+// notFound() and validation stops with an error. Every real docs page is prerendered as static HTML,
+// so navigations are instant anyway; this opts the route out of that check.
+export const instant = false;
 
 // Every page in the docs config is prerendered at build time
 export function generateStaticParams() {
@@ -41,16 +47,7 @@ export default async function DocPage({ params }: PageProps<'/docs/[[...slug]]'>
         // The article and the table of contents sit in the middle of the space next to the sidebar
         <Row align="start" justify="center" gap="xl">
             <Section as="article" spacing="sm" className="max-w-3xl min-w-0 flex-1">
-                <Section as="header" className="mb-10">
-                    <Stack gap="sm">
-                        <Heading as="h1" size="4xl">
-                            {doc.title}
-                        </Heading>
-                        <Text size="lg" color="muted">
-                            {doc.description}
-                        </Text>
-                    </Stack>
-                </Section>
+                <DocHeader doc={doc} />
                 <Content />
                 <DocPager slug={doc.slug} />
             </Section>
