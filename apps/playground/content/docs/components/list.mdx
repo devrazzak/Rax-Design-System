@@ -1,0 +1,78 @@
+import { listItemProps, listProps } from '@/props/list';
+
+<ComponentPreview name="list/list-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { List, ListItem } from '@rax-ds/ui';
+
+export function Steps() {
+    return (
+        <List as="ol">
+            <ListItem>Create an account</ListItem>
+            <ListItem>Verify your email</ListItem>
+        </List>
+    );
+}
+```
+
+## Examples
+
+### Ordered list
+
+Use `as="ol"` for a numbered list. The marker follows the tag.
+
+<ComponentPreview name="list/list-ordered" />
+
+### Markers
+
+<ComponentPreview name="list/list-markers" />
+
+### Gap
+
+The space between items is 0, 4px, 8px, 16px, 24px or 32px. The default is `sm`.
+
+<ComponentPreview name="list/list-gap" />
+
+### Size
+
+The list inherits its font size unless `size` is set.
+
+<ComponentPreview name="list/list-size" />
+
+### Color
+
+The list inherits its text color unless `color` is set.
+
+<ComponentPreview name="list/list-color" />
+
+### With an icon
+
+Pass an `icon` to `ListItem` and set `marker="none"` on the list. The icon takes the size of the font.
+
+<ComponentPreview name="list/list-with-icon" />
+
+## Accessibility
+
+- Renders a native `ul` or `ol` with `li` items, so screen readers announce the list and its length.
+- With `marker="none"` the list gets `role="list"`, because Safari with VoiceOver stops reading a list as a list when its markers are removed.
+- The icon of a `ListItem` is hidden from screen readers (`aria-hidden`), so it must not carry meaning that the text does not.
+
+## API reference
+
+### List
+
+All native `<ul>` props are passed through.
+
+<PropsTable items={listProps} />
+
+### ListItem
+
+All native `<li>` props are passed through.
+
+<PropsTable items={listItemProps} />

@@ -1,0 +1,66 @@
+import { textProps } from '@/props/text';
+
+<ComponentPreview name="text/text-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Text } from '@rax-ds/ui';
+
+export function Intro() {
+    return <Text color="muted">Your latest orders appear here.</Text>;
+}
+```
+
+For titles use [Heading](/docs/components/heading). The size scales are also described in [Typography](/docs/foundations/typography).
+
+## Examples
+
+### Sizes
+
+<ComponentPreview name="text/text-sizes" />
+
+### Weights
+
+<ComponentPreview name="text/text-weights" />
+
+### Colors
+
+`white` is for colored or dark backgrounds.
+
+<ComponentPreview name="text/text-colors" />
+
+### Text align
+
+`start` and `end` follow the reading direction, so they work in right-to-left languages too.
+
+<ComponentPreview name="text/text-align" />
+
+### Text transform
+
+<ComponentPreview name="text/text-transform" />
+
+### Tracking
+
+<ComponentPreview name="text/text-tracking" />
+
+### Tag
+
+Text renders a `p` by default. Use `as="span"` for inline text and `as="div"` when the text is not a paragraph.
+
+<ComponentPreview name="text/text-as" />
+
+## Accessibility
+
+- Renders a `p`, `span` or `div` and adds no role or aria attributes.
+- Muted text uses a semantic color token. Check the contrast when you put it on a colored background.
+
+## API reference
+
+All native `<p>` props are passed through.
+
+<PropsTable items={textProps} />

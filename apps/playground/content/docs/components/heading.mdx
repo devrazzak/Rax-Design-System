@@ -1,0 +1,64 @@
+import { headingProps } from '@/props/heading';
+
+<ComponentPreview name="heading/heading-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Heading } from '@rax-ds/ui';
+
+export function PageTitle() {
+    return <Heading as="h1">Dashboard</Heading>;
+}
+```
+
+For body copy use [Text](/docs/components/text). The size scales are also described in [Typography](/docs/foundations/typography).
+
+## Examples
+
+### Sizes
+
+`size` sets the visual size only. From `xl` up the size grows on large screens.
+
+<ComponentPreview name="heading/heading-sizes" />
+
+### Tags
+
+When no `size` is passed, the size follows the tag.
+
+<ComponentPreview name="heading/heading-as" />
+
+### Size and tag together
+
+Choose the tag for the document outline and the size for the look. They are independent.
+
+<ComponentPreview name="heading/heading-size-and-tag" />
+
+### Weights
+
+<ComponentPreview name="heading/heading-weights" />
+
+### Colors
+
+`white` is for colored or dark backgrounds.
+
+<ComponentPreview name="heading/heading-colors" />
+
+### Text transform
+
+<ComponentPreview name="heading/heading-text-transform" />
+
+## Accessibility
+
+- Renders a real heading element (`h1` to `h6`), so screen reader users can navigate by heading.
+- Pick the tag for the outline, one `h1` per page and no skipped levels, and use `size` to change only the look.
+
+## API reference
+
+All native heading props are passed through.
+
+<PropsTable items={headingProps} />
