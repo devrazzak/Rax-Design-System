@@ -1,6 +1,7 @@
 import { examples, isExampleName } from '@/examples/registry';
+import { ExternalLinkIcon } from 'lucide-react';
 
-import { cn, Row, Tabs, TabsContent, TabsList, TabsTrigger } from '@rax-ds/ui';
+import { cn, IconButton, Row, Tabs, TabsContent, TabsList, TabsTrigger } from '@rax-ds/ui';
 
 import { getExampleSource } from '@/lib/example-source';
 import { CodeBlock } from '@/components/code/code-block';
@@ -21,11 +22,16 @@ export async function ComponentPreview({ name, className }: ComponentPreviewProp
 
     return (
         <Tabs defaultValue="preview" className={cn('gap-0 overflow-hidden rounded-xl border border-border', className)}>
-            <Row className="border-b border-border bg-muted/50 px-3">
+            <Row justify="between" className="border-b border-border bg-muted/50 px-3">
                 <TabsList variant="line" size="sm">
                     <TabsTrigger value="preview">Preview</TabsTrigger>
                     <TabsTrigger value="code">Code</TabsTrigger>
                 </TabsList>
+                <IconButton asChild variant="ghost" size="xs" label="Open in new tab">
+                    <a href={`/view/${name}`} target="_blank" rel="noreferrer">
+                        <ExternalLinkIcon />
+                    </a>
+                </IconButton>
             </Row>
             <TabsContent value="preview" className="rounded-none">
                 {/* A dot grid drawn with the border token, so it follows the theme */}
