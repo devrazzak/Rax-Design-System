@@ -85,7 +85,7 @@
 | `/docs/foundations/radius`     | Radius scale                                                      |
 | `/docs/components/[slug]`      | প্রতিটি component (৪২টা)                                           |
 
-সব route build time-এ static (`generateStaticParams` + `dynamicParams = false`)। অচেনা URL → 404।
+সব route build time-এ static (`generateStaticParams`)। অচেনা URL-এ page নিজে `notFound()` দেয় → 404। (`cacheComponents` চালু থাকলে `dynamicParams` export করা যায় না, build fail করে।)
 
 ---
 
@@ -135,10 +135,10 @@ apps/playground/
 │   │   ├── copy-button.tsx        # client
 │   │   └── install-command.tsx    # pnpm/npm/yarn/bun tabs
 │   └── docs/
-│       ├── component-preview.tsx  # server: loads example + source
-│       ├── preview-tabs.tsx       # client: Preview | Code
+│       ├── component-preview.tsx  # server: loads example + source, DS Tabs for Preview | Code
 │       ├── props-table.tsx
-│       └── callout.tsx
+│       ├── color-swatches.tsx     # foundations
+│       └── radius-scale.tsx       # foundations
 ├── config/
 │   ├── site.ts                    # name, description, repo url, npm url
 │   └── docs-nav.ts                # THE single source: sidebar, search, pager, metadata, static params
@@ -169,8 +169,6 @@ apps/playground/
 
 ```tsx
 // app/docs/[[...slug]]/page.tsx (shape only)
-export const dynamicParams = false;
-
 export function generateStaticParams() {
     return getAllDocs().map(doc => ({ slug: doc.slug === '' ? [] : doc.slug.split('/') }));
 }
@@ -202,7 +200,7 @@ MDX-এ:
 1. `registry[name]` থেকে component load করে। অচেনা name → `throw` → **build fail** (fail fast, ভুল নাম production-এ যায় না)
 2. `examples/<name>.tsx` file text পড়ে (`fs`)
 3. Shiki দিয়ে highlight করে (`'use cache'`, তাই build-এ একবার)
-4. Client `PreviewTabs`-কে দেয়: preview element, highlighted HTML, raw code (copy-র জন্য)
+4. DS `Tabs`-এ Preview আর Code দেখায়। `Tabs` নিজেই client component, তাই আলাদা client wrapper লাগে না
 
 যে example-এ state লাগে (controlled Dialog, Tabs value) সেটার উপরে `'use client'` থাকবে, code tab-এও সেটা দেখাবে (user-এর জন্য সঠিক তথ্য)।
 
@@ -234,7 +232,7 @@ Compound component (Dialog, Select) হলে প্রতিটি part-এর 
 
 ### 3.5 ToC
 
-Client component: page render হওয়ার পরে `article`-এর `h2`/`h3[id]` পড়ে list বানায়, `IntersectionObserver` দিয়ে active heading highlight করে। শুধু `xl` screen-এ দেখায়।
+Server-এ তৈরি হয় (`lib/toc.ts`): MDX file-এর `##`/`###` heading পড়ে, `rehype-slug`-এর মতো একই `github-slugger` দিয়ে id বানায়, তাই link আর heading id সবসময় মেলে। ফলে ToC প্রথম HTML-এই থাকে, কোনো flash নেই। Client component (`TableOfContents`) শুধু `IntersectionObserver` দিয়ে active heading highlight করে। শুধু `xl` screen-এ দেখায়।
 
 ### 3.6 Search
 
@@ -291,7 +289,7 @@ Sidebar group (MUI-style, কারণ ৪২টা component flat list-এ খ�
 3. **`@rax-ds/ui` build আগে লাগে:** playground package-এর `dist` পড়ে। `pnpm playground` এটা করে দেয়। Package-এ change করার সময় আলাদা terminal-এ `pnpm --filter @rax-ds/ui dev` (watch) চালাতে হবে
 4. **Overlay animation নেই:** search dialog আর mobile drawer animation ছাড়া খুলবে, কারণ DS-এ ইচ্ছা করে বাদ রাখা আছে। Overlay animation set যোগ হলে docs-এ automatically আসবে
 5. **Props table হাতে লেখা → drift-এর ঝুঁকি:** কোনো component-এর prop বদলালে `apps/playground/props/<name>.ts`-ও update করতে হবে। Final step-এ এটা `COMPONENT-CONVENTIONS.md`/`CLAUDE.md`-এর checklist-এ যোগ করার প্রস্তাব দেব (তোমার অনুমতি নিয়ে)
-6. **ToC client-side:** hydration-এর পরে দেখা যায় (শুধু বড় screen-এ, ছোট বিষয়)
+6. **ToC server-এ MDX source পড়ে বানানো হয়:** heading-এ JSX component বা অদ্ভুত markdown থাকলে id না মিলতে পারে। Heading-এ শুধু সাধারণ text, inline code বা link রাখো
 7. **Search v1 শুধু title/description-এ**
 8. **DS-এ `Command`, `Kbd` নেই:** app-এর ভেতরে বানানো হবে, package-এ না
 9. **Version drift:** playground-এ `typescript ^5`, root-এ `^6`; `react 19.3.0` বনাম ui-তে `19.3.1`। Step 0-এ শুধু playground-এর `package.json` align করার প্রস্তাব (package-এ হাত না দিয়ে)
@@ -315,8 +313,8 @@ Sidebar group (MUI-style, কারণ ৪২টা component flat list-এ খ�
 ### Phase B: Content engine
 
 - **Step 5: Code block.** `lib/highlight.ts`, `CodeBlock`, `CopyButton`, `pre` mapping, `InstallCommand`। Commit: `feat(playground): add code block with copy`
-- **Step 6: Component preview.** `examples/registry.ts`, `lib/example-source.ts`, `ComponentPreview`, `PreviewTabs`। Commit: `feat(playground): add component preview`
-- **Step 7: Props table + Callout.** Commit: `feat(playground): add props table`
+- **Step 6: Component preview.** `examples/registry.ts`, `lib/example-source.ts`, `ComponentPreview`। Commit: `feat(playground): add component preview`
+- **Step 7: Props table + Alert in MDX.** Callout আলাদা বানানো হয়নি, DS-এর `Alert` MDX-এ register করা হয়েছে। Commit: `feat(playground): add props table`
 - **Step 8: ToC + prev/next pager.** Commit: `feat(playground): add table of contents and pager`
 - **Step 9: Search.** `CommandMenu`, header-এ trigger + `⌘K`। Commit: `feat(playground): add command menu search`
 
@@ -345,3 +343,35 @@ Changeset লাগবে না: `playground` private, কোনো published p
 5. `config/docs-nav.ts`-এ entry (group অনুযায়ী)
 
 Build pass করলেই নিশ্চিত: সব example name ঠিক, সব MDX compile হয়েছে, সব route তৈরি।
+
+---
+
+## 9. Status
+
+Step 1–12 শেষ (infrastructure, Getting Started, Foundations, Button page)। Button page বাকি সব component page-এর **template**।
+
+## 10. বাকি component page-এর জন্য Claude Code prompt
+
+একবারে একটা sidebar group দাও। প্রতিটি batch-এর পরে diff review, `pnpm typecheck && pnpm lint && pnpm format:check && pnpm playground:build`, browser-এ দেখা, তারপর commit।
+
+```text
+Read CLAUDE.md, docs/COMPONENT-CONVENTIONS.md and docs/PLAYGROUND-PLAN.md first (the "নিয়ম" section and sections 2-4, 8).
+Work only inside apps/playground. Do not change anything in packages/.
+
+Add docs pages for these components: <list, e.g. Layout group: Container, Section, Stack, Row, Grid, Separator, ScrollArea>.
+
+Use the Button page as the exact template:
+- content/docs/components/button.mdx (section order: hero preview, Installation, Usage, Examples, Accessibility, API reference)
+- examples/button/*.tsx (one file per example, default export, imports only from @rax-ds/ui, react, next, lucide-react; no @/ alias)
+- examples/registry.ts (add every example, keep keys sorted)
+- props/button.ts (PropDef list; read the real props, defaults and comments from packages/ui/src/components/<name>/; no backticks in descriptions)
+- config/docs-nav.ts (add the page to its sidebar group, create the group if missing, in the order of section 4 of the plan)
+
+Rules:
+- Always use design system components (Row, Stack, Grid, Section, Heading, Text, ...) in examples and pages. Native elements only where the plan lists an exception.
+- Examples must look like real product usage, with realistic labels. Never mention a specific project or client.
+- Cover every variant, size and state the component supports, plus controlled usage and asChild where they exist.
+- Write the Accessibility section from the component source and Radix behaviour; do not invent keyboard support.
+- Code comments in English. Keep code simple, no extra helpers.
+- Do not commit. When done, list the files changed and anything you were unsure about.
+```
