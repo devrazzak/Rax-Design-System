@@ -1,0 +1,55 @@
+import { textareaProps } from '@/props/textarea';
+
+<ComponentPreview name="textarea/textarea-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Textarea } from '@rax-ds/ui';
+
+export function NoteField() {
+    return <Textarea placeholder="Write a note" aria-label="Note" />;
+}
+```
+
+## Examples
+
+### Sizes
+
+Padding and font match [Input](/docs/components/input) of the same size. The height comes from the content, so the size sets a minimum height.
+
+<ComponentPreview name="textarea/textarea-sizes" />
+
+### Grows with its content
+
+The field grows as the text grows, up to a maximum height, then it scrolls.
+
+<ComponentPreview name="textarea/textarea-auto-grow" />
+
+### With a field
+
+<ComponentPreview name="textarea/textarea-with-field" />
+
+### Disabled
+
+<ComponentPreview name="textarea/textarea-disabled" />
+
+### Invalid
+
+<ComponentPreview name="textarea/textarea-invalid" />
+
+## Accessibility
+
+- Renders a native `<textarea>`, so keyboard and form behavior is the browser's.
+- Give it an accessible name with a [Label](/docs/components/label) or `aria-label`.
+- `aria-invalid` turns the border red. Pair it with an error message linked by `aria-describedby`.
+
+## API reference
+
+All native `<textarea>` props are passed through.
+
+<PropsTable items={textareaProps} />

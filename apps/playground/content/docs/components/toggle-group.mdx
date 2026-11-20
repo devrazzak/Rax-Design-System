@@ -1,0 +1,80 @@
+import { toggleGroupItemProps, toggleGroupProps } from '@/props/toggle-group';
+
+<ComponentPreview name="toggle-group/toggle-group-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from '@rax-ds/ui';
+
+export function RangePicker() {
+    return (
+        <ToggleGroup type="single" defaultValue="week" aria-label="Range">
+            <ToggleGroupItem value="day">Day</ToggleGroupItem>
+            <ToggleGroupItem value="week">Week</ToggleGroupItem>
+        </ToggleGroup>
+    );
+}
+```
+
+The group sets `variant` and `size` once, and every item follows.
+
+## Examples
+
+### Multiple
+
+With `type="multiple"` any number of items can be pressed.
+
+<ComponentPreview name="toggle-group/toggle-group-multiple" />
+
+### Variants
+
+<ComponentPreview name="toggle-group/toggle-group-variants" />
+
+### Sizes
+
+<ComponentPreview name="toggle-group/toggle-group-sizes" />
+
+### Connected items
+
+`spacing="none"` joins the items into one bar.
+
+<ComponentPreview name="toggle-group/toggle-group-spacing" />
+
+### Vertical
+
+<ComponentPreview name="toggle-group/toggle-group-vertical" />
+
+### Disabled
+
+<ComponentPreview name="toggle-group/toggle-group-disabled" />
+
+### Controlled
+
+With `type="single"` the value is an empty string when the pressed item is pressed again. Ignore it to keep one item always selected.
+
+<ComponentPreview name="toggle-group/toggle-group-controlled" />
+
+## Accessibility
+
+- Built on the Radix Toggle Group. The group has `role="group"`, so give it an `aria-label`.
+- `Tab` moves focus into the group and the arrow keys move between items. `Space` and `Enter` toggle the focused item.
+- An icon-only item needs `aria-label`.
+
+## API reference
+
+### ToggleGroup
+
+Radix Toggle Group root props are passed through.
+
+<PropsTable items={toggleGroupProps} />
+
+### ToggleGroupItem
+
+Radix Toggle Group item props are passed through.
+
+<PropsTable items={toggleGroupItemProps} />

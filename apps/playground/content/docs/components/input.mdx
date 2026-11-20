@@ -1,0 +1,55 @@
+import { inputProps } from '@/props/input';
+
+<ComponentPreview name="input/input-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Input } from '@rax-ds/ui';
+
+export function SearchInput() {
+    return <Input placeholder="Search" aria-label="Search" />;
+}
+```
+
+Always give an input an accessible name: a [Label](/docs/components/label) or [Field](/docs/components/field) with `htmlFor` and `id`, or `aria-label`. The input is full width by default.
+
+## Examples
+
+### Sizes
+
+The heights match [Button](/docs/components/button) and [Select](/docs/components/select) of the same size.
+
+<ComponentPreview name="input/input-sizes" />
+
+### With a field
+
+Use [Field](/docs/components/field) to add a label and a hint, and connect them with `htmlFor`, `id` and `aria-describedby`.
+
+<ComponentPreview name="input/input-with-field" />
+
+### Disabled
+
+<ComponentPreview name="input/input-disabled" />
+
+### Invalid
+
+Set `aria-invalid` to show the error border, and connect the message with `aria-describedby`.
+
+<ComponentPreview name="input/input-invalid" />
+
+## Accessibility
+
+- Renders a native `<input>`, so all keyboard and form behavior is the browser's.
+- `aria-invalid` turns the border red. Pair it with an error message linked by `aria-describedby`.
+- Use [InputGroup](/docs/components/input-group) when the input needs an icon, text or a button beside it.
+
+## API reference
+
+All native `<input>` props are passed through, except the native `size`, which is replaced.
+
+<PropsTable items={inputProps} />

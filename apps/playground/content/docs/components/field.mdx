@@ -1,0 +1,81 @@
+import { fieldLabelProps, fieldProps } from '@/props/field';
+
+<ComponentPreview name="field/field-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Field, FieldDescription, FieldError, FieldLabel, Input } from '@rax-ds/ui';
+
+export function EmailField({ error }: { error?: string }) {
+    return (
+        <Field data-invalid={!!error}>
+            <FieldLabel htmlFor="email">Email</FieldLabel>
+            <Input id="email" type="email" aria-invalid={!!error} aria-describedby="email-hint email-error" />
+            <FieldDescription id="email-hint">We never share your email.</FieldDescription>
+            <FieldError id="email-error">{error}</FieldError>
+        </Field>
+    );
+}
+```
+
+Field lays out the label, the control, the hint and the error. It does not connect them, so pass `id`, `aria-invalid` and `aria-describedby` to the control yourself. It works with [Input](/docs/components/input), [Textarea](/docs/components/textarea), [Select](/docs/components/select) and the other controls, and uses no form library.
+
+## Examples
+
+### Invalid
+
+Set `data-invalid` on `Field` to turn the label red, and show the message in `FieldError`.
+
+<ComponentPreview name="field/field-invalid" />
+
+### Horizontal
+
+Use `orientation="horizontal"` for checkboxes, radios and switches. Wrap the label and the hint in `FieldContent`.
+
+<ComponentPreview name="field/field-horizontal" />
+
+### Group of fields
+
+`FieldGroup` spaces several fields apart.
+
+<ComponentPreview name="field/field-group" />
+
+### Set of controls
+
+`FieldSet` and `FieldLegend` wrap related controls, such as a radio group.
+
+<ComponentPreview name="field/field-set" />
+
+### With a select
+
+<ComponentPreview name="field/field-with-select" />
+
+## Accessibility
+
+- `FieldError` renders `role="alert"`, so screen readers announce it when it appears, and renders nothing when it has no children.
+- `FieldSet` renders a native `<fieldset>` and `FieldLegend` a `<legend>`, which screen readers announce before the controls inside.
+- Link the label with `htmlFor` and `id`, and the hint and error with `aria-describedby`.
+- `data-invalid` only changes the color. Set `aria-invalid` on the control as well.
+
+## API reference
+
+### Field
+
+All native `<div>` props are passed through.
+
+<PropsTable items={fieldProps} />
+
+### FieldLabel
+
+A [Label](/docs/components/label). All Label props are passed through.
+
+<PropsTable items={fieldLabelProps} />
+
+### Other parts
+
+`FieldContent`, `FieldGroup` and `FieldError` take native `<div>` props, `FieldDescription` takes `<p>` props, `FieldSet` takes `<fieldset>` props and `FieldLegend` takes `<legend>` props.

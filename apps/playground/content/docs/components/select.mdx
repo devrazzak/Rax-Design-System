@@ -1,0 +1,100 @@
+import { selectContentProps, selectItemProps, selectProps, selectTriggerProps } from '@/props/select';
+
+<ComponentPreview name="select/select-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@rax-ds/ui';
+
+export function StatusSelect() {
+    return (
+        <Select>
+            <SelectTrigger aria-label="Status">
+                <SelectValue placeholder="Select a status" />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectItem value="pending">Pending</SelectItem>
+                <SelectItem value="shipped">Shipped</SelectItem>
+            </SelectContent>
+        </Select>
+    );
+}
+```
+
+To build a list from an array of options, use [OptionSelect](/docs/components/option-select).
+
+## Examples
+
+### Sizes
+
+The heights match [Input](/docs/components/input) and [Button](/docs/components/button) of the same size.
+
+<ComponentPreview name="select/select-sizes" />
+
+### Groups
+
+Group items with `SelectGroup` and `SelectLabel`, and divide groups with `SelectSeparator`.
+
+<ComponentPreview name="select/select-groups" />
+
+### With a field
+
+Put the `id` on `SelectTrigger` so the label points to it.
+
+<ComponentPreview name="select/select-with-field" />
+
+### Disabled
+
+Disable the whole select with `disabled` on `Select`, or a single item with `disabled` on `SelectItem`.
+
+<ComponentPreview name="select/select-disabled" />
+
+### Invalid
+
+Set `aria-invalid` on `SelectTrigger`.
+
+<ComponentPreview name="select/select-invalid" />
+
+### Controlled
+
+<ComponentPreview name="select/select-controlled" />
+
+## Accessibility
+
+- Built on the Radix Select. The trigger is a button with `role="combobox"`, and the list is a `listbox` of options.
+- `Enter`, `Space` or `ArrowDown` on the trigger opens the list. `ArrowUp` and `ArrowDown` move between items, `Enter` or `Space` selects, and `Escape` closes. Typing a letter jumps to a matching item.
+- Give the trigger an accessible name with a [Label](/docs/components/label) (`htmlFor` and `id` on the trigger) or `aria-label`.
+- `aria-invalid` on the trigger turns the border red.
+
+## API reference
+
+### Select
+
+Radix Select root props are passed through. Select renders no element of its own.
+
+<PropsTable items={selectProps} />
+
+### SelectTrigger
+
+All native `<button>` props are passed through.
+
+<PropsTable items={selectTriggerProps} />
+
+### SelectContent
+
+Radix Select content props are passed through.
+
+<PropsTable items={selectContentProps} />
+
+### SelectItem
+
+<PropsTable items={selectItemProps} />
+
+### Other parts
+
+`SelectValue` takes a `placeholder`. `SelectGroup`, `SelectLabel` and `SelectSeparator` take the props of their Radix parts.

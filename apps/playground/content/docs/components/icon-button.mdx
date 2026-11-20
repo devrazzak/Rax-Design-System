@@ -1,0 +1,75 @@
+import { iconButtonProps } from '@/props/icon-button';
+
+<ComponentPreview name="icon-button/icon-button-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { SettingsIcon } from 'lucide-react';
+
+import { IconButton } from '@rax-ds/ui';
+
+export function SettingsButton() {
+    return (
+        <IconButton label="Settings">
+            <SettingsIcon />
+        </IconButton>
+    );
+}
+```
+
+IconButton is a [Button](/docs/components/button) that shows only an icon. It is a square of the same height as the Button of that size. It shows its label in a [Tooltip](/docs/components/tooltip), which brings its own provider, so no setup is needed.
+
+## Examples
+
+### Variants
+
+All Button variants work. The label is part of the name in these examples only to tell the buttons apart.
+
+<ComponentPreview name="icon-button/icon-button-variants" />
+
+### Sizes
+
+The width equals the Button height of the same size, and the icon grows with it.
+
+<ComponentPreview name="icon-button/icon-button-sizes" />
+
+### Rounded
+
+<ComponentPreview name="icon-button/icon-button-rounded" />
+
+### Tooltip
+
+The label shows in a tooltip on hover and focus. Pass `tooltip={false}` to turn it off.
+
+<ComponentPreview name="icon-button/icon-button-tooltip" />
+
+### Loading
+
+<ComponentPreview name="icon-button/icon-button-loading" />
+
+### Disabled
+
+<ComponentPreview name="icon-button/icon-button-disabled" />
+
+### As a link
+
+Use `asChild` to render a link that looks like an icon button.
+
+<ComponentPreview name="icon-button/icon-button-as-child" />
+
+## Accessibility
+
+- `label` is required and becomes the `aria-label`, because an icon alone has no accessible name.
+- The tooltip shows on hover and keyboard focus. The accessible name does not depend on it, so `tooltip={false}` keeps the name.
+- Everything else behaves like [Button](/docs/components/button): `Enter` and `Space` activate it, and a loading button stays focusable.
+
+## API reference
+
+All [Button](/docs/components/button) props except `aria-label` are passed through. The ones below are specific to IconButton or worth repeating.
+
+<PropsTable items={iconButtonProps} />

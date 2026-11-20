@@ -1,0 +1,57 @@
+import { switchProps } from '@/props/switch';
+
+<ComponentPreview name="switch/switch-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Field, FieldLabel, Switch } from '@rax-ds/ui';
+
+export function NotificationSwitch() {
+    return (
+        <Field orientation="horizontal">
+            <Switch id="notifications" />
+            <FieldLabel htmlFor="notifications">Email notifications</FieldLabel>
+        </Field>
+    );
+}
+```
+
+## Examples
+
+### Sizes
+
+<ComponentPreview name="switch/switch-sizes" />
+
+### With a description
+
+<ComponentPreview name="switch/switch-with-description" />
+
+### Disabled
+
+<ComponentPreview name="switch/switch-disabled" />
+
+### Invalid
+
+<ComponentPreview name="switch/switch-invalid" />
+
+### Controlled
+
+<ComponentPreview name="switch/switch-controlled" />
+
+## Accessibility
+
+- Built on the Radix Switch. It is a button with `role="switch"` and `aria-checked`.
+- `Space` and `Enter` toggle it.
+- Give it a label with `htmlFor` and `id`, or `aria-label`. Clicking the label toggles the switch.
+- `aria-invalid` adds a red border.
+
+## API reference
+
+Radix Switch props are passed through.
+
+<PropsTable items={switchProps} />

@@ -1,0 +1,63 @@
+import { toggleProps } from '@/props/toggle';
+
+<ComponentPreview name="toggle/toggle-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { BoldIcon } from 'lucide-react';
+
+import { Toggle } from '@rax-ds/ui';
+
+export function BoldToggle() {
+    return (
+        <Toggle aria-label="Toggle bold">
+            <BoldIcon />
+        </Toggle>
+    );
+}
+```
+
+For several related toggles use [ToggleGroup](/docs/components/toggle-group).
+
+## Examples
+
+### Variants
+
+Both variants show a pressed toggle with the accent color.
+
+<ComponentPreview name="toggle/toggle-variants" />
+
+### Sizes
+
+The heights follow the Button scale. An icon-only toggle is a square.
+
+<ComponentPreview name="toggle/toggle-sizes" />
+
+### With text
+
+<ComponentPreview name="toggle/toggle-with-text" />
+
+### Disabled
+
+<ComponentPreview name="toggle/toggle-disabled" />
+
+### Controlled
+
+<ComponentPreview name="toggle/toggle-controlled" />
+
+## Accessibility
+
+- Built on the Radix Toggle. It is a button with `aria-pressed` that reflects the state.
+- `Space` and `Enter` toggle it.
+- An icon-only toggle needs `aria-label`.
+
+## API reference
+
+Radix Toggle props are passed through.
+
+<PropsTable items={toggleProps} />

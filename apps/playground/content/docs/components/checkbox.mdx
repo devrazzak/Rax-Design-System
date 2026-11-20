@@ -1,0 +1,67 @@
+import { checkboxProps } from '@/props/checkbox';
+
+<ComponentPreview name="checkbox/checkbox-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Checkbox, Field, FieldLabel } from '@rax-ds/ui';
+
+export function TermsCheckbox() {
+    return (
+        <Field orientation="horizontal">
+            <Checkbox id="terms" />
+            <FieldLabel htmlFor="terms">Accept terms and conditions</FieldLabel>
+        </Field>
+    );
+}
+```
+
+## Examples
+
+### Sizes
+
+<ComponentPreview name="checkbox/checkbox-sizes" />
+
+### States
+
+A checkbox can be unchecked, checked or indeterminate.
+
+<ComponentPreview name="checkbox/checkbox-states" />
+
+### With a description
+
+Wrap the label and the hint in `FieldContent`.
+
+<ComponentPreview name="checkbox/checkbox-with-description" />
+
+### Disabled
+
+<ComponentPreview name="checkbox/checkbox-disabled" />
+
+### Invalid
+
+<ComponentPreview name="checkbox/checkbox-invalid" />
+
+### Controlled
+
+`onCheckedChange` can receive `'indeterminate'`, so compare the value with `true`.
+
+<ComponentPreview name="checkbox/checkbox-controlled" />
+
+## Accessibility
+
+- Built on the Radix Checkbox. It is a button with `role="checkbox"` and `aria-checked` (`true`, `false` or `mixed`).
+- `Space` toggles it.
+- Give it a label with `htmlFor` and `id`, or `aria-label`. Clicking the label toggles the checkbox.
+- `aria-invalid` turns the border red.
+
+## API reference
+
+Radix Checkbox props are passed through.
+
+<PropsTable items={checkboxProps} />

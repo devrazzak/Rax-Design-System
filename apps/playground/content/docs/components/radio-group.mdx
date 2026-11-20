@@ -1,0 +1,76 @@
+import { radioGroupItemProps, radioGroupProps } from '@/props/radio-group';
+
+<ComponentPreview name="radio-group/radio-group-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Field, FieldLabel, RadioGroup, RadioGroupItem } from '@rax-ds/ui';
+
+export function DeliveryMethod() {
+    return (
+        <RadioGroup defaultValue="standard" aria-label="Delivery method">
+            <Field orientation="horizontal">
+                <RadioGroupItem value="standard" id="standard" />
+                <FieldLabel htmlFor="standard">Standard shipping</FieldLabel>
+            </Field>
+            <Field orientation="horizontal">
+                <RadioGroupItem value="express" id="express" />
+                <FieldLabel htmlFor="express">Express shipping</FieldLabel>
+            </Field>
+        </RadioGroup>
+    );
+}
+```
+
+## Examples
+
+### Sizes
+
+`size` is set on each `RadioGroupItem`.
+
+<ComponentPreview name="radio-group/radio-group-sizes" />
+
+### Horizontal
+
+<ComponentPreview name="radio-group/radio-group-horizontal" />
+
+### Disabled
+
+Disable the whole group on `RadioGroup`, or one option on `RadioGroupItem`.
+
+<ComponentPreview name="radio-group/radio-group-disabled" />
+
+### Invalid
+
+Set `aria-invalid` on the items and wrap the group in a `FieldSet` with a `FieldLegend`.
+
+<ComponentPreview name="radio-group/radio-group-invalid" />
+
+### Controlled
+
+<ComponentPreview name="radio-group/radio-group-controlled" />
+
+## Accessibility
+
+- Built on the Radix Radio Group. The group has `role="radiogroup"` and the items have `role="radio"`.
+- `Tab` moves focus into the group, and the arrow keys move between items and select them. `Space` selects the focused item.
+- Give the group an accessible name with `aria-label`, or a `FieldLegend` inside a `FieldSet`, and give each item a label with `htmlFor` and `id`.
+
+## API reference
+
+### RadioGroup
+
+Radix Radio Group root props are passed through.
+
+<PropsTable items={radioGroupProps} />
+
+### RadioGroupItem
+
+Radix Radio Group item props are passed through.
+
+<PropsTable items={radioGroupItemProps} />

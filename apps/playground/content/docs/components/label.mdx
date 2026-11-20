@@ -1,0 +1,52 @@
+import { labelProps } from '@/props/label';
+
+<ComponentPreview name="label/label-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Input, Label } from '@rax-ds/ui';
+
+export function EmailInput() {
+    return (
+        <>
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" />
+        </>
+    );
+}
+```
+
+To add a hint and an error message, use [Field](/docs/components/field).
+
+## Examples
+
+### Sizes
+
+<ComponentPreview name="label/label-sizes" />
+
+### With a checkbox
+
+<ComponentPreview name="label/label-with-checkbox" />
+
+### Disabled control
+
+The label dims when the control before it is disabled. The control needs to come before the label in the markup.
+
+<ComponentPreview name="label/label-disabled" />
+
+## Accessibility
+
+- Built on the Radix Label, which renders a native `<label>`. Connect it to a control with `htmlFor` and the control's `id`.
+- Clicking the label focuses or activates the control.
+- The dimmed look follows the `peer-disabled` style, so it works only when the control is a previous sibling with the `peer` class. [Checkbox](/docs/components/checkbox), [Switch](/docs/components/switch) and [RadioGroup](/docs/components/radio-group) items have it.
+
+## API reference
+
+Radix Label props are passed through.
+
+<PropsTable items={labelProps} />

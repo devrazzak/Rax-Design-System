@@ -1,0 +1,74 @@
+import { inputOtpProps, inputOtpSlotProps } from '@/props/input-otp';
+
+<ComponentPreview name="input-otp/input-otp-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@rax-ds/ui';
+
+export function CodeInput() {
+    return (
+        <InputOTP maxLength={4} aria-label="Verification code">
+            <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+            </InputOTPGroup>
+        </InputOTP>
+    );
+}
+```
+
+`InputOTPSeparator` adds a dash between groups. Only the `children` form is supported, not `render`. Built on the `input-otp` library.
+
+## Examples
+
+### Sizes
+
+<ComponentPreview name="input-otp/input-otp-sizes" />
+
+### Allowed characters
+
+`pattern` limits the characters. Use `REGEXP_ONLY_DIGITS`, `REGEXP_ONLY_CHARS` or `REGEXP_ONLY_DIGITS_AND_CHARS`, which are exported from the package.
+
+<ComponentPreview name="input-otp/input-otp-pattern" />
+
+### Disabled
+
+<ComponentPreview name="input-otp/input-otp-disabled" />
+
+### Invalid
+
+Set `aria-invalid` on `InputOTP`. It turns every slot border red.
+
+<ComponentPreview name="input-otp/input-otp-invalid" />
+
+### Controlled
+
+`onComplete` runs when every slot is filled.
+
+<ComponentPreview name="input-otp/input-otp-controlled" />
+
+## Accessibility
+
+- One real `<input>` receives the typing, and the slots only display its characters. Typing, deleting, pasting and the browser's autofill work on that input.
+- Give it an accessible name with `aria-label` or a [Label](/docs/components/label) with `htmlFor` and `id`.
+- `aria-invalid` and `disabled` on the input change the look of all slots.
+
+## API reference
+
+### InputOTP
+
+Props of the `input-otp` library are passed through. Native `<input>` props are too, except the native `size`.
+
+<PropsTable items={inputOtpProps} />
+
+### InputOTPSlot
+
+<PropsTable items={inputOtpSlotProps} />

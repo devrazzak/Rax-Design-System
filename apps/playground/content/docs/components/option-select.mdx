@@ -1,0 +1,61 @@
+import { optionSelectProps } from '@/props/option-select';
+
+<ComponentPreview name="option-select/option-select-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { OptionSelect } from '@rax-ds/ui';
+
+const options = [
+    { value: 'pending', label: 'Pending' },
+    { value: 'shipped', label: 'Shipped' },
+];
+
+export function StatusSelect() {
+    return <OptionSelect options={options} placeholder="Select a status" aria-label="Status" />;
+}
+```
+
+OptionSelect is a [Select](/docs/components/select) built from an `options` array. For groups or custom items, use the Select parts directly.
+
+## Examples
+
+### Sizes
+
+<ComponentPreview name="option-select/option-select-sizes" />
+
+### With a field
+
+<ComponentPreview name="option-select/option-select-with-field" />
+
+### Disabled
+
+Disable the whole select with `disabled`, or one option with `disabled: true` in the options array.
+
+<ComponentPreview name="option-select/option-select-disabled" />
+
+### Invalid
+
+<ComponentPreview name="option-select/option-select-invalid" />
+
+### Controlled
+
+Values are strings, so convert an id with `String(id)`.
+
+<ComponentPreview name="option-select/option-select-controlled" />
+
+## Accessibility
+
+- It renders a [Select](/docs/components/select), so it has the same Radix keyboard behavior and roles.
+- `id`, `aria-label`, `aria-labelledby`, `aria-describedby` and `aria-invalid` go to the trigger. Give it an accessible name with one of them or a [Label](/docs/components/label).
+
+## API reference
+
+The Select root props are passed through, except `children`.
+
+<PropsTable items={optionSelectProps} />

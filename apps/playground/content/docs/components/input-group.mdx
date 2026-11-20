@@ -1,0 +1,86 @@
+import { inputGroupButtonProps, inputGroupProps } from '@/props/input-group';
+
+<ComponentPreview name="input-group/input-group-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { SearchIcon } from 'lucide-react';
+
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@rax-ds/ui';
+
+export function SearchField() {
+    return (
+        <InputGroup>
+            <InputGroupAddon>
+                <SearchIcon />
+            </InputGroupAddon>
+            <InputGroupInput placeholder="Search" aria-label="Search" />
+        </InputGroup>
+    );
+}
+```
+
+The group is one box that owns the border and the focus ring. Use `InputGroupInput` inside it, not [Input](/docs/components/input).
+
+## Examples
+
+### Addons
+
+An addon can sit before or after the input, and show an icon or short text.
+
+<ComponentPreview name="input-group/input-group-addons" />
+
+### With a button
+
+<ComponentPreview name="input-group/input-group-with-button" />
+
+### Password toggle
+
+An icon-only `InputGroupButton` needs an `aria-label`.
+
+<ComponentPreview name="input-group/input-group-password" />
+
+### Sizes
+
+The heights match [Input](/docs/components/input) of the same size.
+
+<ComponentPreview name="input-group/input-group-sizes" />
+
+### Disabled
+
+<ComponentPreview name="input-group/input-group-disabled" />
+
+### Invalid
+
+Set `aria-invalid` on `InputGroupInput`. The border of the group turns red.
+
+<ComponentPreview name="input-group/input-group-invalid" />
+
+## Accessibility
+
+- The input is a native `<input>`. Give it a label with `htmlFor` and `id`, or `aria-label`.
+- Addons are plain elements. Text in an addon is not a label of the input.
+- `disabled` and `aria-invalid` on the input style the whole group.
+
+## API reference
+
+### InputGroup
+
+All native `<div>` props are passed through.
+
+<PropsTable items={inputGroupProps} />
+
+### InputGroupButton
+
+A [Button](/docs/components/button) with different defaults. All Button props are passed through.
+
+<PropsTable items={inputGroupButtonProps} />
+
+### Other parts
+
+`InputGroupInput` takes native `<input>` props and `InputGroupAddon` takes native `<div>` props.
