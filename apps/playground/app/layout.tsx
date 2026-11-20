@@ -11,11 +11,18 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
+    metadataBase: new URL(siteConfig.url),
     title: {
         default: siteConfig.name,
         template: `%s – ${siteConfig.name}`,
     },
     description: siteConfig.description,
+    openGraph: {
+        title: siteConfig.name,
+        description: siteConfig.description,
+        siteName: siteConfig.name,
+        type: 'website',
+    },
 };
 
 /** Runs before the first paint so the page never flashes the wrong theme. Saved choice wins, otherwise the system setting. */
