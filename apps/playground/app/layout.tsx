@@ -24,6 +24,8 @@ export const metadata: Metadata = {
         siteName: siteConfig.name,
         type: 'website',
     },
+    // Show the Open Graph image as a large card when the link is shared
+    twitter: { card: 'summary_large_image' },
 };
 
 /** Runs before the first paint so the page never flashes the wrong theme. Saved choice wins, otherwise the system setting. */
