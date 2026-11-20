@@ -1,0 +1,29 @@
+## Overview
+
+Components use semantic color tokens, never raw palette values. Each token is a CSS variable named `--rax-color-<name>` and a Tailwind color named `<name>`, so `--rax-color-primary` is used as `bg-primary` or `text-primary`.
+
+The swatches below read the live variables. Switch the theme to see the dark values.
+
+## Base
+
+Page and surface colors, borders and the focus ring.
+
+<ColorSwatches group="base" />
+
+## Brand
+
+The primary and secondary colors and their hover states. Override these to apply your brand. See [Theming](/docs/theming).
+
+<ColorSwatches group="brand" />
+
+## Neutral
+
+Quiet backgrounds and secondary text.
+
+<ColorSwatches group="neutral" />
+
+## Status
+
+Error, info and warning colors. The `-subtle` tokens are light tints for backgrounds.
+
+<ColorSwatches group="status" />

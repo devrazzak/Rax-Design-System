@@ -3,17 +3,51 @@
 - React 19
 - Tailwind CSS 4
 
-## Install
+## Install the package
 
 <InstallCommand packages="@rax-ds/ui" />
 
+`@rax-ds/tokens` is installed automatically.
+
 ## Import the styles
 
-Import Tailwind first, then the design system styles, in your global CSS file:
+Add two lines to your global CSS file. Import Tailwind first, then the design system:
 
 ```css
 @import 'tailwindcss';
 @import '@rax-ds/ui/styles.css';
 ```
 
-The full guide is written in a later step.
+The second line brings in the design tokens and tells Tailwind where to find the component classes, so no `@source` rule is needed.
+
+## Add the tooltip provider
+
+`Tooltip` and `IconButton` need one `TooltipProvider` above them. Add it once, at the root of your app:
+
+```tsx
+import type { ReactNode } from 'react';
+
+import { TooltipProvider } from '@rax-ds/ui';
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+    return (
+        <html lang="en">
+            <body>
+                <TooltipProvider>{children}</TooltipProvider>
+            </body>
+        </html>
+    );
+}
+```
+
+## Use a component
+
+```tsx
+import { Button } from '@rax-ds/ui';
+
+export function SaveButton() {
+    return <Button>Save</Button>;
+}
+```
+
+Components that need the browser are marked `'use client'` inside the package, so you can render all of them from a Server Component.

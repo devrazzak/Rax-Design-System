@@ -1,3 +1,40 @@
-## Overview
+## How tokens work
 
-Override the `--rax-*` CSS variables to apply your own brand. The full guide is written in a later step.
+Tokens come in two layers. Components only use the semantic layer, so changing one semantic token changes every component that uses it.
+
+| Layer     | Example                               | Use it for                      |
+| --------- | ------------------------------------- | ------------------------------- |
+| Primitive | `--rax-color-red-700`                 | Raw palette values              |
+| Semantic  | `--rax-color-primary`                 | A role, such as the brand color |
+| Utility   | `bg-primary`, `text-muted-foreground` | Tailwind classes in your markup |
+
+## Change the brand color
+
+Override semantic tokens in your own global CSS, after the design system import. Set a value for the dark theme too:
+
+```css
+@import 'tailwindcss';
+@import '@rax-ds/ui/styles.css';
+
+:root {
+    --rax-color-primary: oklch(0.55 0.2 260);
+    --rax-color-primary-hover: oklch(0.48 0.2 260);
+}
+
+.dark {
+    --rax-color-primary: oklch(0.62 0.19 260);
+    --rax-color-primary-hover: oklch(0.7 0.17 260);
+}
+```
+
+Brand values belong to your project. Keep them in your app, not in the design system.
+
+## Override a part of the page
+
+A CSS variable set on an element only affects its children. This changes the brand color inside one section:
+
+<ComponentPreview name="theming/scoped-brand-color" />
+
+## All tokens
+
+See [Colors](/docs/foundations/colors) and [Radius](/docs/foundations/radius) for every token you can override.

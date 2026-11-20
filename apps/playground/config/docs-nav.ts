@@ -31,4 +31,34 @@ export const docsNav: readonly DocSection[] = [
             },
         ],
     },
+    {
+        title: 'Foundations',
+        items: [
+            {
+                slug: 'foundations/colors',
+                title: 'Colors',
+                description: 'Semantic color tokens for surfaces, text, brand and status, in light and dark.',
+            },
+            {
+                slug: 'foundations/typography',
+                title: 'Typography',
+                description: 'Font families and the Heading and Text size scales.',
+            },
+            {
+                slug: 'foundations/radius',
+                title: 'Radius',
+                description: 'The corner radius scale used by every component.',
+            },
+        ],
+    },
+    {
+        title: 'Inputs',
+        items: [
+            {
+                slug: 'components/button',
+                title: 'Button',
+                description: 'Triggers an action. Comes with variants, sizes, icons and a loading state.',
+            },
+        ],
+    },
 ];

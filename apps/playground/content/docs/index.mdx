@@ -1,5 +1,25 @@
-## Overview
+## What it is
 
-Rax is a React component library built on [Radix UI](https://www.radix-ui.com) and Tailwind CSS. Every color, font and radius comes from design tokens, so one set of components can carry any brand.
+Rax is a React component library built on [Radix UI](https://www.radix-ui.com) and [Tailwind CSS](https://tailwindcss.com). Radix handles behavior and accessibility, Tailwind handles styling, and design tokens hold every color, font and radius. One set of components can carry any brand.
 
-The full introduction is written in a later step.
+## Packages
+
+| Package          | What it holds                                                    |
+| ---------------- | ---------------------------------------------------------------- |
+| `@rax-ds/ui`     | The React components and the CSS that connects them to Tailwind. |
+| `@rax-ds/tokens` | Design tokens as CSS variables, with light and dark themes.      |
+
+`@rax-ds/tokens` is installed with `@rax-ds/ui`, so most projects only add one package.
+
+## Principles
+
+- **Accessible by default.** Components follow the WAI-ARIA patterns through Radix, and every component is tested with axe.
+- **Themed by tokens.** Components never hard-code a color. Dark mode and brand colors come from CSS variables, not `dark:` classes.
+- **Server Component friendly.** Only components that need the browser are client components, and they can be rendered from Server Components.
+- **Simple props.** The same size names (`sm`, `md`, `lg`, `xl`) and spacing scale are used across components.
+
+## Next steps
+
+- [Install the packages](/docs/installation) and import the styles.
+- [Apply your brand](/docs/theming) by overriding tokens.
+- Browse the components, starting with [Button](/docs/components/button).
