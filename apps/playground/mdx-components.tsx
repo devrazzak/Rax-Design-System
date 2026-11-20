@@ -26,6 +26,7 @@ import type { ComponentPreviewProps } from '@/components/docs/component-preview'
 import { CodeBlock } from '@/components/code/code-block';
 import { InstallCommand } from '@/components/code/install-command';
 import { ColorSwatches } from '@/components/docs/color-swatches';
+import { ComponentIndex } from '@/components/docs/component-index';
 import { ComponentPreview } from '@/components/docs/component-preview';
 import { PropsTable } from '@/components/docs/props-table';
 import { RadiusScale } from '@/components/docs/radius-scale';
@@ -92,6 +93,7 @@ const components: MDXComponents = {
         </div>
     ),
     ColorSwatches,
+    ComponentIndex,
     RadiusScale,
     Alert: (props: AlertProps) => <Alert className="my-6" {...props} />,
     AlertTitle,

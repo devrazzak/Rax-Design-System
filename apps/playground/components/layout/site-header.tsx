@@ -28,7 +28,7 @@ export function SiteHeader() {
                                 Docs
                             </Link>
                             <Link
-                                href="/docs/components/button"
+                                href="/docs/components"
                                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                             >
                                 Components

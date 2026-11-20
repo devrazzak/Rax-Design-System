@@ -29,6 +29,11 @@ export const docsNav: readonly DocSection[] = [
                 title: 'Dark Mode',
                 description: 'Switch themes with a class or attribute, without a flash on load.',
             },
+            {
+                slug: 'components',
+                title: 'Components',
+                description: 'Every component in the design system, grouped by what it is used for.',
+            },
         ],
     },
     {
