@@ -4,7 +4,11 @@ import { isValidElement } from 'react';
 import type { MDXComponents } from 'mdx/types';
 import Link from 'next/link';
 
+import type { AlertProps } from '@rax-ds/ui';
 import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
     Heading,
     List,
     ListItem,
@@ -18,8 +22,13 @@ import {
     Text,
 } from '@rax-ds/ui';
 
+import type { ComponentPreviewProps } from '@/components/docs/component-preview';
 import { CodeBlock } from '@/components/code/code-block';
 import { InstallCommand } from '@/components/code/install-command';
+import { ColorSwatches } from '@/components/docs/color-swatches';
+import { ComponentPreview } from '@/components/docs/component-preview';
+import { PropsTable } from '@/components/docs/props-table';
+import { RadiusScale } from '@/components/docs/radius-scale';
 
 const linkClassName = 'font-medium text-primary underline underline-offset-4';
 
@@ -76,6 +85,17 @@ const components: MDXComponents = {
     td: TableCell,
     // Custom components that MDX files can use without importing them
     InstallCommand,
+    ComponentPreview: (props: ComponentPreviewProps) => <ComponentPreview className="my-6" {...props} />,
+    PropsTable: (props: ComponentProps<typeof PropsTable>) => (
+        <div className="my-6">
+            <PropsTable {...props} />
+        </div>
+    ),
+    ColorSwatches,
+    RadiusScale,
+    Alert: (props: AlertProps) => <Alert className="my-6" {...props} />,
+    AlertTitle,
+    AlertDescription,
 };
 
 export function useMDXComponents(): MDXComponents {
