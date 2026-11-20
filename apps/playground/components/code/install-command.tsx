@@ -1,6 +1,7 @@
-import { cn, Row, Tabs, TabsContent, TabsList, TabsTrigger } from '@rax-ds/ui';
+import { cn, Row, TabsContent, TabsList, TabsTrigger } from '@rax-ds/ui';
 
 import { CodeBlock } from './code-block';
+import { PackageManagerTabs } from './package-manager-tabs';
 
 const packageManagers = [
     { name: 'pnpm', command: 'pnpm add' },
@@ -17,7 +18,7 @@ interface InstallCommandProps {
 
 export function InstallCommand({ packages, className }: InstallCommandProps) {
     return (
-        <Tabs defaultValue="pnpm" className={cn('gap-0 overflow-hidden rounded-xl border border-border', className)}>
+        <PackageManagerTabs className={cn('gap-0 overflow-hidden rounded-xl border border-border', className)}>
             <Row className="border-b border-border bg-muted/50 px-3">
                 <TabsList variant="line" size="sm">
                     {packageManagers.map(manager => (
@@ -32,6 +33,6 @@ export function InstallCommand({ packages, className }: InstallCommandProps) {
                     <CodeBlock code={`${manager.command} ${packages}`} lang="bash" className="rounded-none border-0" />
                 </TabsContent>
             ))}
-        </Tabs>
+        </PackageManagerTabs>
     );
 }
