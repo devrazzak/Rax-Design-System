@@ -5,3 +5,4 @@ coverage
 .next
 pnpm-lock.yaml
 CHANGELOG.md
+next-env.d.ts
