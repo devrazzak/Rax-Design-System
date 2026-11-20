@@ -1,2 +1,7 @@
 @import 'tailwindcss';
 @import '@rax-ds/ui/styles.css';
+
+/* Use the self-hosted Inter from next/font instead of the plain family name in the token */
+:root {
+    --rax-font-family-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}

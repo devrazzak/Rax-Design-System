@@ -1,11 +1,23 @@
 import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
+import { siteConfig } from '@/config/site';
+import { Inter } from 'next/font/google';
+
+import { TooltipProvider } from '@rax-ds/ui';
+
+import { SiteHeader } from '@/components/layout/site-header';
 
 import './globals.css';
 
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+
 export const metadata: Metadata = {
-    title: 'Rax UI Playground',
+    title: {
+        default: siteConfig.name,
+        template: `%s – ${siteConfig.name}`,
+    },
+    description: siteConfig.description,
 };
 
 /** Runs before the first paint so the page never flashes the wrong theme. Saved choice wins, otherwise the system setting. */
@@ -14,11 +26,17 @@ const themeScript = `try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         // The script above changes the class on <html> before hydration, so React must not warn about it
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" className={inter.variable} suppressHydrationWarning>
             <head>
                 <script dangerouslySetInnerHTML={{ __html: themeScript }} />
             </head>
-            <body>{children}</body>
+            <body className="antialiased">
+                {/* IconButton shows a tooltip, and every tooltip needs a provider above it */}
+                <TooltipProvider>
+                    <SiteHeader />
+                    {children}
+                </TooltipProvider>
+            </body>
         </html>
     );
 }

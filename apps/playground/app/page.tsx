@@ -4,16 +4,12 @@ import { Button, Spinner } from '@rax-ds/ui';
 
 import { LoadingDemo } from './loading-demo';
 import { LoadingStates } from './loading-states';
-import { ThemeToggle } from './theme-toggle';
 
 /** Server Component: no "use client". Proves Button works when rendered from the server. */
 export default function HomePage() {
     return (
         <main className="mx-auto flex max-w-3xl flex-col gap-10 p-10">
-            <header className="flex items-center justify-between">
-                <h1 className="text-2xl font-semibold">Rax UI Playground</h1>
-                <ThemeToggle />
-            </header>
+            <h1 className="text-2xl font-semibold">Rax UI Playground</h1>
 
             <section className="flex flex-col gap-3">
                 <h2 className="text-lg font-medium">Variants (rendered in a Server Component)</h2>
