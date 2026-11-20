@@ -6,6 +6,34 @@
 
 ---
 
+## নিয়ম: সবসময় নিজেদের component (সবার আগে পড়ো)
+
+এই app-এর প্রতিটি file-এ (layout, page, MDX mapping, example) **`@rax-ds/ui`-তে যে component আছে সেটাই ব্যবহার করতে হবে।** নিজে HTML element + Tailwind class দিয়ে বানানো যাবে শুধু তখন, যখন DS-এ সেই জিনিস নেই।
+
+| দরকার                                                               | ব্যবহার করো                                            | নয়                          |
+| ------------------------------------------------------------------- | ----------------------------------------------------- | --------------------------- |
+| Page width + side padding                                           | `Container`                                           | `mx-auto max-w-* px-*`      |
+| Vertical padding, `section`/`article`/`aside`/`header`/`footer` tag | `Section` (`as`, `spacing`, `tone`)                   | native tag + `py-*`         |
+| Flex column                                                         | `Stack` (`gap`, `align`)                              | `flex flex-col gap-*`       |
+| Flex row                                                            | `Row` (`gap`, `align`, `justify`, `wrap`)             | `flex items-center gap-*`   |
+| Grid                                                                | `Grid` / `GridItem`                                   | `grid grid-cols-*`          |
+| Heading                                                             | `Heading` (`as`, `size`, `weight`, `color`)           | `<h2 className="text-*">`   |
+| Paragraph / text                                                    | `Text`                                                | `<p className="text-*">`    |
+| List                                                                | `List` / `ListItem` (`marker="none"` for plain lists) | `<ul className="flex ...">` |
+| Divider                                                             | `Separator`                                           | `<hr>` / `border-t` div     |
+| Button, icon button, toggle                                         | `Button`, `IconButton`, `Toggle`                      | custom `<button>`           |
+| Table, Tabs, Dialog, Drawer, Tooltip, ScrollArea ...                | DS version                                            | নিজে বানানো                 |
+
+- Spacing DS-এর scale থেকে নিতে হবে (`gap`: `none | sm 8px | md 16px | lg 24px | xl 32px`; `List` gap-এ `xs 4px`)। Scale-এর বাইরের `gap-10`, `gap-1` ধরনের মান নয়।
+- **যেখানে DS-এ নেই, শুধু সেখানে native element** — আর সেখানে একটা ছোট English comment দিয়ে কারণ লেখা থাকবে। এখনকার exception:
+    - `<main>` আর `<nav>` landmark (`Section`-এর `as`-এ এগুলো নেই)
+    - `next/link` (navigation-এর জন্য), link-এর style class
+    - MDX-এর inline `code`
+    - MDX table-এর বাইরের margin wrapper (`Table`-এর `className` `<table>`-এ যায়, scroll container-এ না)
+- নতুন exception দরকার হলে আগে owner-কে জানাতে হবে। DS-এ নতুন prop বা component যোগ করার প্রস্তাব দেওয়া যাবে, কিন্তু `packages/`-এ নিজে change করা যাবে না।
+
+---
+
 ## 0. নেওয়া সিদ্ধান্ত (তোমার উত্তর অনুযায়ী)
 
 | বিষয়         | সিদ্ধান্ত                                                                                                                                            |
