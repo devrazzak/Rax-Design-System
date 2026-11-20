@@ -30,6 +30,7 @@ import { ComponentIndex } from '@/components/docs/component-index';
 import { ComponentPreview } from '@/components/docs/component-preview';
 import { PropsTable } from '@/components/docs/props-table';
 import { RadiusScale } from '@/components/docs/radius-scale';
+import { ThemeCustomizer } from '@/components/docs/theme-customizer';
 
 const linkClassName = 'font-medium text-primary underline underline-offset-4';
 
@@ -95,6 +96,7 @@ const components: MDXComponents = {
     ColorSwatches,
     ComponentIndex,
     RadiusScale,
+    ThemeCustomizer,
     Alert: (props: AlertProps) => <Alert className="my-6" {...props} />,
     AlertTitle,
     AlertDescription,
