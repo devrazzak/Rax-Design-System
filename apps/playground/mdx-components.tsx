@@ -38,7 +38,7 @@ const linkClassName = 'font-medium text-primary underline underline-offset-4';
 // The HTML `color` attribute is a string and clashes with the typed DS `color` prop. Markdown never sets it, so it is dropped.
 const components: MDXComponents = {
     h2: ({ color: _color, ...props }: ComponentProps<'h2'>) => (
-        <Heading as="h2" size="2xl" className="mt-12 mb-4 scroll-mt-20 border-b border-border pb-2" {...props} />
+        <Heading as="h2" size="2xl" className="mt-14 mb-4 scroll-mt-20" {...props} />
     ),
     h3: ({ color: _color, ...props }: ComponentProps<'h3'>) => (
         <Heading as="h3" size="xl" className="mt-8 mb-3 scroll-mt-20" {...props} />
@@ -85,7 +85,7 @@ const components: MDXComponents = {
     th: TableHead,
     td: TableCell,
     // Custom components that MDX files can use without importing them
-    InstallCommand,
+    InstallCommand: (props: ComponentProps<typeof InstallCommand>) => <InstallCommand className="my-6" {...props} />,
     ComponentPreview: (props: ComponentPreviewProps) => <ComponentPreview className="my-6" {...props} />,
     PropsTable: (props: ComponentProps<typeof PropsTable>) => (
         <div className="my-6">

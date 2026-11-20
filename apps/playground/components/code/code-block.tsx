@@ -15,7 +15,7 @@ export async function CodeBlock({ code, lang = 'tsx', className }: CodeBlockProp
     const html = await highlight(code, lang);
 
     return (
-        <div className={cn('relative rounded-md border border-border bg-muted', className)}>
+        <div className={cn('relative rounded-xl border border-border bg-muted', className)}>
             <div
                 className="[&_pre]:overflow-x-auto [&_pre]:p-4 [&_pre]:pr-12 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:leading-6"
                 // Safe: the HTML comes from Shiki, which escapes the code it is given

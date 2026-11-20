@@ -1,6 +1,6 @@
 import { examples, isExampleName } from '@/examples/registry';
 
-import { Row, Tabs, TabsContent, TabsList, TabsTrigger } from '@rax-ds/ui';
+import { cn, Row, Tabs, TabsContent, TabsList, TabsTrigger } from '@rax-ds/ui';
 
 import { getExampleSource } from '@/lib/example-source';
 import { CodeBlock } from '@/components/code/code-block';
@@ -20,18 +20,25 @@ export async function ComponentPreview({ name, className }: ComponentPreviewProp
     const [{ default: Example }, code] = await Promise.all([examples[name](), getExampleSource(name)]);
 
     return (
-        <Tabs defaultValue="preview" className={className}>
-            <TabsList variant="line" size="sm">
-                <TabsTrigger value="preview">Preview</TabsTrigger>
-                <TabsTrigger value="code">Code</TabsTrigger>
-            </TabsList>
-            <TabsContent value="preview">
-                <Row justify="center" wrap className="min-h-72 rounded-md border border-border p-10">
+        <Tabs defaultValue="preview" className={cn('gap-0 overflow-hidden rounded-xl border border-border', className)}>
+            <Row className="border-b border-border bg-muted/50 px-3">
+                <TabsList variant="line" size="sm">
+                    <TabsTrigger value="preview">Preview</TabsTrigger>
+                    <TabsTrigger value="code">Code</TabsTrigger>
+                </TabsList>
+            </Row>
+            <TabsContent value="preview" className="rounded-none">
+                {/* A dot grid drawn with the border token, so it follows the theme */}
+                <Row
+                    justify="center"
+                    wrap
+                    className="min-h-72 bg-[radial-gradient(var(--rax-color-border)_1px,transparent_1px)] bg-size-[16px_16px] p-10"
+                >
                     <Example />
                 </Row>
             </TabsContent>
-            <TabsContent value="code">
-                <CodeBlock code={code} />
+            <TabsContent value="code" className="rounded-none">
+                <CodeBlock code={code} className="rounded-none border-0 [&_pre]:max-h-[28rem]" />
             </TabsContent>
         </Tabs>
     );
