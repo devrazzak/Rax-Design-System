@@ -1,0 +1,43 @@
+import { skeletonProps } from '@/props/skeleton';
+
+<ComponentPreview name="skeleton/skeleton-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Skeleton } from '@rax-ds/ui';
+
+export function TitlePlaceholder() {
+    return <Skeleton className="h-5 w-48" />;
+}
+```
+
+A skeleton has no size of its own. Give it a height and a width with `className`, and make it match the content it stands in for.
+
+## Examples
+
+### Card
+
+<ComponentPreview name="skeleton/skeleton-card" />
+
+### Swapping with content
+
+Show skeletons while loading, then replace them with the real content.
+
+<ComponentPreview name="skeleton/skeleton-loaded" />
+
+## Accessibility
+
+- A skeleton is an empty `div` with no role or text, so screen readers skip it.
+- If the loading state needs to be announced, set `aria-busy` on the container that will receive the content, or show a [Spinner](/docs/components/spinner) with a `label`.
+- The pulse animation is turned off when the user prefers reduced motion.
+
+## API reference
+
+All native `<div>` props are passed through.
+
+<PropsTable items={skeletonProps} />

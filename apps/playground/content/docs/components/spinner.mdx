@@ -1,0 +1,55 @@
+import { spinnerProps } from '@/props/spinner';
+
+<ComponentPreview name="spinner/spinner-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Spinner } from '@rax-ds/ui';
+
+export function Loading() {
+    return <Spinner label="Loading results" />;
+}
+```
+
+For a button that is working, use the `loading` prop of [Button](/docs/components/button) instead of placing a spinner in it.
+
+## Examples
+
+### Sizes
+
+<ComponentPreview name="spinner/spinner-sizes" />
+
+### Page size
+
+`page` is a large, thin spinner for a whole page or section.
+
+<ComponentPreview name="spinner/spinner-page" />
+
+### Colors
+
+`current` takes the text color of its parent. `inverse` is white.
+
+<ComponentPreview name="spinner/spinner-colors" />
+
+### With text
+
+When visible text already says what is loading, leave out `label`, so it is not read twice.
+
+<ComponentPreview name="spinner/spinner-with-text" />
+
+## Accessibility
+
+- With a `label` the spinner has `role="status"` and the label is in screen-reader-only text.
+- Without a `label` the spinner is decorative and gets `aria-hidden`. Use that inside elements that already expose their own busy state, like Button.
+- The rotation is turned off when the user prefers reduced motion.
+
+## API reference
+
+All native `<span>` props are passed through, except `color`, which is replaced.
+
+<PropsTable items={spinnerProps} />

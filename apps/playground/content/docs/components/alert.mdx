@@ -1,0 +1,70 @@
+import { alertProps } from '@/props/alert';
+
+<ComponentPreview name="alert/alert-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Alert, AlertDescription, AlertTitle } from '@rax-ds/ui';
+
+export function SavedAlert() {
+    return (
+        <Alert>
+            <AlertTitle>Saved</AlertTitle>
+            <AlertDescription>Your changes are saved automatically.</AlertDescription>
+        </Alert>
+    );
+}
+```
+
+An alert is a message inline in the page. For a message that needs a decision, use [AlertDialog](/docs/components/alert-dialog).
+
+## Examples
+
+### Variants
+
+The plain variants keep the card background and color the text and the icon.
+
+<ComponentPreview name="alert/alert-variants" />
+
+### Subtle variants
+
+The subtle variants fill the alert with a light tint.
+
+<ComponentPreview name="alert/alert-subtle" />
+
+### With an icon
+
+Put an icon as a direct child, before the title. The alert lays it out beside the text.
+
+<ComponentPreview name="alert/alert-with-icon" />
+
+### With an action
+
+`AlertAction` sits in the top-right corner, for example for a dismiss button.
+
+<ComponentPreview name="alert/alert-with-action" />
+
+### With a link
+
+Links inside the title and the description are underlined.
+
+<ComponentPreview name="alert/alert-with-link" />
+
+## Accessibility
+
+- The alert has `role="alert"`, so screen readers announce it when it appears. Use it for messages the user should hear about, not for static content that is always on the page.
+- Do not rely on color alone. Say what happened in the title or the description, and use an icon if it helps.
+- An icon-only action needs a label. [IconButton](/docs/components/icon-button) requires one.
+
+## API reference
+
+All native `<div>` props are passed through.
+
+<PropsTable items={alertProps} />
+
+`AlertTitle` and `AlertDescription` take native `<div>` props. `AlertAction` takes native `<div>` props and positions its content in the top-right corner.

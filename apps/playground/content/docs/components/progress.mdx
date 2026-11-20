@@ -1,0 +1,51 @@
+import { progressProps } from '@/props/progress';
+
+<ComponentPreview name="progress/progress-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Progress } from '@rax-ds/ui';
+
+export function UploadProgress({ value }: { value: number }) {
+    return <Progress value={value} aria-label="Upload progress" />;
+}
+```
+
+The bar is full width. Use [Spinner](/docs/components/spinner) when you do not know how long the task takes.
+
+## Examples
+
+### Sizes
+
+`size` sets the thickness of the bar.
+
+<ComponentPreview name="progress/progress-sizes" />
+
+### Values
+
+The bar fills `value` out of `max`, which defaults to 100.
+
+<ComponentPreview name="progress/progress-values" />
+
+### Updating the value
+
+Keep the value in state and pass it down.
+
+<ComponentPreview name="progress/progress-controlled" />
+
+## Accessibility
+
+- Built on the Radix Progress, which renders `role="progressbar"` with `aria-valuemin`, `aria-valuemax` and `aria-valuenow`.
+- Give it a name with `aria-label` or `aria-labelledby`, so users know what is progressing.
+- Show the number as text too if it matters, as the bar alone is hard to read exactly.
+
+## API reference
+
+Radix Progress props are passed through.
+
+<PropsTable items={progressProps} />

@@ -1,0 +1,57 @@
+import { badgeProps } from '@/props/badge';
+
+<ComponentPreview name="badge/badge-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Badge } from '@rax-ds/ui';
+
+export function StatusBadge() {
+    return <Badge variant="secondary">Shipped</Badge>;
+}
+```
+
+A badge is a short status label. The text is uppercase and wide-spaced, so keep it to a word or two.
+
+## Examples
+
+### Variants
+
+<ComponentPreview name="badge/badge-variants" />
+
+### On a dark background
+
+`white` is a white pill with primary text, for the corner of a photo or a dark card.
+
+<ComponentPreview name="badge/badge-on-color" />
+
+### Sizes
+
+<ComponentPreview name="badge/badge-sizes" />
+
+### With an icon
+
+<ComponentPreview name="badge/badge-with-icon" />
+
+### As a link
+
+Use `asChild` to render a link. Hover colors apply only to links, so a plain badge never looks clickable.
+
+<ComponentPreview name="badge/badge-as-child" />
+
+## Accessibility
+
+- A plain badge is a `span` with text and adds no role. A screen reader reads it as part of the surrounding text.
+- Do not rely on color alone for meaning. The text should say the status.
+- With `asChild` the child keeps its own semantics, so a link is a link.
+
+## API reference
+
+All native `<span>` props are passed through.
+
+<PropsTable items={badgeProps} />
