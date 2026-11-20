@@ -94,7 +94,7 @@
 ```txt
 apps/playground/
 ├── app/
-│   ├── layout.tsx                 # html, theme script, font, TooltipProvider
+│   ├── layout.tsx                 # html, theme script, font, header
 │   ├── globals.css                # tailwind + @rax-ds/ui styles + shiki + prose styles
 │   ├── page.tsx                   # landing
 │   ├── not-found.tsx
@@ -307,7 +307,7 @@ Sidebar group (MUI-style, কারণ ৪২টা component flat list-এ খ�
 
 - **Step 1: Setup.** Dependencies যোগ, playground-এ `typecheck` script, version align, `next.config.ts`-এ MDX (`pageExtensions`, `createMDX`, string plugins), root `mdx-components.tsx`। Commits: `chore(playground): add docs dependencies`, `chore(playground): set up MDX`
 - **Step 2: Types + config.** `types/docs.ts`, `config/site.ts`, `config/docs-nav.ts` (সব page entry, শুরুতে শুধু getting-started), `lib/docs.ts`। Commit: `feat(playground): add docs navigation config`
-- **Step 3: App shell.** Root layout (font, theme script, TooltipProvider), `docs/layout.tsx`, `SiteHeader`, `SidebarNav` (active link), `ThemeToggle`, `MobileNav` (DS `Drawer`, `side="left"`)। Commit: `feat(playground): add docs layout`
+- **Step 3: App shell.** Root layout (font, theme script, header; no TooltipProvider, every Tooltip brings its own), `docs/layout.tsx`, `SiteHeader`, `SidebarNav` (active link), `ThemeToggle`, `MobileNav` (DS `Drawer`, `side="left"`)। Commit: `feat(playground): add docs layout`
 - **Step 4: Docs route.** `[[...slug]]/page.tsx`, `generateStaticParams`, `generateMetadata`, `not-found.tsx`, prose styling (MDX element → DS `Heading`/`Text`/`List`)। Commit: `feat(playground): add docs page route`
 
 ### Phase B: Content engine

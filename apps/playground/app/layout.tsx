@@ -4,8 +4,6 @@ import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { Inter } from 'next/font/google';
 
-import { TooltipProvider } from '@rax-ds/ui';
-
 import { SiteHeader } from '@/components/layout/site-header';
 
 import './globals.css';
@@ -31,11 +29,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <script dangerouslySetInnerHTML={{ __html: themeScript }} />
             </head>
             <body className="antialiased">
-                {/* IconButton shows a tooltip, and every tooltip needs a provider above it */}
-                <TooltipProvider>
-                    <SiteHeader />
-                    {children}
-                </TooltipProvider>
+                <SiteHeader />
+                {children}
             </body>
         </html>
     );

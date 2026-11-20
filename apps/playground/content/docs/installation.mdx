@@ -20,26 +20,6 @@ Add two lines to your global CSS file. Import Tailwind first, then the design sy
 
 The second line brings in the design tokens and tells Tailwind where to find the component classes, so no `@source` rule is needed.
 
-## Add the tooltip provider
-
-`Tooltip` and `IconButton` need one `TooltipProvider` above them. Add it once, at the root of your app:
-
-```tsx
-import type { ReactNode } from 'react';
-
-import { TooltipProvider } from '@rax-ds/ui';
-
-export default function RootLayout({ children }: { children: ReactNode }) {
-    return (
-        <html lang="en">
-            <body>
-                <TooltipProvider>{children}</TooltipProvider>
-            </body>
-        </html>
-    );
-}
-```
-
 ## Use a component
 
 ```tsx
