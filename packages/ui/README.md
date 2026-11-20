@@ -1,6 +1,27 @@
-# @rax-ds/ui
+<h1 align="center">@rax-ds/ui</h1>
 
-React components for the Rax design system, built on Radix UI and Tailwind CSS v4.
+<p align="center">
+    Accessible React components for the Rax design system.<br />
+    Built on Radix UI and Tailwind CSS v4, themed with CSS variables, light and dark out of the box.
+</p>
+
+<p align="center">
+    <a href="https://rax-design-system.vercel.app"><strong>Documentation</strong></a> ·
+    <a href="https://rax-design-system.vercel.app/docs/installation">Installation</a> ·
+    <a href="https://rax-design-system.vercel.app/docs/components">Components</a> ·
+    <a href="https://rax-design-system.vercel.app/docs/theming">Theming</a> ·
+    <a href="https://github.com/devrazzak/Rax-Design-System">GitHub</a>
+</p>
+
+<p align="center">
+    <a href="https://www.npmjs.com/package/@rax-ds/ui"><img alt="npm version" src="https://img.shields.io/npm/v/@rax-ds/ui?color=blue" /></a>
+    <a href="https://www.npmjs.com/package/@rax-ds/ui"><img alt="npm downloads" src="https://img.shields.io/npm/dm/@rax-ds/ui" /></a>
+    <a href="./LICENSE"><img alt="license" src="https://img.shields.io/npm/l/@rax-ds/ui" /></a>
+</p>
+
+## Documentation
+
+The docs site has a live preview, copyable code and a props table for every component: **[rax-design-system.vercel.app](https://rax-design-system.vercel.app)**.
 
 ## Requirements
 
@@ -40,37 +61,39 @@ Any theme library that sets the `dark` class works too, for example [`next-theme
 
 ## Components
 
-| Component                          | Use it for                                          |
-| ---------------------------------- | --------------------------------------------------- |
-| `Button`                           | Actions. Variants, sizes, loading state, `asChild`. |
-| `Toggle`, `ToggleGroup`            | Buttons that stay pressed, alone or in a group.     |
-| `Spinner`                          | A loading indicator.                                |
-| `Skeleton`                         | A placeholder shape while content loads.            |
-| `Progress`                         | How far a task has come.                            |
-| `Heading`, `Text`                  | Typography.                                         |
-| `Container`, `Section`             | A centered page width, and a page section.          |
-| `Stack`, `Row`, `Grid`             | Vertical, horizontal and grid layouts.              |
-| `Label`                            | A label for a form control.                         |
-| `Input`, `Textarea`, `Select`      | Text and choice fields.                             |
-| `OptionSelect`                     | A `Select` built from an array of options.          |
-| `Checkbox`, `RadioGroup`, `Switch` | Yes/no and one-of-many controls.                    |
-| `InputGroup`                       | An input with icons, text or buttons beside it.     |
-| `Field`                            | A control with its label, hint and error message.   |
-| `InputOTP`                         | A one-time code split into separate slots.          |
-| `Card`                             | A bordered surface that groups related content.     |
-| `Avatar`, `Badge`                  | A person's picture and a short status label.        |
-| `Alert`                            | A message inline in the page. Info, warning, error. |
-| `Table`                            | Rows and columns of data.                           |
-| `Separator`                        | A thin line between content.                        |
-| `Breadcrumb`                       | The path to the current page.                       |
-| `Tabs`                             | Switch between views in the same place.             |
-| `Accordion`                        | Sections that expand and collapse.                  |
-| `ScrollArea`                       | A scrollable region with a styled scrollbar.        |
-| `Dialog`, `AlertDialog`            | A modal window, and one that needs a decision.      |
-| `Drawer`                           | A panel that slides in from an edge.                |
-| `DropdownMenu`                     | A menu of actions opened from a button.             |
-| `Popover`                          | A floating panel opened from a button.              |
-| `Tooltip`                          | A short hint on hover or focus.                     |
+| Component                                                                                                                                                                                                                              | Use it for                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`Button`](https://rax-design-system.vercel.app/docs/components/button)                                                                                                                                                                | Actions. Variants, sizes, loading state, `asChild`. |
+| [`Toggle`](https://rax-design-system.vercel.app/docs/components/toggle), [`ToggleGroup`](https://rax-design-system.vercel.app/docs/components/toggle-group)                                                                            | Buttons that stay pressed, alone or in a group.     |
+| [`IconButton`](https://rax-design-system.vercel.app/docs/components/icon-button)                                                                                                                                                       | A button that shows only an icon.                   |
+| [`Spinner`](https://rax-design-system.vercel.app/docs/components/spinner)                                                                                                                                                              | A loading indicator.                                |
+| [`Skeleton`](https://rax-design-system.vercel.app/docs/components/skeleton)                                                                                                                                                            | A placeholder shape while content loads.            |
+| [`Progress`](https://rax-design-system.vercel.app/docs/components/progress)                                                                                                                                                            | How far a task has come.                            |
+| [`Heading`](https://rax-design-system.vercel.app/docs/components/heading), [`Text`](https://rax-design-system.vercel.app/docs/components/text)                                                                                         | Typography.                                         |
+| [`Container`](https://rax-design-system.vercel.app/docs/components/container), [`Section`](https://rax-design-system.vercel.app/docs/components/section)                                                                               | A centered page width, and a page section.          |
+| [`Stack`](https://rax-design-system.vercel.app/docs/components/stack), [`Row`](https://rax-design-system.vercel.app/docs/components/row), [`Grid`](https://rax-design-system.vercel.app/docs/components/grid)                          | Vertical, horizontal and grid layouts.              |
+| [`List`](https://rax-design-system.vercel.app/docs/components/list)                                                                                                                                                                    | An ordered or unordered list.                       |
+| [`Label`](https://rax-design-system.vercel.app/docs/components/label)                                                                                                                                                                  | A label for a form control.                         |
+| [`Input`](https://rax-design-system.vercel.app/docs/components/input), [`Textarea`](https://rax-design-system.vercel.app/docs/components/textarea), [`Select`](https://rax-design-system.vercel.app/docs/components/select)            | Text and choice fields.                             |
+| [`OptionSelect`](https://rax-design-system.vercel.app/docs/components/option-select)                                                                                                                                                   | A `Select` built from an array of options.          |
+| [`Checkbox`](https://rax-design-system.vercel.app/docs/components/checkbox), [`RadioGroup`](https://rax-design-system.vercel.app/docs/components/radio-group), [`Switch`](https://rax-design-system.vercel.app/docs/components/switch) | Yes/no and one-of-many controls.                    |
+| [`InputGroup`](https://rax-design-system.vercel.app/docs/components/input-group)                                                                                                                                                       | An input with icons, text or buttons beside it.     |
+| [`Field`](https://rax-design-system.vercel.app/docs/components/field)                                                                                                                                                                  | A control with its label, hint and error message.   |
+| [`InputOTP`](https://rax-design-system.vercel.app/docs/components/input-o-t-p)                                                                                                                                                         | A one-time code split into separate slots.          |
+| [`Card`](https://rax-design-system.vercel.app/docs/components/card)                                                                                                                                                                    | A bordered surface that groups related content.     |
+| [`Avatar`](https://rax-design-system.vercel.app/docs/components/avatar), [`Badge`](https://rax-design-system.vercel.app/docs/components/badge)                                                                                         | A person's picture and a short status label.        |
+| [`Alert`](https://rax-design-system.vercel.app/docs/components/alert)                                                                                                                                                                  | A message inline in the page. Info, warning, error. |
+| [`Table`](https://rax-design-system.vercel.app/docs/components/table)                                                                                                                                                                  | Rows and columns of data.                           |
+| [`Separator`](https://rax-design-system.vercel.app/docs/components/separator)                                                                                                                                                          | A thin line between content.                        |
+| [`Breadcrumb`](https://rax-design-system.vercel.app/docs/components/breadcrumb)                                                                                                                                                        | The path to the current page.                       |
+| [`Tabs`](https://rax-design-system.vercel.app/docs/components/tabs)                                                                                                                                                                    | Switch between views in the same place.             |
+| [`Accordion`](https://rax-design-system.vercel.app/docs/components/accordion)                                                                                                                                                          | Sections that expand and collapse.                  |
+| [`ScrollArea`](https://rax-design-system.vercel.app/docs/components/scroll-area)                                                                                                                                                       | A scrollable region with a styled scrollbar.        |
+| [`Dialog`](https://rax-design-system.vercel.app/docs/components/dialog), [`AlertDialog`](https://rax-design-system.vercel.app/docs/components/alert-dialog)                                                                            | A modal window, and one that needs a decision.      |
+| [`Drawer`](https://rax-design-system.vercel.app/docs/components/drawer)                                                                                                                                                                | A panel that slides in from an edge.                |
+| [`DropdownMenu`](https://rax-design-system.vercel.app/docs/components/dropdown-menu)                                                                                                                                                   | A menu of actions opened from a button.             |
+| [`Popover`](https://rax-design-system.vercel.app/docs/components/popover)                                                                                                                                                              | A floating panel opened from a button.              |
+| [`Tooltip`](https://rax-design-system.vercel.app/docs/components/tooltip)                                                                                                                                                              | A short hint on hover or focus.                     |
 
 Most components come in four sizes: `sm`, `md` (default), `lg` and `xl`. `Dialog` and `Drawer` use the same names for their width, plus `full`. `Card` sets `padding` and `radius` instead of a size, and `Button` and `Spinner` have extra sizes.
 
@@ -210,7 +233,7 @@ To open a `Dialog` from a menu item, keep the `Dialog` next to the menu (not ins
 
 ### Tooltip and popover
 
-`Tooltip` needs one `TooltipProvider` above it, usually at the root of your app. A tooltip is a short hint only, so put anything the user must read or click in a `Popover`:
+`Tooltip` works on its own, with no provider needed. A tooltip is a short hint only, so put anything the user must read or click in a `Popover`. Wrap several tooltips in one `TooltipProvider` only if you want to change the shared delay:
 
 ```tsx
 import {

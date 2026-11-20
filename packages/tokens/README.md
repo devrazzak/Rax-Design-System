@@ -1,6 +1,24 @@
-# @rax-ds/tokens
+<h1 align="center">@rax-ds/tokens</h1>
 
-Design tokens for the Rax design system, generated with Style Dictionary as CSS variables.
+<p align="center">
+    Design tokens for the Rax design system, as CSS variables with light and dark themes.
+</p>
+
+<p align="center">
+    <a href="https://rax-design-system.vercel.app"><strong>Documentation</strong></a> ·
+    <a href="https://rax-design-system.vercel.app/docs/foundations/colors">Colors</a> ·
+    <a href="https://rax-design-system.vercel.app/docs/foundations/radius">Radius</a> ·
+    <a href="https://rax-design-system.vercel.app/docs/theming">Theming</a> ·
+    <a href="https://github.com/devrazzak/Rax-Design-System">GitHub</a>
+</p>
+
+<p align="center">
+    <a href="https://www.npmjs.com/package/@rax-ds/tokens"><img alt="npm version" src="https://img.shields.io/npm/v/@rax-ds/tokens?color=blue" /></a>
+    <a href="https://www.npmjs.com/package/@rax-ds/tokens"><img alt="npm downloads" src="https://img.shields.io/npm/dm/@rax-ds/tokens" /></a>
+    <a href="./LICENSE"><img alt="license" src="https://img.shields.io/npm/l/@rax-ds/tokens" /></a>
+</p>
+
+Built with Style Dictionary. See every color, the radius scale and a live theme customizer in the [docs](https://rax-design-system.vercel.app/docs/foundations/colors).
 
 Usually installed automatically by `@rax-ds/ui`. Use this package directly only if you need the variables without the components.
 
