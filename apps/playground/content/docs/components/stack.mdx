@@ -1,0 +1,48 @@
+import { stackProps } from '@/props/stack';
+
+<ComponentPreview name="stack/stack-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Heading, Stack, Text } from '@rax-ds/ui';
+
+export function Summary() {
+    return (
+        <Stack gap="sm">
+            <Heading as="h3">Recent orders</Heading>
+            <Text>Your latest orders appear here.</Text>
+        </Stack>
+    );
+}
+```
+
+Stack lays its children out in a column. Use [Row](/docs/components/row) for a line and [Grid](/docs/components/grid) for columns.
+
+## Examples
+
+### Gap
+
+The gap scale is shared by Stack, Row and Grid: 0, 8px, 16px, 24px and 32px. The default is `md`.
+
+<ComponentPreview name="stack/stack-gap" />
+
+### Align
+
+`align` sets the horizontal alignment of the children. The default is `stretch`, so children fill the width.
+
+<ComponentPreview name="stack/stack-align" />
+
+## Accessibility
+
+- Stack is a plain `div` and only changes the layout. Children keep their DOM order, which is the reading and tab order.
+
+## API reference
+
+All native `<div>` props are passed through.
+
+<PropsTable items={stackProps} />

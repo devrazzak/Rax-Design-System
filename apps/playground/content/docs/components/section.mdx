@@ -1,0 +1,57 @@
+import { sectionProps } from '@/props/section';
+
+<ComponentPreview name="section/section-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Container, Heading, Section } from '@rax-ds/ui';
+
+export function Features() {
+    return (
+        <Section spacing="lg" tone="muted">
+            <Container>
+                <Heading as="h2">Features</Heading>
+            </Container>
+        </Section>
+    );
+}
+```
+
+A section adds vertical padding and a background. It does not limit the width, so put a [Container](/docs/components/container) inside it.
+
+## Examples
+
+### Spacing
+
+The padding grows with the screen width between a minimum and a maximum. The default is `none`.
+
+<ComponentPreview name="section/section-spacing" />
+
+### Tones
+
+The background comes from semantic tokens, so dark mode follows. On `primary`, `secondary` and `foreground` choose a text color that stays readable.
+
+<ComponentPreview name="section/section-tones" />
+
+### Tag
+
+Use `as` to render the tag that matches the content.
+
+<ComponentPreview name="section/section-as" />
+
+## Accessibility
+
+- Section renders the tag you choose with `as`: `section`, `article`, `aside`, `header` or `footer`. Choose the one that matches the content.
+- A `section` element is exposed as a landmark only when it has an accessible name, so pass `aria-label` or `aria-labelledby` when you want that.
+- For `<main>` and `<nav>` use the native elements, because `as` does not include them.
+
+## API reference
+
+All native props of the rendered tag are passed through.
+
+<PropsTable items={sectionProps} />

@@ -1,0 +1,60 @@
+import { scrollAreaProps, scrollBarProps } from '@/props/scroll-area';
+
+<ComponentPreview name="scroll-area/scroll-area-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { ScrollArea, Text } from '@rax-ds/ui';
+
+export function Notes() {
+    return (
+        <ScrollArea className="h-48 w-full max-w-sm rounded-md border border-border">
+            <Text>Long content goes here.</Text>
+        </ScrollArea>
+    );
+}
+```
+
+The area needs a height (or a width, for horizontal scrolling), otherwise it grows with its content and never scrolls.
+
+## Examples
+
+### Horizontal
+
+Add a `ScrollBar` with `orientation="horizontal"` and make the content wider than the area.
+
+<ComponentPreview name="scroll-area/scroll-area-horizontal" />
+
+### Both directions
+
+ScrollArea renders a vertical scrollbar itself. Add a horizontal `ScrollBar` for content that is also too wide.
+
+<ComponentPreview name="scroll-area/scroll-area-both" />
+
+### Scrollbar visibility
+
+Use `type` to choose when the scrollbar is visible. The default is `hover`.
+
+<ComponentPreview name="scroll-area/scroll-area-type" />
+
+## Accessibility
+
+- Built on the Radix Scroll Area, which scrolls natively, so mouse wheel, touch and keyboard scrolling work as in any scrollable element.
+- The viewport shows a focus outline when it receives focus.
+
+## API reference
+
+### ScrollArea
+
+Radix Scroll Area root props are passed through. Native `<div>` props are too.
+
+<PropsTable items={scrollAreaProps} />
+
+### ScrollBar
+
+<PropsTable items={scrollBarProps} />

@@ -1,0 +1,45 @@
+import { containerProps } from '@/props/container';
+
+<ComponentPreview name="container/container-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Container, Heading } from '@rax-ds/ui';
+
+export function Page() {
+    return (
+        <Container>
+            <Heading as="h1">Dashboard</Heading>
+        </Container>
+    );
+}
+```
+
+## Examples
+
+### Sizes
+
+The width follows the screen smoothly and stops at the Tailwind breakpoint of the size. The default is `xl`, and `full` has no maximum width.
+
+<ComponentPreview name="container/container-sizes" />
+
+### Nested
+
+Put a narrower container inside a wider one to keep a block of text at a readable width.
+
+<ComponentPreview name="container/container-nested" />
+
+## Accessibility
+
+- Container renders a plain `div` and adds no role. Use [Section](/docs/components/section) when the page needs a landmark or a semantic tag.
+
+## API reference
+
+All native `<div>` props are passed through. Container also adds horizontal padding that grows with the screen width.
+
+<PropsTable items={containerProps} />

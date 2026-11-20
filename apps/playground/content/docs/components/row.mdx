@@ -1,0 +1,60 @@
+import { rowProps } from '@/props/row';
+
+<ComponentPreview name="row/row-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Button, Row } from '@rax-ds/ui';
+
+export function Actions() {
+    return (
+        <Row gap="sm" justify="end">
+            <Button variant="outline">Cancel</Button>
+            <Button>Save</Button>
+        </Row>
+    );
+}
+```
+
+Row lays its children out in a line. Use [Stack](/docs/components/stack) for a column.
+
+## Examples
+
+### Gap
+
+The gap scale is shared by Stack, Row and Grid: 0, 8px, 16px, 24px and 32px. The default is `md`.
+
+<ComponentPreview name="row/row-gap" />
+
+### Align
+
+`align` sets the vertical alignment. The default is `center`.
+
+<ComponentPreview name="row/row-align" />
+
+### Justify
+
+`justify` sets how the children are distributed along the line. The default is `start`.
+
+<ComponentPreview name="row/row-justify" />
+
+### Wrap
+
+With `wrap`, children move to the next line when they do not fit.
+
+<ComponentPreview name="row/row-wrap" />
+
+## Accessibility
+
+- Row is a plain `div` and only changes the layout. Children keep their DOM order, which is the reading and tab order.
+
+## API reference
+
+All native `<div>` props are passed through.
+
+<PropsTable items={rowProps} />

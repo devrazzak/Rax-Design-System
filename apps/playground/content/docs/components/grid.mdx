@@ -1,0 +1,64 @@
+import { gridItemProps, gridProps } from '@/props/grid';
+
+<ComponentPreview name="grid/grid-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Grid, GridItem } from '@rax-ds/ui';
+
+export function Layout() {
+    return (
+        <Grid columns={3}>
+            <GridItem span={2}>Main</GridItem>
+            <GridItem>Sidebar</GridItem>
+        </Grid>
+    );
+}
+```
+
+## Examples
+
+### Columns
+
+A number sets the column count from the `md` breakpoint up. Below `md` the grid is one column. The default is 2.
+
+<ComponentPreview name="grid/grid-columns" />
+
+### Responsive columns
+
+Pass an object to set the count per breakpoint: `base`, `sm`, `md`, `lg` and `xl`. A missing breakpoint keeps the one before it. Breakpoints follow the screen width, not the width of the preview box.
+
+<ComponentPreview name="grid/grid-responsive" />
+
+### Gap
+
+The gap scale is shared by Stack, Row and Grid: 0, 8px, 16px, 24px and 32px. The default is `md`.
+
+<ComponentPreview name="grid/grid-gap" />
+
+### Item span
+
+`GridItem` with `span` covers several columns from the `md` breakpoint up. Below `md` every item takes the full row.
+
+<ComponentPreview name="grid/grid-span" />
+
+## Accessibility
+
+- Grid and GridItem are plain `div` elements and only change the layout. Children keep their DOM order, which is the reading and tab order.
+
+## API reference
+
+All native `<div>` props are passed through.
+
+### Grid
+
+<PropsTable items={gridProps} />
+
+### GridItem
+
+<PropsTable items={gridItemProps} />

@@ -1,0 +1,48 @@
+import { separatorProps } from '@/props/separator';
+
+<ComponentPreview name="separator/separator-demo" />
+
+## Installation
+
+<InstallCommand packages="@rax-ds/ui" />
+
+## Usage
+
+```tsx
+import { Separator, Text } from '@rax-ds/ui';
+
+export function Settings() {
+    return (
+        <>
+            <Text>Profile</Text>
+            <Separator />
+            <Text>Notifications</Text>
+        </>
+    );
+}
+```
+
+## Examples
+
+### Vertical
+
+A vertical separator stretches to the height of its parent, so give the parent a height.
+
+<ComponentPreview name="separator/separator-vertical" />
+
+### Semantic separator
+
+By default the line is decorative. Set `decorative={false}` when it divides content in a way that matters to assistive technology.
+
+<ComponentPreview name="separator/separator-semantic" />
+
+## Accessibility
+
+- Built on the Radix Separator. A decorative separator (the default) gets `role="none"`, so screen readers skip it.
+- With `decorative={false}` it gets `role="separator"`, and `aria-orientation="vertical"` when vertical.
+
+## API reference
+
+Radix Separator props are passed through.
+
+<PropsTable items={separatorProps} />
